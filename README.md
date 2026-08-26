@@ -1,16 +1,39 @@
-# React + Vite
+# CV App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Core Functionality
 
-Currently, two official plugins are available:
+This application should be able to take input from different sections from the user and structure them in a
+document size paper representing how the final CV will look. The CV should be ATS friendly. The user should be able to choose different layouts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Pages to include
 
-## React Compiler
+1. Home page representing the service and a proper navigation.
+2. Create Resume page that can add, remove, edit, and export multiple different resumes.
+3. Build Resume page that have all the CV sections and important settings.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## CV Sections
 
-## Expanding the ESLint configuration
+1. A section to add general information like:
+   1. Name
+   2. Email
+   3. Phone number
+   4. Address
+2. A section to add your educational experience:
+   1. School / College name.
+   2. Title study.
+   3. Date of study.
+3. A section to add practical experience:
+   1. Company name.
+   2. Position title.
+   3. Main responsibilities of your jobs.
+   4. Date from and until when you worked for that company.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> [!NOTE]
+> The user can add or leave any section empty.
+
+## Additional Settings
+
+1. Change the CV Layout (e.g. one column or two).
+2. Change the displayed font.
+3. Change spacing (e.g. compact or spacious).
+4. Renaming each section.
