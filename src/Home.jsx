@@ -1,4 +1,13 @@
 import "./Home.css";
+import MainLogo from "./assets/main_logo.svg?react";
+import ArrowRight from "./assets/arrow_right.svg?react";
+import SplitLogo from "./assets/split_logo.svg?react";
+import ListLogo from "./assets/list.svg?react";
+import TemplatesLogo from "./assets/templates.svg?react";
+import TypographyLogo from "./assets/typography.svg?react";
+import InputLogo from "./assets/input.svg?react";
+import SpacingLogo from "./assets/spacing.svg?react";
+import CloudLogo from "./assets/cloud_arrow_down.svg?react";
 
 function Header() {
   return (
@@ -6,7 +15,7 @@ function Header() {
       <div className="header-container">
         <div className="header-container-nav">
           <div className="header-container-icon">
-            <svg>logo</svg>
+            <MainLogo className="main-logo" width="18" height="18" />
             <div id="logo-text">ResumeFlow</div>
           </div>
           <nav className="header-nav">
@@ -27,14 +36,16 @@ function Main() {
     <main className="main">
       <section className="hero">
         <div className="hero-container">
-          <h1>Build an ATS-Friendly CV in Minutes</h1>
+          <h1>
+            Build an <span id="ATS">ATS-Friendly</span> CV in Minutes
+          </h1>
           <p>
             Precision engineering for professionals. Create, optimize, and
             manage resumes that pass applicant tracking systems with zero
             formatting headaches.
           </p>
           <a href="#">
-            Get Started<svg>&gt;</svg>
+            <span>Get Started Free</span> <ArrowRight />
           </a>
         </div>
       </section>
@@ -52,7 +63,9 @@ function Main() {
           </div>
           <div className="features-grid">
             <article className="features-card">
-              <svg>Icon</svg>
+              <div className="features-logo-box">
+                <SplitLogo className="icon" />
+              </div>
               <h4>Live Split-Pane Preview</h4>
               <p>
                 See changes instantly. Our dual-pane builder separates data
@@ -60,7 +73,9 @@ function Main() {
               </p>
             </article>
             <article className="features-card">
-              <svg>Icon</svg>
+              <div className="features-logo-box">
+                <ListLogo />
+              </div>
               <h4>ATS Optimization</h4>
               <p>
                 Templates structurally designed to be parsed perfectly by
@@ -68,7 +83,9 @@ function Main() {
               </p>
             </article>
             <article className="features-card">
-              <svg>Icon</svg>
+              <div className="features-logo-box">
+                <TemplatesLogo className="icon" />
+              </div>
               <h4>Professional Templates</h4>
               <p>
                 Switch styles with one click. Typography and spacing adapt
@@ -76,7 +93,9 @@ function Main() {
               </p>
             </article>
             <article className="features-card">
-              <svg>Icon</svg>
+              <div className="features-logo-box">
+                <TypographyLogo />
+              </div>
               <h4>Impeccable Typography</h4>
               <p>
                 Every template utilizes paired Google Fonts designed for maximum
@@ -95,7 +114,7 @@ function Main() {
           </div>
           <div className="content-grid">
             <article className="content-card">
-              <svg>Icon</svg>
+              <InputLogo />
               <h4>Structured Input</h4>
               <p>
                 Enter your history once. Our modular schema keeps your data
@@ -103,7 +122,7 @@ function Main() {
               </p>
             </article>
             <article className="content-card">
-              <svg>Icon</svg>
+              <SpacingLogo />
               <h4>Algorithmic Spacing</h4>
               <p>
                 White space is calculated automatically to ensure content fits
@@ -111,7 +130,7 @@ function Main() {
               </p>
             </article>
             <article className="content-card">
-              <svg>Icon</svg>
+              <CloudLogo />
               <h4>One-Click Export</h4>
               <p>
                 Generate crisp, text-selectable PDFs that render flawlessly on

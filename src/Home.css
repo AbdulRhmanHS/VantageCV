@@ -1,0 +1,182 @@
+@import "index.css";
+
+/* -------------- Header -------------- */
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.header-container {
+  height: 64px;
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.header-container-nav {
+  display: flex;
+  gap: 40px;
+}
+
+.header-container-icon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#logo-text {
+  font: var(--typography-headline-md);
+  font-weight: 600;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font: var(--typography-body-md);
+}
+
+.header-link {
+  background-color: var(--accent-clr);
+  color: var(--surface-container-clr);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font: var(--typography-label-md);
+}
+/* ----------------------------------- */
+
+/* -------------- Main -------------- */
+.main {
+  background-color: var(--bg-clr);
+}
+/* ----------------------------------- */
+
+/* -------------- Hero -------------- */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 168.75px 0;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 0 24px;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.hero-container h1 {
+  font: var(--typography-display-lg);
+  text-align: center;
+}
+
+#ATS {
+  color: var(--accent-clr);
+}
+
+.hero-container p {
+  font: var(--typography-body-lg);
+  padding: 0 197.16px;
+  text-align: center;
+}
+
+.hero-container a {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 16.5px 32px;
+  background-color: var(--secondary-clr);
+  border-radius: 8px;
+  color: var(--surface-container-clr);
+  font: var(--typography-headline-md);
+}
+/* ----------------------------------- */
+
+/* -------------- Features -------------- */
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 96px 0;
+}
+
+.features-container {
+  max-width: 1600px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.features-head {
+  max-width: 672px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.features-head p {
+  font: var(--typography-body-lg);
+  margin-top: 8px;
+  padding: 0 30.34px;
+  box-sizing: border-box;
+}
+
+.features-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.features-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+  border-radius: 16px;
+  background-color: var(--surface-container-clr);
+}
+
+.features-logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+article:nth-child(1) .features-logo-box {
+  background-color: #131b2e;
+}
+
+article:nth-child(2) .features-logo-box {
+  background-color: #316bf3;
+}
+
+article:nth-child(3) .features-logo-box {
+  background-color: #0b1c30;
+}
+
+article:nth-child(4) .features-logo-box {
+  background-color: #38485d;
+}
+
+.icon path {
+  fill: #fff;
+}
+/* ----------------------------------- */
