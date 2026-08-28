@@ -66,3 +66,7 @@ h4 {
 p {
   font: var(--typography-body-md);
 }
+
+main {
+  background-color: var(--bg-clr);
+}
