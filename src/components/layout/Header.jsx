@@ -5,10 +5,10 @@ export default function Header() {
     <header className="header">
       <div className="header-container">
         <div className="header-container-nav">
-          <div className="header-container-icon">
+          <a href="#" className="header-container-icon">
             <MainLogo className="main-logo" width="18" height="18" />
-            <div id="logo-text">ResumeFlow</div>
-          </div>
+            <div id="logo-text">VantageCV</div>
+          </a>
           <nav className="header-nav">
             <a href="#">Home</a>
             <a href="#">My Resumes</a>

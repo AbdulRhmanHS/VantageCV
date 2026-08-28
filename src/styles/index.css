@@ -8,14 +8,18 @@
 
   /* Colors & Shadows*/
   --text-clr: #45464d;
-  --text-h-clr: #191c1e;
   --bg-clr: #f7f9fb;
   --surface-container-clr: #fff;
   --border-clr: #c6c6cd;
+  --footer-clr: #eceef0;
   --secondary-clr: #000000;
   --accent-clr: #0051d5;
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
+
+  /* Icon Backgrounds */
+  --split-logo-clr: #131b2e;
+  --list-logo-clr: #316bf3;
+  --template-logo-clr: #0b1c30;
+  --typography-logo-clr: #38485d;
 
   /* Typography Presets (Shorthand: style weight size/line-height family) */
   --typography-display-lg: 700 48px/56px var(--font-inter);
@@ -27,11 +31,17 @@
   --typography-label-md: 500 14px/20px var(--font-inter);
   --typography-cv-title: 700 24px/30px var(--font-serif);
   --typography-cv-body: 400 11pt/1.5 var(--font-serif);
+
+  /* Shadows */
+  --pdf-shadow:
+    rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
+  --card-shadow: rgba(0, 0, 0, 0.05) 0 1px 2px 0;
 }
 
 body {
   margin: 0;
   color: var(--text-clr);
+  background-color: var(--bg-clr);
 }
 
 p {
@@ -67,6 +77,6 @@ p {
   font: var(--typography-body-md);
 }
 
-main {
-  background-color: var(--bg-clr);
+.main-content {
+  padding-top: 4rem;
 }
