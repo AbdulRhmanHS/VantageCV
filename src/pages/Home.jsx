@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div className="bg-background font-body-md text-on-surface">
       <header className="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-        <div className="h-16 max-w-[1600px] mx-auto px-6 flex items-center justify-between">
+        <div className="h-16 max-w-max-width-desktop mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-10">
             <div className="flex items-center gap-3">
               <img
@@ -43,14 +43,14 @@ export default function Home() {
       </header>
       <main className="w-full pt-16">
         <div className="flex flex-col w-full relative">
-          <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden bg-surface py-24">
-            <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface-container-lowest to-surface z-0"></div>
+          <section className="relative min-h-150 flex items-center justify-center overflow-hidden bg-surface py-24">
+            <div className="absolute inset-0 bg-linear-to-b from-surface via-surface-container-lowest to-surface z-0"></div>
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-fixed-dim rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-pulse-slow"></div>
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-fixed rounded-full mix-blend-multiply filter blur-[120px] opacity-20"></div>
-            <div className="relative z-10 max-w-[1200px] mx-auto px-6 w-full flex flex-col items-center text-center space-y-8">
+            <div className="relative z-10 max-w-300 mx-auto px-6 w-full flex flex-col items-center text-center space-y-8">
               <h1 className="text-display-lg font-display-lg text-on-surface leading-tight">
                 Build an{" "}
-                <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-r from-secondary to-on-secondary-fixed-variant">
+                <span className="bg-clip-text text-transparent bg-linear-to-r from-secondary to-on-secondary-fixed-variant">
                   ATS-Friendly
                 </span>{" "}
                 CV in Minutes.
@@ -62,7 +62,7 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center transition-all duration-700 opacity-100 translate-y-0">
                 <a
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary rounded-xl text-headline-md font-headline-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary rounded-xl text-headline-md font-headline-md transition-transform duration-300 transform hover:-translate-y-1"
                   data-path="builder"
                   href="#"
                 >
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
           </section>
           <section className="py-24 bg-background relative" id="features">
-            <div className="max-w-[1600px] mx-auto px-6">
+            <div className="max-w-max-width-desktop mx-auto px-6">
               <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16 transition-all duration-700 opacity-100 translate-y-0">
                 <span className="text-label-md font-label-md text-secondary uppercase tracking-widest mb-4">
                   Features
@@ -148,7 +148,7 @@ export default function Home() {
             </div>
           </section>
           <section className="py-24 bg-surface relative overflow-hidden">
-            <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+            <div className="max-w-max-width-desktop mx-auto px-6 relative z-10">
               <div className="flex flex-col space-y-8 items-center text-center transition-all duration-700 opacity-100 translate-y-0">
                 <h2 className="text-headline-lg font-headline-lg text-on-surface">
                   Data-driven design, not guesswork.
@@ -222,7 +222,7 @@ export default function Home() {
                 precision-crafted resumes.
               </p>
               <a
-                className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-on-secondary rounded-xl text-headline-md font-headline-md hover:bg-secondary/90 shadow-[0_0_40px_rgba(49,107,243,0.3)] hover:shadow-[0_0_60px_rgba(49,107,243,0.5)] transition-all duration-300 transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-on-secondary rounded-xl text-headline-md font-headline-md transition-transform duration-300 transform hover:-translate-y-1"
                 data-path="builder"
                 href="#"
               >
@@ -233,7 +233,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="w-full bg-surface-container py-12 border-t border-outline-variant">
-        <div className="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-on-surface-variant text-label-md">
+        <div className="max-w-max-width-desktop mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-on-surface-variant text-label-md">
           <span className="">
             © 2026 VantageCV Inc. Built by AbdulRahman Ibn Hassn. Precise
             engineering for professionals.
