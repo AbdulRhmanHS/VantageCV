@@ -9,6 +9,9 @@
   }
   body {
     overscroll-behavior: none;
+    background-color: var(--color-background);
+    font-family: var(--font-body-md);
+    color: var(--color-on-surface);
   }
   main > :first-child {
     margin-top: 0 !important;
@@ -34,8 +37,8 @@
   --color-primary-fixed-dim: #bec6e0;
   --color-primary-fixed: #dae2fd;
   --color-surface-container-lowest: #ffffff;
-  --color-on-secondary-container: #fefcff;
-  --color-on-primary-container: #7c839b;
+  --color-on-secondary-container: #ffffff;
+  --color-on-primary-container: #ffffff;
   --color-on-primary-fixed-variant: #3f465c;
   --color-tertiary-container: #0b1c30;
   --color-surface-container-high: #e6e8ea;
@@ -57,7 +60,7 @@
   --color-inverse-surface: #2d3133;
   --color-on-primary: #ffffff;
   --color-outline-variant: #c6c6cd;
-  --color-on-tertiary-container: #75859d;
+  --color-on-tertiary-container: #ffffff;
   --color-tertiary-fixed-dim: #b7c8e1;
   --color-surface-bright: #f7f9fb;
   --color-on-primary-fixed: #131b2e;
