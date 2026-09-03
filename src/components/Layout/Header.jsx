@@ -1,9 +1,18 @@
-export default function Header() {
+export default function Header({ currentPage, setCurrentPage }) {
+  function handleNavigation(e, page) {
+    e.preventDefault();
+    setCurrentPage(page);
+  }
+
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div className="h-16 max-w-max-width-desktop mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-10">
-          <div className="flex items-center gap-3">
+          <a
+            className="flex items-center gap-3"
+            href="#home"
+            onClick={(e) => handleNavigation(e, "home")}
+          >
             <img
               alt="ResumeFlow Logo"
               className="h-8 w-auto object-contain"
@@ -12,18 +21,21 @@ export default function Header() {
             <span className="text-headline-md font-headline-md tracking-tight text-primary">
               VantageCV
             </span>
-          </div>
+          </a>
           <nav className="hidden md:flex items-center gap-6">
             <a
-              aria-current="page"
-              className="transition-colors text-secondary font-semibold font-inter"
-              href="#"
+              aria-current={currentPage === "home" ? "page" : undefined}
+              href="#home"
+              onClick={(e) => handleNavigation(e, "home")}
+              className={`text-label-md transition-colors font-semibold ${currentPage === "home" ? "text-secondary" : "text-on-surface-variant hover:text-on-surface"}`}
             >
               Home
             </a>
             <a
-              className="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
-              href="#"
+              aria-current={currentPage === "myResumes" ? "page" : undefined}
+              href="#myResumes"
+              onClick={(e) => handleNavigation(e, "myResumes")}
+              className={`text-label-md transition-colors font-semibold ${currentPage === "myResumes" ? "text-secondary" : "text-on-surface-variant hover:text-on-surface"}`}
             >
               My Resumes
             </a>
@@ -31,9 +43,9 @@ export default function Header() {
         </div>
         <div className="flex items-center gap-4">
           <a
-            className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-label-md opacity-100 hover:opacity-90 transition-opacity"
+            className={`bg-secondary text-on-secondary px-4 py-2 rounded-lg text-label-md opacity-100 hover:opacity-90 transition-opacity ${currentPage === "home" ? "block" : "hidden"}`}
             data-path="builder"
-            href="#"
+            href="#resumeBuilder"
           >
             Create New
           </a>

@@ -8,10 +8,14 @@
     padding: 0;
   }
   body {
+    min-height: 100vh;
     overscroll-behavior: none;
     background-color: var(--color-background);
     font-family: var(--font-body-md);
     color: var(--color-on-surface);
+  }
+  main {
+    min-height: calc(100vh - 117px);
   }
   main > :first-child {
     margin-top: 0 !important;
