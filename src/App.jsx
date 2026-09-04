@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import MyResumes from "./pages/MyResumes";
 import Layout from "./components/Layout/Layout";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-
   return (
-    <Layout currentPage={currentPage} setCurrentPage={setCurrentPage}>
-      {currentPage === "home" && <Home />}
-      {currentPage === "myResumes" && <MyResumes />}
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/resumes" element={<MyResumes />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </Layout>
   );
 }

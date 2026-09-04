@@ -1,18 +1,13 @@
-export default function Header({ currentPage, setCurrentPage }) {
-  function handleNavigation(e, page) {
-    e.preventDefault();
-    setCurrentPage(page);
-  }
+import { Link, NavLink, useLocation } from "react-router-dom";
+
+export default function Header() {
+  const location = useLocation();
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div className="h-16 max-w-max-width-desktop mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-10">
-          <a
-            className="flex items-center gap-3"
-            href="#home"
-            onClick={(e) => handleNavigation(e, "home")}
-          >
+          <Link to="/" className="flex items-center gap-3">
             <img
               alt="ResumeFlow Logo"
               className="h-8 w-auto object-contain"
@@ -21,34 +16,42 @@ export default function Header({ currentPage, setCurrentPage }) {
             <span className="text-headline-md font-headline-md tracking-tight text-primary">
               VantageCV
             </span>
-          </a>
+          </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <a
-              aria-current={currentPage === "home" ? "page" : undefined}
-              href="#home"
-              onClick={(e) => handleNavigation(e, "home")}
-              className={`text-label-md transition-colors font-semibold ${currentPage === "home" ? "text-secondary" : "text-on-surface-variant hover:text-on-surface"}`}
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `text-label-md transition-colors font-semibold ${
+                  isActive
+                    ? "text-secondary"
+                    : "text-on-surface-variant hover:text-on-surface"
+                }`
+              }
             >
               Home
-            </a>
-            <a
-              aria-current={currentPage === "myResumes" ? "page" : undefined}
-              href="#myResumes"
-              onClick={(e) => handleNavigation(e, "myResumes")}
-              className={`text-label-md transition-colors font-semibold ${currentPage === "myResumes" ? "text-secondary" : "text-on-surface-variant hover:text-on-surface"}`}
+            </NavLink>
+            <NavLink
+              to="/resumes"
+              className={({ isActive }) =>
+                `text-label-md transition-colors font-semibold ${
+                  isActive
+                    ? "text-secondary"
+                    : "text-on-surface-variant hover:text-on-surface"
+                }`
+              }
             >
               My Resumes
-            </a>
+            </NavLink>
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <a
-            className={`bg-secondary text-on-secondary px-4 py-2 rounded-lg text-label-md opacity-100 hover:opacity-90 transition-opacity ${currentPage === "home" ? "block" : "hidden"}`}
-            data-path="builder"
-            href="#resumeBuilder"
+          <Link
+            to="/builder"
+            className={`bg-secondary text-on-secondary px-4 py-2 rounded-lg text-label-md opacity-100 hover:opacity-90 transition-opacity ${location.pathname === "/" ? "block" : "hidden"}`}
           >
             Create New
-          </a>
+          </Link>
         </div>
       </div>
     </header>

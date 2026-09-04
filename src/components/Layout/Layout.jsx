@@ -1,10 +1,10 @@
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Layout({ children, currentPage, setCurrentPage }) {
+export default function Layout({ children }) {
   return (
     <>
-      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Header />
       {children}
       <Footer />
     </>

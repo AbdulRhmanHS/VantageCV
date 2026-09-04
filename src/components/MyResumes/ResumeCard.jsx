@@ -13,9 +13,6 @@ export default function ResumeCard({ title, lastEdit }) {
           <div className="w-full h-1 bg-outline-variant/30 rounded mb-1"></div>
           <div className="w-3/4 h-1 bg-outline-variant/30 rounded"></div>
         </div>
-        <div className="absolute top-4 right-4 bg-surface-container text-on-surface-variant font-label-md text-[10px] uppercase tracking-wider px-2 py-1 rounded shadow-sm">
-          Status
-        </div>
       </div>
       <div className="p-6 flex flex-col grow">
         <h3 className="font-headline-md text-headline-md text-on-surface mb-2 truncate">
@@ -25,13 +22,25 @@ export default function ResumeCard({ title, lastEdit }) {
           Last edited: {lastEdit} ago
         </p>
         <div className="mt-auto flex items-center justify-between">
-          <div className="flex gap-2">
-            <button className="bg-surface-container text-on-surface font-label-md text-[11px] px-2 py-1 rounded uppercase tracking-wide">
+          <div className="flex items-center gap-2">
+            <a
+              href="#"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-on-primary hover:bg-on-surface font-label-md text-[11px] rounded transition-colors shadow-sm"
+            >
+              <span className="material-symbols-outlined text-[14px]!">
+                edit
+              </span>
               Edit
-            </button>
-            <button className="bg-surface-container text-on-surface font-label-md text-[11px] px-2 py-1 rounded uppercase tracking-wide">
+            </a>
+            <a
+              href="#"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-[11px] rounded border border-outline-variant transition-colors"
+            >
+              <span className="material-symbols-outlined text-[14px]!">
+                download
+              </span>
               Export
-            </button>
+            </a>
           </div>
           <button className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant transition-colors">
             <span className="material-symbols-outlined text-[20px]">

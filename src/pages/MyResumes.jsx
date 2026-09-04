@@ -3,7 +3,7 @@ import ResumesNewBtn from "../components/MyResumes/ResumesNewBtn";
 
 export default function MyResumes() {
   return (
-    <main className="w-full h-full py-16 p-2">
+    <main className="w-full h-full py-16 p-2 pt-20">
       <div className="max-w-max-width-desktop mx-auto w-full grow flex flex-col gap-6">
         <div className="flex flex-col">
           <h1 className="font-display-lg text-display-lg text-on-surface">

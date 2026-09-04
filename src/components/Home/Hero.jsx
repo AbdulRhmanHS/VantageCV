@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Hero() {
   return (
     <section className="relative min-h-150 flex items-center justify-center overflow-hidden bg-surface py-24">
@@ -18,16 +20,15 @@ export default function Hero() {
           headaches.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center transition-all duration-700 opacity-100 translate-y-0">
-          <a
+          <Link
+            to="/resumes"
             className="inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary rounded-xl text-headline-md font-headline-md transition-transform duration-300 hover:-translate-y-1"
-            data-path="builder"
-            href="#"
           >
             Get Started Free
             <span className="material-symbols-outlined ml-2">
               arrow_forward
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
