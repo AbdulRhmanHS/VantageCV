@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function FinalCTA() {
   return (
     <section className="py-32 relative overflow-hidden bg-primary text-on-primary flex items-center justify-center text-center">
@@ -17,13 +19,14 @@ export default function FinalCTA() {
           Join thousands of professionals landing their dream roles with
           precision-crafted resumes.
         </p>
-        <a
+        <Link
+          to="/builder"
           className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-on-secondary rounded-xl text-headline-md font-headline-md transition-[transform, opacity] duration-300 hover:-translate-y-1 hover:opacity-90"
           data-path="builder"
           href="#"
         >
           Create Your Resume Now
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -1,40 +1,58 @@
-export default function ResumeCard({ title, lastEdit }) {
+export default function ResumeCard({ title, lastEdit, name, job, sections }) {
   return (
-    <div className="flex flex-col bg-surface rounded shadow-sm border border-outline-variant overflow-hidden h-full hover:shadow-md transition-shadow relative group">
-      <div className="bg-surface-container-high relative overflow-hidden flex items-center justify-center p-6 h-48">
-        <div className="absolute inset-0 opacity-10 bg-linear-to-br from-primary via-transparent to-transparent"></div>
-        <div className="w-full h-full bg-surface rounded shadow-sm flex flex-col p-4 opacity-80 rotate-2 scale-105 group-hover:rotate-0 group-hover:scale-100 transition-all duration-300">
-          <div className="w-1/2 h-2 bg-outline-variant rounded mb-2"></div>
-          <div className="w-3/4 h-1.5 bg-outline-variant/50 rounded mb-1"></div>
-          <div className="w-2/3 h-1.5 bg-outline-variant/50 rounded mb-4"></div>
-          <div className="w-full h-1 bg-outline-variant/30 rounded mb-1"></div>
-          <div className="w-full h-1 bg-outline-variant/30 rounded mb-1"></div>
-          <div className="w-4/5 h-1 bg-outline-variant/30 rounded mb-4"></div>
-          <div className="w-full h-1 bg-outline-variant/30 rounded mb-1"></div>
-          <div className="w-3/4 h-1 bg-outline-variant/30 rounded"></div>
+    <div class="flex flex-col bg-surface-container-lowest rounded-xl border-2 border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md relative">
+      <div className="p-5 flex flex-col flex-grow">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h3
+            className="font-semibold text-base text-on-surface tracking-tight truncate flex-1"
+            title={title}
+          >
+            {title}
+          </h3>
+          <button className="text-on-surface-variant hover:text-secondary transition-colors p-1 -mr-1">
+            <span className="material-symbols-outlined text-[16px]!">edit</span>
+          </button>
         </div>
-      </div>
-      <div className="p-6 flex flex-col grow">
-        <h3 className="font-headline-md text-headline-md text-on-surface mb-2 truncate">
-          {title}
-        </h3>
-        <p className="font-body-md text-body-md text-on-surface-variant mb-4 text-sm">
-          Last edited: {lastEdit} ago
-        </p>
-        <div className="mt-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap text-xs text-on-surface-variant mb-4">
+          <span className="inline-flex items-center gap-1">
+            <span className="material-symbols-outlined text-[14px]!">
+              calendar_today
+            </span>
+            Updated {lastEdit}
+          </span>
+          <span className="text-outline-variant">•</span>
+          <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-surface-container text-[11px] font-medium text-on-surface-variant">
+            English
+            <span className="material-symbols-outlined text-[12px]!">
+              expand_more
+            </span>
+          </span>
+        </div>
+        <div className="bg-surface-container-low/60 rounded p-3 mb-3 border border-outline-variant/30">
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-semibold text-sm text-on-surface truncate">
+              {name}
+            </span>
+            <span className="text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">
+              {sections} sections
+            </span>
+          </div>
+          <p className="text-xs text-on-surface-variant truncate">{job}</p>
+        </div>
+        <div className="mt-auto pt-3 border-t border-outline-variant/40 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 flex-1">
             <a
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-primary text-on-primary hover:bg-on-surface font-label-md text-xs rounded-lg transition-colors shadow-sm flex-1 font-medium"
               href="#"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-on-primary hover:bg-on-surface font-label-md text-[11px] rounded transition-colors shadow-sm"
             >
               <span className="material-symbols-outlined text-[14px]!">
-                edit
+                edit_note
               </span>
-              Edit
+              Build
             </a>
             <a
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-xs rounded-lg border border-outline-variant/60 transition-colors flex-1 font-medium"
               href="#"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-[11px] rounded border border-outline-variant transition-colors"
             >
               <span className="material-symbols-outlined text-[14px]!">
                 download
@@ -42,8 +60,8 @@ export default function ResumeCard({ title, lastEdit }) {
               Export
             </a>
           </div>
-          <button className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant transition-colors">
-            <span className="material-symbols-outlined text-[20px]">
+          <button className="w-8 h-8 rounded hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">
+            <span className="material-symbols-outlined text-[18px]!">
               more_vert
             </span>
           </button>
