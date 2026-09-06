@@ -2,6 +2,8 @@
 // TODO: Make a Terms page
 // TODO: Make a contact me page (or make the link lead to any email)
 
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-surface-container border-t border-outline-variant py-4">
@@ -28,27 +30,24 @@ export default function Footer() {
               Navigation
             </span>
             <nav className="flex flex-col gap-2.5">
-              <a
+              <Link
+                to="/"
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors"
-                data-path="home"
-                href="#"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
+                to="/resumes"
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors"
-                data-path="my-resumes"
-                href="#"
               >
                 My Resumes
-              </a>
-              <a
+              </Link>
+              <Link
+                to="/builder"
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors"
-                data-path="builder"
-                href="#"
               >
                 Builder
-              </a>
+              </Link>
             </nav>
           </div>
           <div className="md:col-span-3 flex flex-col gap-3">
