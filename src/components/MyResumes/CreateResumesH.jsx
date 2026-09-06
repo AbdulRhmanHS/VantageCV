@@ -1,3 +1,7 @@
+// TODO: Make the Create New button show a pop up to fill the initial data of the CV
+// TODO: Attach the span element to the total number of resume cards
+// TODO: Add an import button, and make it functional
+
 export default function CreateResumesH() {
   return (
     <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-4 border-b border-outline-variant/40 pb-5">

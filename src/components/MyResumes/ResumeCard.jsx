@@ -1,7 +1,18 @@
+// TODO: Attach the cards to the resume data in the builder
+// TODO: Make the pen icon rename the title of the CV
+// TODO: Make the lastEdit record date with any edit made
+// TODO: Make the build button functional open the builder with the current CV data
+// TODO: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
+// TODO: Make the language dropdown menu functional
+// TODO: Make the export button functional by exporting as a PDF
+// TODO: Make an option for exporting as JSON to be able to import it later
+// TODO: Make the 3 dot button work by showing another menu which has the delete option
+// TODO: Make the delete functional
+
 export default function ResumeCard({ title, lastEdit, name, job, sections }) {
   return (
-    <div class="flex flex-col bg-surface-container-lowest rounded-xl border-2 border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md relative">
-      <div className="p-5 flex flex-col flex-grow">
+    <div class="flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md hover:border-outline-variant relative">
+      <div className="p-5 flex flex-col grow">
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3
             className="font-semibold text-base text-on-surface tracking-tight truncate flex-1"

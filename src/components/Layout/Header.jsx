@@ -10,8 +10,8 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-3">
             <img
               alt="ResumeFlow Logo"
-              className="h-8 w-auto object-contain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA__yS96uo1QrPErR11rs4PhYPjAR_zLeEr1Rz3T6z6-aCv8PBlXa5OAjDWMtmRSLBg0Bj6Gxlo1LhMgBDNcXNODEiDRZqmj-9wF5waPGUeYC4SArre4_tsk6h-3Z-OoS4osyWgaBBtrzwzPXKpx2apW5qIuef9VROXXNvTNC7vQthCQejZRy27PY60ufnIwEiddX23hqSTrnZiY7JjM0yUPX3JY6EYvOOky6ojbdyNX2qpJvZ1owCz"
+              className="h-6 w-auto object-contain"
+              src="/src/assets/main_logo.svg"
             />
             <span className="text-headline-md font-headline-md tracking-tight text-primary">
               VantageCV

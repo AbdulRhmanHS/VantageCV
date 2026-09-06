@@ -3,7 +3,7 @@ import ResumeCard from "../components/MyResumes/ResumeCard";
 
 export default function MyResumes() {
   return (
-    <main className="w-full h-full pt-16">
+    <main className="w-full min-h-screen pt-16">
       <div className="max-w-max-width-desktop mx-auto w-full grow flex flex-col gap-6 p-6 py-10">
         <CreateResumesH />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
