@@ -1,15 +1,17 @@
-// TODO: Make the collapse buttons functional
-// TODO: Make the add and delete button work for each section
+// DONE: Make the collapse buttons functional
+// DONE: Make the add button work for each section
+// DONE: Make the delete button work for each section
 // TODO: Connect the typed input to the pdf
+// TODO: Make the drag handle reorder the sections
 // TODO: Make the display of the pdf at small screens functional
 // TODO: Add the hidden settings to the displayed pdf
 // TODO: Show the settings in the displayed pdf as a pop up modal
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
-import Experience from "../components/ResumeBuilder/Experience";
-import PersonalInfo from "../components/ResumeBuilder/PersonalInfo";
+import ExperienceCard from "../components/ResumeBuilder/ExperienceCard";
+import PersonalInfoCard from "../components/ResumeBuilder/PersonalInfoCard";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
-import Education from "../components/ResumeBuilder/Education";
+import EducationCard from "../components/ResumeBuilder/EducationCard";
 import PDFPreview from "../components/ResumeBuilder/PDFPreview";
 
 export default function ResumeBuilder() {
@@ -26,9 +28,9 @@ export default function ResumeBuilder() {
                   Build Your Resume
                 </h1>
                 <div className="space-y-4">
-                  <PersonalInfo />
-                  <Experience />
-                  <Education />
+                  <PersonalInfoCard />
+                  <ExperienceCard />
+                  <EducationCard />
                 </div>
               </div>
             </div>
