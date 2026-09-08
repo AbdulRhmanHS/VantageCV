@@ -33,7 +33,7 @@ export default function InputCard({
             className="w-full py-4 border-2 border-dashed border-outline-variant rounded-lg text-primary hover:bg-primary/5 transition-colors flex items-center justify-center gap-2 font-label-md text-label-md justify-self-center"
           >
             <span className="material-symbols-outlined">add_circle</span>
-            Add Position
+            Add {title}
           </button>
         )}
       </div>

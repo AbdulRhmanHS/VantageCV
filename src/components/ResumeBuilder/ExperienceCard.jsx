@@ -1,18 +1,12 @@
 import ExperienceInputs from "./ExperienceInputs";
 import TemplateCard from "./TemplateCard";
-import { useState } from "react";
 
-export default function Experience() {
-  const [fields, addField] = useState([{ id: crypto.randomUUID() }]);
-
-  const handleAdd = () => {
-    addField((prev) => [...prev, { id: crypto.randomUUID() }]);
-  };
-
-  const handleRemove = (idToRemove) => {
-    addField((prev) => prev.filter((items) => items.id !== idToRemove));
-  };
-
+export default function ExperienceCard({
+  experiences,
+  handleAdd,
+  handleRemove,
+  onInputChange,
+}) {
   return (
     <TemplateCard
       icon={"work"}
@@ -20,10 +14,16 @@ export default function Experience() {
       addPos={true}
       onAdd={handleAdd}
     >
-      {fields.map((field) => (
+      {experiences.map((exp) => (
         <ExperienceInputs
-          key={field.id}
-          onRemove={() => handleRemove(field.id)}
+          key={exp.id}
+          id={exp.id}
+          title={exp.title}
+          date={exp.date}
+          company={exp.company}
+          description={exp.description}
+          onInputChange={onInputChange}
+          onRemove={() => handleRemove(exp.id)}
         />
       ))}
     </TemplateCard>

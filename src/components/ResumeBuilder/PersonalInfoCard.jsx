@@ -1,6 +1,13 @@
 import TemplateCard from "./TemplateCard";
 
-export default function PersonalInfoCard() {
+export default function PersonalInfoCard({
+  name,
+  email,
+  phone,
+  address,
+  proSummary,
+  onInputChange,
+}) {
   return (
     <TemplateCard
       icon={"person"}
@@ -16,9 +23,10 @@ export default function PersonalInfoCard() {
                 Full Name
               </label>
               <input
-                className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 type="text"
-                x-model="personal.name"
+                value={name}
+                onChange={(e) => onInputChange("name", e.target.value)}
+                className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
               />
             </div>
             <div className="grow">
@@ -28,7 +36,8 @@ export default function PersonalInfoCard() {
               <input
                 className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 type="email"
-                x-model="personal.email"
+                value={email}
+                onChange={(e) => onInputChange("email", e.target.value)}
               />
             </div>
           </div>
@@ -40,7 +49,8 @@ export default function PersonalInfoCard() {
               <input
                 className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 type="tel"
-                x-model="personal.phone"
+                value={phone}
+                onChange={(e) => onInputChange("phone", e.target.value)}
               />
             </div>
             <div className="grow">
@@ -50,7 +60,8 @@ export default function PersonalInfoCard() {
               <input
                 className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 type="text"
-                x-model="personal.location"
+                value={address}
+                onChange={(e) => onInputChange("address", e.target.value)}
               />
             </div>
           </div>
@@ -61,7 +72,8 @@ export default function PersonalInfoCard() {
             <textarea
               className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
               rows="4"
-              x-model="personal.summary"
+              value={proSummary}
+              onChange={(e) => onInputChange("proSummary", e.target.value)}
             ></textarea>
           </div>
         </div>

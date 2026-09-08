@@ -1,4 +1,12 @@
-export default function ExperienceInputs({ onRemove }) {
+export default function ExperienceInputs({
+  id,
+  title,
+  date,
+  company,
+  description,
+  onInputChange,
+  onRemove,
+}) {
   return (
     <div className="border-t border-outline-variant/30">
       <div className="mt-6 p-5 bg-surface rounded-lg relative group">
@@ -21,7 +29,8 @@ export default function ExperienceInputs({ onRemove }) {
             <input
               className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
               type="text"
-              x-model="exp.title"
+              value={title}
+              onChange={(e) => onInputChange(id, "title", e.target.value)}
             />
           </div>
           <div className="col-span-2 sm:col-span-1">
@@ -31,7 +40,8 @@ export default function ExperienceInputs({ onRemove }) {
             <input
               className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
               type="text"
-              x-model="exp.company"
+              value={company}
+              onChange={(e) => onInputChange(id, "company", e.target.value)}
             />
           </div>
           <div className="col-span-2">
@@ -42,7 +52,8 @@ export default function ExperienceInputs({ onRemove }) {
               className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-on-surface-variant/50"
               placeholder="e.g. Jan 2020 - Present"
               type="text"
-              x-model="exp.date"
+              value={date}
+              onChange={(e) => onInputChange(id, "date", e.target.value)}
             />
           </div>
           <div className="col-span-2">
@@ -52,7 +63,8 @@ export default function ExperienceInputs({ onRemove }) {
             <textarea
               className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none"
               rows="3"
-              x-model="exp.desc"
+              value={description}
+              onChange={(e) => onInputChange(id, "description", e.target.value)}
             ></textarea>
           </div>
         </div>

@@ -1,4 +1,12 @@
-export default function EducationInputs({ onRemove }) {
+export default function EducationInputs({
+  school,
+  degree,
+  date,
+  description,
+  id,
+  onRemove,
+  onInputChange,
+}) {
   return (
     <div className="border-t border-outline-variant/30">
       <div className="mt-6 p-5 bg-surface rounded-lg relative group">
@@ -19,9 +27,10 @@ export default function EducationInputs({ onRemove }) {
               School / University
             </label>
             <input
-              className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
               type="text"
-              x-model="edu.school"
+              value={school}
+              onChange={(e) => onInputChange(id, "school", e.target.value)}
+              className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
           </div>
           <div className="col-span-2 sm:col-span-1">
@@ -29,9 +38,10 @@ export default function EducationInputs({ onRemove }) {
               Degree / Field of Study
             </label>
             <input
-              className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
               type="text"
-              x-model="edu.degree"
+              value={degree}
+              onChange={(e) => onInputChange(id, "degree", e.target.value)}
+              className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
           </div>
           <div className="col-span-2 sm:col-span-1">
@@ -39,10 +49,10 @@ export default function EducationInputs({ onRemove }) {
               Graduation Date
             </label>
             <input
-              className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-              placeholder="e.g. 2017"
               type="text"
-              x-model="edu.date"
+              value={date}
+              onChange={(e) => onInputChange(id, "date", e.target.value)}
+              className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
           </div>
           <div className="col-span-2">
@@ -50,9 +60,11 @@ export default function EducationInputs({ onRemove }) {
               Description (Optional)
             </label>
             <textarea
+              type="text"
+              value={description}
+              onChange={(e) => onInputChange(id, "description", e.target.value)}
               className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none"
               rows="3"
-              x-model="edu.desc"
             ></textarea>
           </div>
         </div>
