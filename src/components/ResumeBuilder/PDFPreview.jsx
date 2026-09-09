@@ -37,7 +37,7 @@ export default function PDFPreview({ personalInfo, experiences, educations }) {
                     Experience
                   </h2>
                   {experiences.map((exp) => (
-                    <div className="flex flex-col gap-6">
+                    <div key={exp.id} className="flex flex-col gap-6">
                       <div className="relative pl-4 before:absolute before:left-0 before:top-3 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
                         <div className="flex justify-between items-baseline mb-1">
                           <h3 className="font-bold text-on-surface text-lg">
@@ -65,7 +65,7 @@ export default function PDFPreview({ personalInfo, experiences, educations }) {
                   Education
                 </h2>
                 {educations.map((edu) => (
-                  <div className="flex flex-col gap-4">
+                  <div key={edu.id} className="flex flex-col gap-4">
                     <div>
                       <h3 className="font-bold text-on-surface">
                         {edu.degree}

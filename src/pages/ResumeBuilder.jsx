@@ -138,12 +138,14 @@ export default function ResumeBuilder() {
                     handleAdd={handleExperienceAdd}
                     handleRemove={handleExperienceRemove}
                     onInputChange={handleExperienceChange}
+                    setExperiences={setExperiences}
                   />
                   <EducationCard
                     educations={educations}
                     handleAdd={handleEducationAdd}
                     handleRemove={handleEducationRemove}
                     onInputChange={handleEducationChange}
+                    setEducations={setEducations}
                   />
                 </div>
               </div>
