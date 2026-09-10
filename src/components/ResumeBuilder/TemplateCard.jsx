@@ -1,11 +1,19 @@
-export default function InputCard({
-  children,
+import { Reorder } from "framer-motion";
+import ReorderableFormCard from "./ReorderableFormCard";
+
+export default function TemplateCard({
   icon,
   title,
-  addPos,
   isOpen = false,
+  items,
+  onReorder,
   onAdd,
+  onRemove,
+  renderInputs,
+  children,
 }) {
+  const isDynamic = Boolean(items && renderInputs);
+
   return (
     <details
       open={isOpen}
@@ -24,9 +32,26 @@ export default function InputCard({
           expand_more
         </span>
       </summary>
+
       <div className="flex flex-col gap-6 p-6 pt-0">
-        {children}
-        {addPos !== false && (
+        {isDynamic ? (
+          <Reorder.Group axis="y" values={items} onReorder={onReorder}>
+            {items.map((item) => (
+              <ReorderableFormCard
+                key={item.id}
+                id={item.id}
+                item={item}
+                onRemove={() => onRemove(item.id)}
+              >
+                {renderInputs(item)}
+              </ReorderableFormCard>
+            ))}
+          </Reorder.Group>
+        ) : (
+          children
+        )}
+
+        {onAdd && (
           <button
             type="button"
             onClick={onAdd}

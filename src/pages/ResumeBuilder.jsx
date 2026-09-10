@@ -2,19 +2,40 @@
 // DONE: Make the add button work for each section
 // DONE: Make the delete button work for each section
 // DONE: Connect the typed input to the pdf
-// TODO: Make the drag handle reorder the sections
+// DONE: Make the drag handle reorder the sections
 // TODO: Make the display of the pdf at small screens functional
 // TODO: Add the hidden settings to the displayed pdf
 // TODO: Show the settings in the displayed pdf as a pop up modal
 // TODO: Handle PDF content overflow by making another page
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
-import ExperienceCard from "../components/ResumeBuilder/ExperienceCard";
-import PersonalInfoCard from "../components/ResumeBuilder/PersonalInfoCard";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
-import EducationCard from "../components/ResumeBuilder/EducationCard";
+import TemplateCard from "../components/ResumeBuilder/TemplateCard";
+import PersonalInfoInputs from "../components/ResumeBuilder/PersonalInfoInputs";
+import ExperienceInputs from "../components/ResumeBuilder/ExperienceInputs";
+import EducationInputs from "../components/ResumeBuilder/EducationInputs";
 import PDFPreview from "../components/ResumeBuilder/PDFPreview";
 import { useState } from "react";
+
+function useSectionState(initialItems) {
+  const [items, setItems] = useState(initialItems);
+
+  const update = (id, field, value) => {
+    setItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
+    );
+  };
+
+  const add = (template) => {
+    setItems((prev) => [...prev, { id: crypto.randomUUID(), ...template }]);
+  };
+
+  const remove = (id) => {
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  return { items, setItems, update, add, remove };
+}
 
 export default function ResumeBuilder() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -25,7 +46,12 @@ export default function ResumeBuilder() {
     proSummary:
       "Creative technologist and senior product designer with 8+ years of experience building high-impact digital experiences.",
   });
-  const [experiences, setExperiences] = useState([
+
+  const handlePersonalChange = (field, value) => {
+    setPersonalInfo((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const experiences = useSectionState([
     {
       id: crypto.randomUUID(),
       title: "Senior Product Designer",
@@ -43,14 +69,15 @@ export default function ResumeBuilder() {
         "Spearheaded user research initiatives and developed design systems that reduced development time by 30%.",
     },
   ]);
-  const [educations, setEducations] = useState([
+
+  const educations = useSectionState([
     {
       id: crypto.randomUUID(),
       school: "Carnegie Mellon University",
       degree: "M.S. Human-Computer Interaction",
       date: "2017",
       description:
-        "Focus on interactive systems, quantitative user research, and cognitive design architectures. Teaching assistant for Graduate Interface Design.",
+        "Focus on interactive systems, quantitative user research, and cognitive design architectures.",
     },
     {
       id: crypto.randomUUID(),
@@ -58,63 +85,12 @@ export default function ResumeBuilder() {
       degree: "B.A. Graphic Design",
       date: "2015",
       description:
-        "Graduated with Honors. Coursework in typography, visual communication systems, and physical computing. Senior capstone exhibition award winner.",
+        "Graduated with Honors. Coursework in typography, visual communication systems, and physical computing.",
     },
   ]);
 
-  const handlePersonalChange = (field, value) => {
-    setPersonalInfo((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleExperienceChange = (id, field, value) => {
-    setExperiences((prevExp) =>
-      prevExp.map((exp) => (exp.id === id ? { ...exp, [field]: value } : exp)),
-    );
-  };
-
-  const handleExperienceAdd = () => {
-    setExperiences((prevEdu) => [
-      ...prevEdu,
-      {
-        id: crypto.randomUUID(),
-        title: "",
-        date: "",
-        company: "",
-        description: "",
-      },
-    ]);
-  };
-
-  const handleExperienceRemove = (idToRemove) => {
-    setExperiences((prevEdu) =>
-      prevEdu.filter((item) => item.id !== idToRemove),
-    );
-  };
-
-  const handleEducationChange = (id, field, value) => {
-    setEducations((prevEdu) =>
-      prevEdu.map((edu) => (edu.id === id ? { ...edu, [field]: value } : edu)),
-    );
-  };
-
-  const handleEducationAdd = () => {
-    setEducations((prevEdu) => [
-      ...prevEdu,
-      {
-        id: crypto.randomUUID(),
-        school: "",
-        degree: "",
-        date: "",
-        description: "",
-      },
-    ]);
-  };
-
-  const handleEducationRemove = (idToRemove) => {
-    setEducations((prevEdu) =>
-      prevEdu.filter((item) => item.id !== idToRemove),
-    );
-  };
+  const emptyExperience = { title: "", date: "", company: "", description: "" };
+  const emptyEducation = { school: "", degree: "", date: "", description: "" };
 
   return (
     <>
@@ -129,31 +105,56 @@ export default function ResumeBuilder() {
                   Build Your Resume
                 </h1>
                 <div className="space-y-4">
-                  <PersonalInfoCard
-                    {...personalInfo}
-                    onInputChange={handlePersonalChange}
+                  {/* Simple Personal Info Card */}
+                  <TemplateCard
+                    icon="person"
+                    title="General Information"
+                    isOpen={true}
+                  >
+                    <PersonalInfoInputs
+                      personalInfo={personalInfo}
+                      onInputChange={handlePersonalChange}
+                    />
+                  </TemplateCard>
+
+                  {/* Dynamic Experience Card */}
+                  <TemplateCard
+                    icon="work"
+                    title="Experience"
+                    items={experiences.items}
+                    onReorder={experiences.setItems}
+                    onAdd={() => experiences.add(emptyExperience)}
+                    onRemove={experiences.remove}
+                    renderInputs={(exp) => (
+                      <ExperienceInputs
+                        exp={exp}
+                        onInputChange={experiences.update}
+                      />
+                    )}
                   />
-                  <ExperienceCard
-                    experiences={experiences}
-                    handleAdd={handleExperienceAdd}
-                    handleRemove={handleExperienceRemove}
-                    onInputChange={handleExperienceChange}
-                    setExperiences={setExperiences}
-                  />
-                  <EducationCard
-                    educations={educations}
-                    handleAdd={handleEducationAdd}
-                    handleRemove={handleEducationRemove}
-                    onInputChange={handleEducationChange}
-                    setEducations={setEducations}
+
+                  {/* Dynamic Education Card */}
+                  <TemplateCard
+                    icon="school"
+                    title="Education"
+                    items={educations.items}
+                    onReorder={educations.setItems}
+                    onAdd={() => educations.add(emptyEducation)}
+                    onRemove={educations.remove}
+                    renderInputs={(edu) => (
+                      <EducationInputs
+                        edu={edu}
+                        onInputChange={educations.update}
+                      />
+                    )}
                   />
                 </div>
               </div>
             </div>
             <PDFPreview
               personalInfo={personalInfo}
-              experiences={experiences}
-              educations={educations}
+              experiences={experiences.items}
+              educations={educations.items}
             />
           </div>
         </div>
