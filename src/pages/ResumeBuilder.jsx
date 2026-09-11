@@ -3,10 +3,11 @@
 // DONE: Make the delete button work for each section
 // DONE: Connect the typed input to the pdf
 // DONE: Make the drag handle reorder the sections
-// TODO: Make the display of the pdf at small screens functional
+// DONE: Make the display of the pdf at small screens functional
 // TODO: Add the hidden settings to the displayed pdf
 // TODO: Show the settings in the displayed pdf as a pop up modal
 // TODO: Handle PDF content overflow by making another page
+// TODO: Add an up and down arrow or a section button for reordering the main sections
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
@@ -15,6 +16,7 @@ import PersonalInfoInputs from "../components/ResumeBuilder/PersonalInfoInputs";
 import ExperienceInputs from "../components/ResumeBuilder/ExperienceInputs";
 import EducationInputs from "../components/ResumeBuilder/EducationInputs";
 import PDFPreview from "../components/ResumeBuilder/PDFPreview";
+import PDFModal from "../components/ResumeBuilder/PDFModal";
 import { useState } from "react";
 
 function useSectionState(initialItems) {
@@ -50,6 +52,8 @@ export default function ResumeBuilder() {
   const handlePersonalChange = (field, value) => {
     setPersonalInfo((prev) => ({ ...prev, [field]: value }));
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const experiences = useSectionState([
     {
@@ -158,10 +162,20 @@ export default function ResumeBuilder() {
             />
           </div>
         </div>
-        <button className="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center z-50 hover:scale-110 transition-transform active:scale-95">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className={`${isModalOpen ? "hidden" : "fixed"} lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center z-50 hover:scale-110 transition-transform active:scale-95`}
+        >
           <span className="material-symbols-outlined text-2xl">visibility</span>
         </button>
       </main>
+      <PDFModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        personalInfo={personalInfo}
+        experiences={experiences.items}
+        educations={educations.items}
+      />
     </>
   );
 }

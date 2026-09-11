@@ -1,6 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 
-export default function PDFPreview({ personalInfo, experiences, educations }) {
+export default function PDFPreview({
+  personalInfo,
+  experiences,
+  educations,
+  isHidden = true,
+}) {
   const { name, email, phone, address, proSummary } = personalInfo;
 
   const containerRef = useRef(null);
@@ -31,7 +36,7 @@ export default function PDFPreview({ personalInfo, experiences, educations }) {
   return (
     <div
       ref={containerRef}
-      className="hidden lg:flex lg:w-1/2 bg-surface-container-low p-8 overflow-y-auto justify-center lg:sticky lg:top-16 lg:h-[calc(100vh-160px)]"
+      className={`${isHidden ? "hidden" : "flex"} lg:flex lg:w-1/2 bg-surface-container-low p-8 overflow-y-auto justify-center lg:sticky lg:top-16 lg:h-[calc(100vh-160px)]`}
     >
       <div
         style={{
@@ -66,7 +71,7 @@ export default function PDFPreview({ personalInfo, experiences, educations }) {
               {proSummary && (
                 <div className="flex flex-col gap-8">
                   <div>
-                    <h2 className="text-headline-md font-headline-md text-primary mb-3 uppercase tracking-wider text-sm text-cv-preview-title">
+                    <h2 className="text-headline-md font-headline-md text-primary mb-3 uppercase tracking-wider text-sm text-cv-preview-title border-b border-outline-variant/30 pb-1.5">
                       Profile
                     </h2>
                     <p className="text-on-surface leading-relaxed">
@@ -78,7 +83,7 @@ export default function PDFPreview({ personalInfo, experiences, educations }) {
               {experiences.length > 0 && (
                 <div className="flex flex-col gap-8">
                   <div>
-                    <h2 className="text-headline-md font-headline-md text-primary mb-4 uppercase tracking-wider text-sm text-cv-preview-title">
+                    <h2 className="text-headline-md font-headline-md text-primary mb-4 uppercase tracking-wider text-sm text-cv-preview-title border-b border-outline-variant/30 pb-1.5">
                       Experience
                     </h2>
                     {experiences.map((exp) => (
@@ -106,7 +111,7 @@ export default function PDFPreview({ personalInfo, experiences, educations }) {
               )}
               {educations.length > 0 && (
                 <div>
-                  <h2 className="text-headline-md font-headline-md text-primary mb-3 uppercase tracking-wider text-sm text-cv-preview-title">
+                  <h2 className="text-headline-md font-headline-md text-primary mb-3 uppercase tracking-wider text-sm text-cv-preview-title border-b border-outline-variant/30 pb-1.5">
                     Education
                   </h2>
                   {educations.map((edu) => (
