@@ -43,7 +43,7 @@ export default function PDFPreview({
           width: TARGET_WIDTH * scale,
           height: TARGET_HEIGHT * scale,
         }}
-        className="transition-all duration-150 ease-out shrink-0"
+        className="shrink-0"
       >
         <div
           style={{

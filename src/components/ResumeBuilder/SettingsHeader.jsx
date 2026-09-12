@@ -30,20 +30,14 @@ export default function SettingsHeader() {
         <div className="flex items-center gap-4 text-on-surface-variant">
           <div className="flex items-center gap-2">
             <span className="text-label-md font-label-md">Font:</span>
-            <select
-              className="bg-surface-container text-on-surface text-body-md font-body-md px-3 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer"
-              x-model="font"
-            >
+            <select className="bg-surface-container text-on-surface text-body-md font-body-md px-3 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
               <option value="serif">Source Serif 4</option>
               <option value="sans">Inter</option>
             </select>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-label-md font-label-md">Spacing:</span>
-            <select
-              className="bg-surface-container text-on-surface text-body-md font-body-md px-3 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer"
-              x-model="spacing"
-            >
+            <select className="bg-surface-container text-on-surface text-body-md font-body-md px-3 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
               <option value="compact">Compact</option>
               <option value="spacious">Spacious</option>
             </select>
