@@ -2,8 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import tailwindcss from "@tailwindcss/vite";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr(), tailwindcss()],
+  plugins: [react(), svgr(), tailwindcss(), basicSsl()],
+  server: {
+    host: true,
+  },
 });

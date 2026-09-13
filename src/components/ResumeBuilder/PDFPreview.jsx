@@ -18,13 +18,8 @@ export default function PDFPreview({
   useEffect(() => {
     const handleResize = () => {
       if (!containerRef.current) return;
-
-      // Available space inside the sticky container (minus padding)
-      const parentWidth = containerRef.current.clientWidth - 64; // 64px = p-8 padding
-
-      // Calculate scale to fit both width constraints
+      const parentWidth = containerRef.current.clientWidth - 64;
       const newScale = parentWidth / TARGET_WIDTH;
-
       setScale(newScale);
     };
 
@@ -36,7 +31,7 @@ export default function PDFPreview({
   return (
     <div
       ref={containerRef}
-      className={`${isHidden ? "hidden" : "flex"} lg:flex lg:w-1/2 bg-surface-container-low p-8 overflow-y-auto justify-center lg:sticky lg:top-16 lg:h-[calc(100vh-160px)]`}
+      className={`${isHidden ? "hidden" : "flex"} lg:flex lg:w-1/2 bg-surface p-8 overflow-y-auto justify-center lg:sticky lg:top-16 lg:h-[calc(100vh-160px)]`}
     >
       <div
         style={{
