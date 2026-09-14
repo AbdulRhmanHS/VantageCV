@@ -12,8 +12,11 @@ export default function PDFModal({
   experiences,
   educations,
   layout,
+  setLayout,
   font,
+  setFont,
   spacing,
+  setSpacing,
 }) {
   const [menu, setMenu] = useState("pdf");
 
@@ -105,13 +108,27 @@ export default function PDFModal({
                       Layout Format
                     </label>
                     <div className="grid grid-cols-2 gap-1 p-1 bg-surface-container-low rounded-lg border border-slate-200">
-                      <button className="flex items-center justify-center gap-1 py-1.5 px-2 rounded-md bg-white text-slate-900 font-medium shadow-xs text-xs transition-all border border-slate-200/60">
+                      <button
+                        className={`flex items-center justify-center gap-1 py-1.5 px-2 rounded-md font-medium text-xs transition-all ${
+                          layout === "one-col"
+                            ? "bg-white text-slate-900 shadow-xs border border-slate-200/60"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                        onClick={() => setLayout("one-col")}
+                      >
                         <span className="material-symbols-outlined text-[15px]">
                           view_agenda
                         </span>
                         <span>Single Col</span>
                       </button>
-                      <button className="flex items-center justify-center gap-1 py-1.5 px-2 rounded-md text-slate-600 hover:text-slate-900 text-xs transition-all">
+                      <button
+                        className={`flex items-center justify-center gap-1 py-1.5 px-2 rounded-md font-medium text-xs transition-all ${
+                          layout === "two-col"
+                            ? "bg-white text-slate-900 shadow-xs border border-slate-200/60"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                        onClick={() => setLayout("two-col")}
+                      >
                         <span className="material-symbols-outlined text-[15px]">
                           view_column
                         </span>
@@ -119,15 +136,17 @@ export default function PDFModal({
                       </button>
                     </div>
                   </div>
-                  {/* DONE: Make the dropdown come from the whole div */}
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1">
                       Font
                     </label>
                     <div className="relative flex items-center">
-                      <select className="w-full appearance-none cursor-pointer border border-slate-200 text-on-surface text-body-md font-body-md pl-3 pr-8 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-transparent">
-                        <option value="serif">Source Serif 4</option>
-                        <option value="sans">Inter</option>
+                      <select
+                        onChange={(e) => setFont(e.target.value)}
+                        className="w-full appearance-none cursor-pointer border border-slate-200 text-on-surface text-body-md font-body-md pl-3 pr-8 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-transparent"
+                      >
+                        <option value="source-serif">Source Serif 4</option>
+                        <option value="inter">Inter</option>
                       </select>
                       <span className="material-symbols-outlined text-[20px]! text-outline-variant absolute right-2 pointer-events-none">
                         stat_minus_1
@@ -139,9 +158,12 @@ export default function PDFModal({
                       Spacing
                     </label>
                     <div className="relative flex items-center">
-                      <select className="w-full appearance-none cursor-pointer border border-slate-200 text-on-surface text-body-md font-body-md pl-3 pr-8 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-transparent">
-                        <option value="compact">Compact</option>
+                      <select
+                        onChange={(e) => setSpacing(e.target.value)}
+                        className="w-full appearance-none cursor-pointer border border-slate-200 text-on-surface text-body-md font-body-md pl-3 pr-8 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-transparent"
+                      >
                         <option value="spacious">Spacious</option>
+                        <option value="compact">Compact</option>
                       </select>
                       <span className="material-symbols-outlined text-[20px]! text-outline-variant absolute right-2 pointer-events-none">
                         stat_minus_1

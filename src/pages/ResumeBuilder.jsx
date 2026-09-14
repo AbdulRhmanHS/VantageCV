@@ -188,8 +188,11 @@ export default function ResumeBuilder() {
         experiences={experiences.items}
         educations={educations.items}
         layout={layout}
+        setLayout={setLayout}
         font={font}
+        setFont={setFont}
         spacing={spacing}
+        setSpacing={setSpacing}
       />
     </>
   );
