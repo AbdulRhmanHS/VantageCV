@@ -35,6 +35,27 @@
   }
 }
 
+@utility pdf-grid-layout {
+  display: grid;
+  grid-template-areas:
+    "summary exp"
+    "edu exp";
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+}
+
+@utility area-summary {
+  grid-area: summary;
+}
+
+@utility area-experience {
+  grid-area: exp;
+}
+
+@utility area-education {
+  grid-area: edu;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -130,6 +151,14 @@
   --text-label-md--line-height: 20px;
   --text-label-md--letter-spacing: 0.05em;
   --text-label-md--font-weight: 500;
+
+  --text-cv-preview-body: 11pt;
+  --text-cv-preview-body--line-height: 24px;
+  --text-cv-preview-body--font-weight: 600;
+
+  --text-cv-preview-title: 24px;
+  --text-cv-preview-title--line-height: 30px;
+  --text-cv-preview-title--font-weight: 700;
 
   /* Spacing */
   --spacing-max-width-desktop: 1600px;

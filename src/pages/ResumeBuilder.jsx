@@ -4,8 +4,7 @@
 // DONE: Connect the typed input to the pdf
 // DONE: Make the drag handle reorder the sections
 // DONE: Make the display of the pdf at small screens functional
-// TODO: Add the hidden settings to the displayed pdf
-// TODO: Show the settings in the displayed pdf as a pop up modal
+// DONE: Add the hidden settings to the displayed pdf
 // TODO: Handle PDF content overflow by making another page
 // TODO: Add an up and down arrow or a section button for reordering the main sections
 
@@ -54,6 +53,9 @@ export default function ResumeBuilder() {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [layout, setLayout] = useState("one-col");
+  const [font, setFont] = useState("source-serif");
+  const [spacing, setSpacing] = useState("spacious");
 
   const experiences = useSectionState([
     {
@@ -101,7 +103,12 @@ export default function ResumeBuilder() {
       <BuilderHeader />
       <main className="pt-16 min-h-screen">
         <div className="flex flex-col w-full h-full relative">
-          <SettingsHeader />
+          <SettingsHeader
+            layout={layout}
+            setLayout={setLayout}
+            setFont={setFont}
+            setSpacing={setSpacing}
+          />
           <div className="flex flex-col lg:flex-row flex-1 h-auto lg:h-[calc(100vh-140px)]">
             <div className="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
               <div className="px-4 py-8 lg:p-8 lg:max-w-2xl mx-auto w-full">
@@ -159,12 +166,17 @@ export default function ResumeBuilder() {
               personalInfo={personalInfo}
               experiences={experiences.items}
               educations={educations.items}
+              layout={layout}
+              font={font}
+              spacing={spacing}
             />
           </div>
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
-          className={`${isModalOpen ? "hidden" : "fixed"} lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center z-50 hover:scale-110 transition-transform active:scale-95`}
+          className={`lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center z-50 hover:scale-110 transition-transform active:scale-95 ${
+            isModalOpen ? "hidden" : "fixed"
+          }`}
         >
           <span className="material-symbols-outlined text-2xl">visibility</span>
         </button>
@@ -175,6 +187,9 @@ export default function ResumeBuilder() {
         personalInfo={personalInfo}
         experiences={experiences.items}
         educations={educations.items}
+        layout={layout}
+        font={font}
+        spacing={spacing}
       />
     </>
   );

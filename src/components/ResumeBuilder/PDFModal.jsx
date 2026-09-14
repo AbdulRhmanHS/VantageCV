@@ -11,6 +11,9 @@ export default function PDFModal({
   personalInfo,
   experiences,
   educations,
+  layout,
+  font,
+  spacing,
 }) {
   const [menu, setMenu] = useState("pdf");
 
@@ -320,6 +323,9 @@ export default function PDFModal({
               personalInfo={personalInfo}
               experiences={experiences}
               educations={educations}
+              layout={layout}
+              font={font}
+              spacing={spacing}
               isHidden={false}
             />
           </section>
