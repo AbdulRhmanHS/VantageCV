@@ -4,6 +4,7 @@
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import PDFPreview from "./PDFPreview";
+import SettingsHeader from "./SettingsHeader";
 
 export default function PDFModal({
   isOpen,
@@ -94,115 +95,18 @@ export default function PDFModal({
         </nav>
         {/* Modal Body */}
         <div className="flex-1 overflow-y-auto bg-surface">
-          <div
-            className={`${menu === "settings" ? "flex" : "hidden"} flex-col min-h-full justify-between`}
-          >
-            <div className="flex flex-col mb-0 p-5">
-              <section className="space-y-5">
-                <div>
-                  <label className="block text-xs font-semibold text-on-primary-fixed mb-2 uppercase tracking-wide">
-                    Layout Format
-                  </label>
-                  <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-200/70 rounded-lg border border-[#e2e8f0]">
-                    <button
-                      type="button"
-                      onClick={() => setLayout("one-col")}
-                      className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-md text-xs transition-all ${
-                        layout === "one-col"
-                          ? "bg-white text-on-primary-fixed font-semibold shadow-xs border border-[#e2e8f0]"
-                          : "text-slate-600 hover:text-on-primary-fixed font-medium"
-                      }`}
-                    >
-                      <span className="material-symbols-outlined text-[17px]!">
-                        view_agenda
-                      </span>
-                      <span>Single Col</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setLayout("two-col")}
-                      className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-md text-xs transition-all ${
-                        layout === "two-col"
-                          ? "bg-white text-on-primary-fixed font-semibold shadow-xs border border-[#e2e8f0]"
-                          : "text-slate-600 hover:text-on-primary-fixed font-medium"
-                      }`}
-                    >
-                      <span className="material-symbols-outlined text-[17px]!">
-                        view_column
-                      </span>
-                      <span>2 Columns</span>
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="fontSelect"
-                    className="block text-xs font-semibold text-on-primary-fixed mb-1.5 uppercase tracking-wide"
-                  >
-                    Font
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="fontSelect"
-                      value={font}
-                      onChange={(e) => setFont(e.target.value)}
-                      className="w-full appearance-none bg-white border border-[#e2e8f0] rounded-lg px-3.5 py-2.5 text-xs text-on-primary-fixed focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-medium transition-colors cursor-pointer pr-9 shadow-xs"
-                    >
-                      <option value="source-serif">Source Serif 4</option>
-                      <option value="inter">Inter</option>
-                    </select>
-                    <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-[20px]!">
-                      expand_more
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="spacingSelect"
-                    className="block text-xs font-semibold text-on-primary-fixed mb-1.5 uppercase tracking-wide"
-                  >
-                    Spacing
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="spacingSelect"
-                      value={spacing}
-                      onChange={(e) => setSpacing(e.target.value)}
-                      className="w-full appearance-none bg-white border border-[#e2e8f0] rounded-lg px-3.5 py-2.5 text-xs text-on-primary-fixed focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-medium transition-colors cursor-pointer pr-9 shadow-xs"
-                    >
-                      <option value="spacious">Spacious</option>
-                      <option value="compact">Compact</option>
-                    </select>
-                    <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-[20px]">
-                      expand_more
-                    </span>
-                  </div>
-                </div>
-                {/* DONE: Make font work */}
-                <div>
-                  <label
-                    htmlFor="languageSelect"
-                    className="block text-xs font-semibold text-on-primary-fixed mb-1.5 uppercase tracking-wide"
-                  >
-                    Language
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="languageSelect"
-                      value={language}
-                      onChange={(e) => setLanguage(e.target.value)}
-                      className="w-full appearance-none bg-white border border-[#e2e8f0] rounded-lg px-3.5 py-2.5 text-xs text-on-primary-fixed focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-medium transition-colors cursor-pointer pr-9 shadow-xs"
-                    >
-                      <option value="english">English</option>
-                      <option value="arabic">Arabic</option>
-                    </select>
-                    <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-[20px]">
-                      expand_more
-                    </span>
-                  </div>
-                </div>
-              </section>
-            </div>
+          <div className={`${menu === "settings" ? "block" : "hidden"}`}>
+            <SettingsHeader
+              layout={layout}
+              setLayout={setLayout}
+              font={font}
+              setFont={setFont}
+              spacing={spacing}
+              setSpacing={setSpacing}
+              language={language}
+              setLanguage={setLanguage}
+              isHidden={false}
+            />
           </div>
           {/* PDF Preview */}
           <section

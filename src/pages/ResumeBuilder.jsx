@@ -5,6 +5,7 @@
 // DONE: Make the drag handle reorder the sections
 // DONE: Make the display of the pdf at small screens functional
 // DONE: Add the hidden settings to the displayed pdf
+// TODO: Make inputs support RTL direction
 // TODO: Handle PDF content overflow by making another page
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
@@ -106,8 +107,11 @@ export default function ResumeBuilder() {
           <SettingsHeader
             layout={layout}
             setLayout={setLayout}
+            font={font}
             setFont={setFont}
+            spacing={spacing}
             setSpacing={setSpacing}
+            language={language}
             setLanguage={setLanguage}
           />
           <div className="flex flex-col lg:flex-row flex-1 h-auto lg:h-[calc(100vh-140px)]">
