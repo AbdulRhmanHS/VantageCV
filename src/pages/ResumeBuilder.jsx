@@ -6,7 +6,6 @@
 // DONE: Make the display of the pdf at small screens functional
 // DONE: Add the hidden settings to the displayed pdf
 // TODO: Handle PDF content overflow by making another page
-// TODO: Add an up and down arrow or a section button for reordering the main sections
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
@@ -40,7 +39,7 @@ function useSectionState(initialItems) {
 
 export default function ResumeBuilder() {
   const [personalInfo, setPersonalInfo] = useState({
-    name: "Alex Johnson",
+    name: "",
     email: "alex@example.com",
     phone: "+1 (555) 123-4567",
     address: "San Francisco, CA",
@@ -56,6 +55,7 @@ export default function ResumeBuilder() {
   const [layout, setLayout] = useState("one-col");
   const [font, setFont] = useState("source-serif");
   const [spacing, setSpacing] = useState("spacious");
+  const [language, setLanguage] = useState("english");
 
   const experiences = useSectionState([
     {
@@ -108,6 +108,7 @@ export default function ResumeBuilder() {
             setLayout={setLayout}
             setFont={setFont}
             setSpacing={setSpacing}
+            setLanguage={setLanguage}
           />
           <div className="flex flex-col lg:flex-row flex-1 h-auto lg:h-[calc(100vh-140px)]">
             <div className="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
@@ -169,6 +170,7 @@ export default function ResumeBuilder() {
               layout={layout}
               font={font}
               spacing={spacing}
+              language={language}
             />
           </div>
         </div>
@@ -193,6 +195,8 @@ export default function ResumeBuilder() {
         setFont={setFont}
         spacing={spacing}
         setSpacing={setSpacing}
+        language={language}
+        setLanguage={setLanguage}
       />
     </>
   );

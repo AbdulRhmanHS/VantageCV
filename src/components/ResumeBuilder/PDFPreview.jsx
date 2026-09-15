@@ -7,6 +7,7 @@ export default function PDFPreview({
   layout = "one-col",
   font = "source-serif",
   spacing = "spacious",
+  language = "english",
   isHidden = true,
 }) {
   const { name, email, phone, address, proSummary } = personalInfo;
@@ -35,6 +36,8 @@ export default function PDFPreview({
     leading: isCompact ? "leading-snug" : "leading-relaxed",
     borderBottom: isCompact ? "pb-3 mb-2" : "pb-6 mb-2",
   };
+
+  const isArabic = language === "arabic";
 
   // Fixed A4 pixel dimensions (at standard 96 DPI: 210mm = ~794px, 297mm = ~1123px)
   const containerRef = useRef(null);
@@ -76,22 +79,25 @@ export default function PDFPreview({
             transform: `scale(${scale})`,
             transformOrigin: "top left",
           }}
-          className={`bg-surface-container-lowest shadow-xl ${density.paddingPage} origin-top ${bodyText} ${density.gapSection}`}
+          dir={isArabic ? "rtl" : "ltr"}
+          className={`bg-surface-container-lowest shadow-xl ${density.paddingPage} origin-top ${bodyText} ${density.gapSection} ${
+            isArabic ? "rtl:text-right" : "ltr:text-left"
+          }`}
         >
           <div className={`flex flex-col ${density.gapSection}`}>
             {/* Header Section */}
             <div
               className={`border-b-2 border-primary ${density.borderBottom}`}
             >
-              <h1 className="text-display-lg font-display-lg text-primary mb-2">
-                {name || "Your Name"}
+              <h1 className="text-display-lg font-display-lg text-primary mb-2 rtl:mb-4">
+                {name || (isArabic ? "الاسم" : "Your Name")}
               </h1>
               <div
                 className={`flex flex-wrap items-center gap-x-4 gap-y-1 text-on-surface-variant ${density.bodyTextSize}`}
               >
                 {email && <span>{email}</span>}
                 {email && phone && <span>•</span>}
-                {phone && <span>{phone}</span>}
+                {phone && <span dir="ltr">{phone}</span>}
                 {phone && address && <span>•</span>}
                 {address && <span>{address}</span>}
               </div>
@@ -114,7 +120,7 @@ export default function PDFPreview({
                     <h2
                       className={`${headlineText} text-primary mb-2 uppercase tracking-wider border-b border-outline-variant/30 pb-1`}
                     >
-                      Profile
+                      {isArabic ? "نبذة عني" : "Profile"}
                     </h2>
                     <p
                       className={`text-on-surface ${density.leading} ${density.bodyTextSize}`}
@@ -134,14 +140,14 @@ export default function PDFPreview({
                     <h2
                       className={`${headlineText} text-primary mb-2 uppercase tracking-wider border-b border-outline-variant/30 pb-1`}
                     >
-                      Experience
+                      {isArabic ? "الخبرة العملية" : "Experience"}
                     </h2>
                     {experiences.map((exp) => (
                       <div
                         key={exp.id}
                         className={`flex flex-col ${density.gapNested}`}
                       >
-                        <div className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
+                        <div className="relative ps-4 before:absolute before:inset-s-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
                           <div className="flex justify-between items-baseline mb-0.5">
                             <h3
                               className={`font-bold text-on-surface ${density.titleSize}`}
@@ -177,7 +183,7 @@ export default function PDFPreview({
                   <h2
                     className={`${headlineText} text-primary mb-2 uppercase tracking-wider border-b border-outline-variant/30 pb-1`}
                   >
-                    Education
+                    {isArabic ? "التعليم والدورات" : "Education"}
                   </h2>
                   {educations.map((edu) => (
                     <div

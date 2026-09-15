@@ -1,12 +1,14 @@
 // DONE: Make the column layout setting functional
 // DONE: Make the font setting functional
 // DONE: Make the spacing setting functional
+// DONE: Add language settings and make it work
 
 export default function SettingsHeader({
   layout,
   setLayout,
   setFont,
   setSpacing,
+  setLanguage,
 }) {
   return (
     <div className="hidden sticky -top-2 z-30 lg:flex items-center justify-between w-full px-6 py-4 bg-surface/90 backdrop-blur-md shadow-sm">
@@ -49,8 +51,18 @@ export default function SettingsHeader({
               onChange={(e) => setSpacing(e.target.value)}
               className="bg-surface-container text-on-surface text-body-md font-body-md px-3 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer"
             >
-              <option value="compact">Compact</option>
               <option value="spacious">Spacious</option>
+              <option value="compact">Compact</option>
+            </select>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-label-md font-label-md">Language:</span>
+            <select
+              onChange={(e) => setLanguage(e.target.value)}
+              className="bg-surface-container text-on-surface text-body-md font-body-md px-3 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer"
+            >
+              <option value="english">English</option>
+              <option value="arabic">Arabic</option>
             </select>
           </div>
         </div>

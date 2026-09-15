@@ -1,5 +1,5 @@
 // DONE: Make each tab show its own section
-// TODO: Make the settings functional
+// DONE: Make the settings functional
 
 import { createPortal } from "react-dom";
 import { useState } from "react";
@@ -17,6 +17,8 @@ export default function PDFModal({
   setFont,
   spacing,
   setSpacing,
+  language,
+  setLanguage,
 }) {
   const [menu, setMenu] = useState("pdf");
 
@@ -26,320 +28,201 @@ export default function PDFModal({
     <div className="lg:hidden relative">
       <div
         onClick={(e) => e.preventDefault()}
-        className="h-svh fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full z-41 bg-surface-container-lowest overflow-hidden flex flex-col"
+        className="h-svh w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-41 bg-surface overflow-hidden flex flex-col"
       >
         {/* Modal Header */}
-        <div className="px-4 pt-3 pb-3 border-b border-slate-200 bg-surface-container-lowest flex flex-col gap-2 sticky top-0 z-30">
-          <div className="flex items-center justify-between">
-            <div className="min-w-0">
-              <h2 className="text-sm font-semibold text-slate-900 leading-tight truncate">
-                PDF Preview &amp; Settings
-              </h2>
-            </div>
-            <button
-              className="w-9 h-9 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 flex items-center justify-center transition-colors shrink-0"
-              onClick={() => {
-                setMenu("pdf");
-                onClose();
-              }}
-              title="Close"
-            >
-              <span className="material-symbols-outlined text-[20px]">
-                close
-              </span>
-            </button>
+        <header className="bg-white border-b border-[#e2e8f0] px-4 py-3.5 flex items-center justify-between shrink-0 shadow-xs">
+          <div className="min-w-0 pr-2">
+            <h1 className="text-base font-bold text-on-primary-fixed tracking-tight leading-snug">
+              PDF Preview &amp; Settings
+            </h1>
+            <p className="text-xs text-slate-500 leading-none mt-0.5">
+              Mobile layout &amp; printable preview
+            </p>
           </div>
-        </div>
+          <button
+            className="w-9 h-9 rounded-lg text-slate-500 hover:text-on-primary-fixed hover:bg-slate-100 flex items-center justify-center transition-colors shrink-0"
+            onClick={() => {
+              setMenu("pdf");
+              onClose();
+            }}
+          >
+            <span className="material-symbols-outlined text-[20px]!">
+              close
+            </span>
+          </button>
+        </header>
         {/* Modal Navigation / Section Quick Jump Tabs */}
-        <div className="px-3 py-2 bg-surface-container-low border-b border-slate-200 flex items-center justify-between gap-2 text-xs font-medium text-slate-600">
-          <div className="flex items-center p-0.5 bg-surface-container rounded-lg">
+        <nav className="px-4 border-b border-[#e2e8f0] bg-white shrink-0">
+          <div className="flex items-center max-w-md mx-auto w-full px-4 gap-6">
             <button
+              type="button"
               onClick={() => setMenu("pdf")}
-              className={`${menu === "pdf" ? "text-slate-900 bg-white/60" : "bg-surface-container text-slate-600"} px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5`}
+              className={`flex-1 py-2 px-3 rounded-md text-xs transition-all flex items-center justify-center gap-1.5 ${
+                menu === "pdf"
+                  ? "bg-white text-on-primary-fixed font-semibold shadow-xs"
+                  : "text-slate-500 hover:text-on-primary-fixed! font-medium"
+              }`}
             >
-              <span className="material-symbols-outlined text-[15px]">
+              <span
+                className={`material-symbols-outlined text-[18px]! transition-colors ${
+                  menu === "pdf" ? "text-secondary" : ""
+                }`}
+              >
                 description
               </span>
               <span>PDF Sheet</span>
             </button>
             <button
               onClick={() => setMenu("settings")}
-              className={`${menu === "settings" ? "text-slate-900 bg-white/60" : "bg-surface-container text-slate-600"} px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5`}
+              className={`flex-1 py-2 px-3 rounded-md text-xs transition-all flex items-center justify-center gap-1.5 ${
+                menu === "settings"
+                  ? "bg-white text-on-primary-fixed font-semibold shadow-xs"
+                  : "text-slate-500 hover:text-on-primary-fixed font-medium"
+              }`}
             >
-              <span className="material-symbols-outlined text-[15px] text-blue-600">
+              <span
+                className={`material-symbols-outlined text-[18px]! transition-colors ${
+                  menu === "settings" ? "text-secondary" : ""
+                }`}
+              >
                 tune
               </span>
               <span>Settings</span>
             </button>
           </div>
-          <button
-            className="h-8 px-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-medium flex items-center gap-1 transition-colors shadow-xs shrink-0"
-            id="downloadPdfQuick"
-            title="Download PDF"
-          >
-            <span className="material-symbols-outlined text-[16px]">
-              download
-            </span>
-            <span className="text-[11px] font-semibold hidden sm:inline">
-              PDF
-            </span>
-          </button>
-        </div>
+        </nav>
         {/* Modal Body */}
         <div className="flex-1 overflow-y-auto bg-surface">
           <div
             className={`${menu === "settings" ? "flex" : "hidden"} flex-col min-h-full justify-between`}
           >
-            <div className="flex flex-col gap-4 mb-0 p-5">
-              <section className="bg-surface-container-lowest p-4 sm:p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-blue-600 text-[20px]">
-                      display_settings
-                    </span>
-                    <h3 className="text-sm font-semibold text-slate-900">
-                      Header Settings
-                    </h3>
+            <div className="flex flex-col mb-0 p-5">
+              <section className="space-y-5">
+                <div>
+                  <label className="block text-xs font-semibold text-on-primary-fixed mb-2 uppercase tracking-wide">
+                    Layout Format
+                  </label>
+                  <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-200/70 rounded-lg border border-[#e2e8f0]">
+                    <button
+                      type="button"
+                      onClick={() => setLayout("one-col")}
+                      className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-md text-xs transition-all ${
+                        layout === "one-col"
+                          ? "bg-white text-on-primary-fixed font-semibold shadow-xs border border-[#e2e8f0]"
+                          : "text-slate-600 hover:text-on-primary-fixed font-medium"
+                      }`}
+                    >
+                      <span className="material-symbols-outlined text-[17px]!">
+                        view_agenda
+                      </span>
+                      <span>Single Col</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLayout("two-col")}
+                      className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-md text-xs transition-all ${
+                        layout === "two-col"
+                          ? "bg-white text-on-primary-fixed font-semibold shadow-xs border border-[#e2e8f0]"
+                          : "text-slate-600 hover:text-on-primary-fixed font-medium"
+                      }`}
+                    >
+                      <span className="material-symbols-outlined text-[17px]!">
+                        view_column
+                      </span>
+                      <span>2 Columns</span>
+                    </button>
                   </div>
                 </div>
-                <div className="flex flex-col gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-1">
-                      Layout Format
-                    </label>
-                    <div className="grid grid-cols-2 gap-1 p-1 bg-surface-container-low rounded-lg border border-slate-200">
-                      <button
-                        className={`flex items-center justify-center gap-1 py-1.5 px-2 rounded-md font-medium text-xs transition-all ${
-                          layout === "one-col"
-                            ? "bg-white text-slate-900 shadow-xs border border-slate-200/60"
-                            : "text-slate-600 hover:text-slate-900"
-                        }`}
-                        onClick={() => setLayout("one-col")}
-                      >
-                        <span className="material-symbols-outlined text-[15px]">
-                          view_agenda
-                        </span>
-                        <span>Single Col</span>
-                      </button>
-                      <button
-                        className={`flex items-center justify-center gap-1 py-1.5 px-2 rounded-md font-medium text-xs transition-all ${
-                          layout === "two-col"
-                            ? "bg-white text-slate-900 shadow-xs border border-slate-200/60"
-                            : "text-slate-600 hover:text-slate-900"
-                        }`}
-                        onClick={() => setLayout("two-col")}
-                      >
-                        <span className="material-symbols-outlined text-[15px]">
-                          view_column
-                        </span>
-                        <span>2 Columns</span>
-                      </button>
-                    </div>
+                <div>
+                  <label
+                    htmlFor="fontSelect"
+                    className="block text-xs font-semibold text-on-primary-fixed mb-1.5 uppercase tracking-wide"
+                  >
+                    Font
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="fontSelect"
+                      value={font}
+                      onChange={(e) => setFont(e.target.value)}
+                      className="w-full appearance-none bg-white border border-[#e2e8f0] rounded-lg px-3.5 py-2.5 text-xs text-on-primary-fixed focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-medium transition-colors cursor-pointer pr-9 shadow-xs"
+                    >
+                      <option value="source-serif">Source Serif 4</option>
+                      <option value="inter">Inter</option>
+                    </select>
+                    <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-[20px]!">
+                      expand_more
+                    </span>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-1">
-                      Font
-                    </label>
-                    <div className="relative flex items-center">
-                      <select
-                        onChange={(e) => setFont(e.target.value)}
-                        className="w-full appearance-none cursor-pointer border border-slate-200 text-on-surface text-body-md font-body-md pl-3 pr-8 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-transparent"
-                      >
-                        <option value="source-serif">Source Serif 4</option>
-                        <option value="inter">Inter</option>
-                      </select>
-                      <span className="material-symbols-outlined text-[20px]! text-outline-variant absolute right-2 pointer-events-none">
-                        stat_minus_1
-                      </span>
-                    </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor="spacingSelect"
+                    className="block text-xs font-semibold text-on-primary-fixed mb-1.5 uppercase tracking-wide"
+                  >
+                    Spacing
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="spacingSelect"
+                      value={spacing}
+                      onChange={(e) => setSpacing(e.target.value)}
+                      className="w-full appearance-none bg-white border border-[#e2e8f0] rounded-lg px-3.5 py-2.5 text-xs text-on-primary-fixed focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-medium transition-colors cursor-pointer pr-9 shadow-xs"
+                    >
+                      <option value="spacious">Spacious</option>
+                      <option value="compact">Compact</option>
+                    </select>
+                    <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-[20px]">
+                      expand_more
+                    </span>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-1">
-                      Spacing
-                    </label>
-                    <div className="relative flex items-center">
-                      <select
-                        onChange={(e) => setSpacing(e.target.value)}
-                        className="w-full appearance-none cursor-pointer border border-slate-200 text-on-surface text-body-md font-body-md pl-3 pr-8 py-1.5 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 bg-transparent"
-                      >
-                        <option value="spacious">Spacious</option>
-                        <option value="compact">Compact</option>
-                      </select>
-                      <span className="material-symbols-outlined text-[20px]! text-outline-variant absolute right-2 pointer-events-none">
-                        stat_minus_1
-                      </span>
-                    </div>
+                </div>
+                {/* DONE: Make font work */}
+                <div>
+                  <label
+                    htmlFor="languageSelect"
+                    className="block text-xs font-semibold text-on-primary-fixed mb-1.5 uppercase tracking-wide"
+                  >
+                    Language
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="languageSelect"
+                      value={language}
+                      onChange={(e) => setLanguage(e.target.value)}
+                      className="w-full appearance-none bg-white border border-[#e2e8f0] rounded-lg px-3.5 py-2.5 text-xs text-on-primary-fixed focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-medium transition-colors cursor-pointer pr-9 shadow-xs"
+                    >
+                      <option value="english">English</option>
+                      <option value="arabic">Arabic</option>
+                    </select>
+                    <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-[20px]">
+                      expand_more
+                    </span>
                   </div>
                 </div>
               </section>
-              <section
-                className="bg-surface-container-lowest p-4 sm:p-5 rounded-xl border border-slate-200 shadow-sm space-y-3"
-                id="sectionsReorderPanel"
-              >
-                <div className="flex items-center gap-2 justify-between border-b border-slate-100 pb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-indigo-600 text-[20px]">
-                      reorder
-                    </span>
-                    <div>
-                      <h3 className="text-sm font-semibold text-slate-900">
-                        Reorder Main Sections
-                      </h3>
-                      <p className="text-[11px] text-slate-500">
-                        Click up/down arrows to shift section ordering in the
-                        PDF output
-                      </p>
-                    </div>
-                  </div>
-                  <button className="text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors">
-                    <span className="material-symbols-outlined text-[14px]">
-                      restart_alt
-                    </span>
-                    <span className="">Reset</span>
-                  </button>
-                </div>
-                <div className="space-y-2" id="sectionSortableList">
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-surface-container-low/80 border border-slate-200/80 text-xs">
-                    <div className="flex items-center gap-3">
-                      <div className="w-7 h-7 rounded bg-slate-200/70 text-slate-600 flex items-center justify-center">
-                        <span className="material-symbols-outlined text-[16px]">
-                          person
-                        </span>
-                      </div>
-                      <div>
-                        <span className="font-semibold text-slate-800">
-                          General Information &amp; Profile
-                        </span>
-                      </div>
-                    </div>
-                    <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[10px] font-medium border border-slate-200">
-                      Fixed Top
-                    </span>
-                  </div>
-                  <div
-                    className="flex items-center justify-between p-3 rounded-lg bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-all text-xs group"
-                    id="reorderItemExperience"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-7 h-7 rounded bg-blue-50 text-blue-600 flex items-center justify-center font-medium">
-                        <span className="material-symbols-outlined text-[16px]">
-                          work
-                        </span>
-                      </div>
-                      <div>
-                        <span
-                          className="font-semibold text-slate-900"
-                          id="expOrderLabel"
-                        >
-                          Experience
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1 p-0.5 bg-surface-container rounded border border-slate-200">
-                      <button
-                        className="w-7 h-7 rounded flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-white transition-colors opacity-30 cursor-not-allowed"
-                        id="expMoveUp"
-                        title="Move Experience Up"
-                      >
-                        <span className="material-symbols-outlined text-[16px]">
-                          arrow_upward
-                        </span>
-                      </button>
-                      <button
-                        className="w-7 h-7 rounded flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-white transition-colors"
-                        id="expMoveDown"
-                        title="Move Experience Down"
-                      >
-                        <span className="material-symbols-outlined text-[16px]">
-                          arrow_downward
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                  <div
-                    className="flex items-center justify-between p-3 rounded-lg bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-all text-xs group"
-                    id="reorderItemEducation"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-7 h-7 rounded bg-emerald-50 text-emerald-600 flex items-center justify-center font-medium">
-                        <span className="material-symbols-outlined text-[16px]">
-                          school
-                        </span>
-                      </div>
-                      <div>
-                        <span
-                          className="font-semibold text-slate-900"
-                          id="eduOrderLabel"
-                        >
-                          Education
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1 p-0.5 bg-surface-container rounded border border-slate-200">
-                      <button
-                        className="w-7 h-7 rounded flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-white transition-colors"
-                        id="eduMoveUp"
-                        title="Move Education Up"
-                      >
-                        <span className="material-symbols-outlined text-[16px]">
-                          arrow_upward
-                        </span>
-                      </button>
-                      <button
-                        className="w-7 h-7 rounded flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-white transition-colors opacity-30 cursor-not-allowed"
-                        id="eduMoveDown"
-                        title="Move Education Down"
-                      >
-                        <span className="material-symbols-outlined text-[16px]">
-                          arrow_downward
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-            {/* Modal Footer*/}
-            <div className="border-t border-slate-200 bg-surface-container-lowest flex items-center justify-end sticky bottom-0 p-5 z-30 mb-0">
-              <button className="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-sm flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]!">
-                  check
-                </span>
-                <span>Apply Changes</span>
-              </button>
             </div>
           </div>
           {/* PDF Preview */}
           <section
-            className={`${menu === "pdf" ? "block" : "hidden"} space-y-3`}
+            className={`${menu === "pdf" ? "block" : "hidden"} space-y-4`}
+            id="previewTabContent"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3 p-3">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-slate-700 text-[20px]">
-                  picture_as_pdf
+            <div className="flex items-center justify-between w-full px-8 pt-4 mb-0">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                A4 Printable Page
+              </span>
+              <button
+                type="button"
+                onClick={() => alert("Preparing PDF for download...")}
+                className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:underline"
+              >
+                <span className="material-symbols-outlined text-[16px]">
+                  download
                 </span>
-                <div>
-                  <h3 className="text-sm font-semibold text-slate-900">
-                    Live Resume PDF Sheet
-                  </h3>
-                  <p className="text-[11px] text-slate-500">
-                    Simulating responsive A4 printable sheet preview
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] text-slate-500 bg-surface-container-high px-2 py-0.5 rounded font-mono">
-                  100% Scale
-                </span>
-                <button
-                  //TODO: Make the zoom button work
-                  className="w-7 h-7 rounded text-slate-500 hover:text-slate-900 hover:bg-slate-100 flex items-center justify-center"
-                >
-                  <span className="material-symbols-outlined text-[16px]">
-                    zoom_in
-                  </span>
-                </button>
-              </div>
+                <span>Download PDF</span>
+              </button>
             </div>
             <PDFPreview
               personalInfo={personalInfo}
@@ -348,6 +231,7 @@ export default function PDFModal({
               layout={layout}
               font={font}
               spacing={spacing}
+              language={language}
               isHidden={false}
             />
           </section>
