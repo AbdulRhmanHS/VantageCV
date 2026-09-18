@@ -60,6 +60,7 @@ export default function PDFPreview({
 
   return (
     <div
+      id="resume-container"
       ref={containerRef}
       className={`lg:flex lg:w-1/2 bg-surface p-8 overflow-y-auto justify-center lg:sticky lg:top-16 lg:h-[calc(100vh-160px)] ${
         isHidden ? "hidden" : "flex"
@@ -73,6 +74,7 @@ export default function PDFPreview({
         className="shrink-0"
       >
         <div
+          id="printable-resume"
           style={{
             width: `${TARGET_WIDTH}px`,
             height: `${TARGET_HEIGHT}px`,

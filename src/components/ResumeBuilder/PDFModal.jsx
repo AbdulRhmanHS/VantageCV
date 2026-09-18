@@ -119,7 +119,7 @@ export default function PDFModal({
               </span>
               <button
                 type="button"
-                onClick={() => alert("Preparing PDF for download...")}
+                onClick={() => window.print()}
                 className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:underline"
               >
                 <span className="material-symbols-outlined text-[16px]">

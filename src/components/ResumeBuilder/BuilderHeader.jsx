@@ -1,4 +1,4 @@
-// TODO: Make the download button functional
+// DONE: Make the download button functional
 
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,10 @@ export default function BuilderHeader() {
         </Link>
       </div>
       <div className="flex items-center gap-3">
-        <button className="flex items-center text-label-md p-1.5 sm:px-4 sm:py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors shadow-sm">
+        <button
+          onClick={() => window.print()}
+          className="flex items-center text-label-md p-1.5 sm:px-4 sm:py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
+        >
           <span className="material-symbols-outlined sm:hidden!">download</span>
           <span className="hidden sm:inline">Download</span>
         </button>

@@ -173,3 +173,37 @@
   /* Breakpoints */
   --breakpoint-xs: 375px;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #resume-container {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  #printable-resume,
+  #printable-resume * {
+    visibility: visible;
+  }
+
+  #printable-resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    transform: none !important; /* Remove scaling applied for screen previews */
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
