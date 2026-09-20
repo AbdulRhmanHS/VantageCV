@@ -175,16 +175,23 @@
 }
 
 @media print {
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
   #printable-resume {
-    width: 210mm !important;
-    min-height: 297mm !important;
+    width: 100% !important;
+    height: auto !important;
     transform: none !important;
     box-shadow: none !important;
     margin: 0 !important;
+    padding: 0 !important;
   }
 
   @page {
     size: A4 portrait;
-    margin: 0;
   }
 }

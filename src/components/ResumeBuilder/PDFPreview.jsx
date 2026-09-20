@@ -33,6 +33,7 @@ const PDFPreview = React.forwardRef(
 
     const density = {
       paddingPage: isCompact ? "p-6" : "p-12",
+      pageMargin: isCompact ? 5 : 15,
       gapSection: isCompact ? "gap-5" : "gap-10",
       gapItem: isCompact ? "gap-4" : "gap-8",
       gapNested: isCompact ? "gap-3" : "gap-6",
@@ -82,7 +83,7 @@ const PDFPreview = React.forwardRef(
             id="printable-resume"
             style={{
               width: `${TARGET_WIDTH}px`,
-              height: `${TARGET_HEIGHT}px`,
+              minHeight: `${TARGET_HEIGHT}px`,
               transform: `scale(${scale})`,
               transformOrigin: "top left",
             }}
@@ -91,6 +92,14 @@ const PDFPreview = React.forwardRef(
               isArabic ? "rtl:text-right" : "ltr:text-left"
             }`}
           >
+            <style>{`
+              @media print {
+                @page {
+                  size: A4 portrait;
+                  margin: ${density.pageMargin}mm;
+                }
+              }
+            `}</style>
             <div className={`flex flex-col ${density.gapSection}`}>
               {/* Header Section */}
               <div
@@ -152,7 +161,7 @@ const PDFPreview = React.forwardRef(
                       {experiences.map((exp) => (
                         <div
                           key={exp.id}
-                          className={`flex flex-col ${density.gapNested}`}
+                          className={`flex flex-col ${density.gapNested} break-inside-avoid`}
                         >
                           <div className="relative ps-4 before:absolute before:inset-s-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
                             <div className="flex justify-between items-baseline mb-0.5">
@@ -195,7 +204,7 @@ const PDFPreview = React.forwardRef(
                     {educations.map((edu) => (
                       <div
                         key={edu.id}
-                        className={`flex flex-col ${density.gapNested} area-education`}
+                        className={`flex flex-col ${density.gapNested} area-education break-inside-avoid`}
                       >
                         <div>
                           <h3

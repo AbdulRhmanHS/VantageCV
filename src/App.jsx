@@ -1,3 +1,5 @@
+// TODO: Download all the required icons and put them in assets
+
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import MyResumes from "./pages/MyResumes";

@@ -6,7 +6,7 @@
 // DONE: Make the display of the pdf at small screens functional
 // DONE: Add the hidden settings to the displayed pdf
 // TODO: Make inputs support RTL direction
-// TODO: Handle PDF content overflow by making another page
+// TODO: Handle PDF content overflow
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
