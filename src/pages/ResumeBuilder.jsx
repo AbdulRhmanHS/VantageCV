@@ -17,6 +17,8 @@ import EducationInputs from "../components/ResumeBuilder/EducationInputs";
 import PDFPreview from "../components/ResumeBuilder/PDFPreview";
 import PDFModal from "../components/ResumeBuilder/PDFModal";
 import { useState } from "react";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 
 function useSectionState(initialItems) {
   const [items, setItems] = useState(initialItems);
@@ -57,6 +59,13 @@ export default function ResumeBuilder() {
   const [font, setFont] = useState("source-serif");
   const [spacing, setSpacing] = useState("spacious");
   const [language, setLanguage] = useState("english");
+
+  const printRef = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: "resume",
+  });
 
   const experiences = useSectionState([
     {
@@ -101,7 +110,7 @@ export default function ResumeBuilder() {
 
   return (
     <>
-      <BuilderHeader />
+      <BuilderHeader handlePrint={handlePrint} />
       <main className="pt-16 min-h-screen">
         <div className="flex flex-col w-full h-full relative">
           <SettingsHeader
@@ -175,6 +184,7 @@ export default function ResumeBuilder() {
               font={font}
               spacing={spacing}
               language={language}
+              ref={printRef}
             />
           </div>
         </div>
@@ -201,6 +211,8 @@ export default function ResumeBuilder() {
         setSpacing={setSpacing}
         language={language}
         setLanguage={setLanguage}
+        ref={printRef}
+        handlePrint={handlePrint}
       />
     </>
   );

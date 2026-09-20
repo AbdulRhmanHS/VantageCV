@@ -175,29 +175,10 @@
 }
 
 @media print {
-  body * {
-    visibility: hidden;
-  }
-
-  #resume-container {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
-  #printable-resume,
-  #printable-resume * {
-    visibility: visible;
-  }
-
   #printable-resume {
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 210mm !important;
     min-height: 297mm !important;
-    transform: none !important; /* Remove scaling applied for screen previews */
+    transform: none !important;
     box-shadow: none !important;
     margin: 0 !important;
   }

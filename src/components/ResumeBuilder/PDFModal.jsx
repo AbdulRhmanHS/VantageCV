@@ -20,6 +20,8 @@ export default function PDFModal({
   setSpacing,
   language,
   setLanguage,
+  printRef,
+  handlePrint,
 }) {
   const [menu, setMenu] = useState("pdf");
 
@@ -119,7 +121,7 @@ export default function PDFModal({
               </span>
               <button
                 type="button"
-                onClick={() => window.print()}
+                onClick={handlePrint}
                 className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:underline"
               >
                 <span className="material-symbols-outlined text-[16px]">
@@ -137,6 +139,7 @@ export default function PDFModal({
               spacing={spacing}
               language={language}
               isHidden={false}
+              ref={printRef}
             />
           </section>
         </div>
