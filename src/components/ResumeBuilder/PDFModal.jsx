@@ -20,7 +20,6 @@ export default function PDFModal({
   setSpacing,
   language,
   setLanguage,
-  printRef,
   handlePrint,
 }) {
   const [menu, setMenu] = useState("pdf");
@@ -139,7 +138,6 @@ export default function PDFModal({
               spacing={spacing}
               language={language}
               isHidden={false}
-              ref={printRef}
             />
           </section>
         </div>

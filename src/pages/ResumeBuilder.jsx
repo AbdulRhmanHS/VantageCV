@@ -6,7 +6,7 @@
 // DONE: Make the display of the pdf at small screens functional
 // DONE: Add the hidden settings to the displayed pdf
 // TODO: Make inputs support RTL direction
-// TODO: Handle PDF content overflow
+// DONE: Handle PDF content overflow
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
@@ -19,6 +19,7 @@ import PDFModal from "../components/ResumeBuilder/PDFModal";
 import { useState } from "react";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
+import ResumeContent from "../components/ResumeBuilder/ResumeContent";
 
 function useSectionState(initialItems) {
   const [items, setItems] = useState(initialItems);
@@ -184,7 +185,6 @@ export default function ResumeBuilder() {
               font={font}
               spacing={spacing}
               language={language}
-              ref={printRef}
             />
           </div>
         </div>
@@ -211,8 +211,18 @@ export default function ResumeBuilder() {
         setSpacing={setSpacing}
         language={language}
         setLanguage={setLanguage}
-        ref={printRef}
         handlePrint={handlePrint}
+      />
+      <ResumeContent
+        personalInfo={personalInfo}
+        experiences={experiences.items}
+        educations={educations.items}
+        layout={layout}
+        font={font}
+        spacing={spacing}
+        language={language}
+        isHidden={true}
+        ref={printRef}
       />
     </>
   );

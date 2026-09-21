@@ -37,23 +37,22 @@
 
 @utility pdf-grid-layout {
   display: grid;
-  grid-template-areas:
-    "summary exp"
-    "edu exp";
   grid-template-columns: 1fr 2fr;
   gap: 32px;
+  align-items: start;
 }
 
 @utility area-summary {
-  grid-area: summary;
+  grid-column: 1;
 }
 
 @utility area-experience {
-  grid-area: exp;
+  grid-column: 2;
+  grid-row: 1 / span 3;
 }
 
 @utility area-education {
-  grid-area: edu;
+  grid-column: 1;
 }
 
 ::-webkit-scrollbar {
@@ -175,23 +174,24 @@
 }
 
 @media print {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box !important;
+  }
+
   h1,
   h2,
-  h3 {
-    break-after: avoid;
-    page-break-after: avoid;
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
 
-  #printable-resume {
-    width: 100% !important;
-    height: auto !important;
-    transform: none !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  @page {
-    size: A4 portrait;
+  #printable-resume > div:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
