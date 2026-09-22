@@ -5,8 +5,13 @@
 // DONE: Make the drag handle reorder the sections
 // DONE: Make the display of the pdf at small screens functional
 // DONE: Add the hidden settings to the displayed pdf
-// TODO: Make inputs support RTL direction
+// DONE: Make inputs support RTL direction
 // DONE: Handle PDF content overflow
+// DONE: Replace the English preview text with Arabic when switching languages
+// FIXME: Fix some Arabic spacing
+// FIXME: Fix Arabic rtl pdf characters not rendered into correct words
+// TODO: Make specific fonts for Arabic when switching languages
+// TODO: Add skills section for the CV
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
@@ -41,25 +46,123 @@ function useSectionState(initialItems) {
   return { items, setItems, update, add, remove };
 }
 
+const previewData = {
+  eng: {
+    profile: {
+      name: "",
+      email: "user@example.com",
+      phone: "+1 (555) 123-4567",
+      address: "San Francisco, CA",
+      proSummary:
+        "Creative technologist and senior product designer with 8+ years of experience building high-impact digital experiences.",
+    },
+    exp: {
+      1: {
+        id: crypto.randomUUID(),
+        title: "Senior Product Designer",
+        date: "Jan 2020 - Present",
+        company: "Acme Corp",
+        description:
+          "Led the redesign of the core flagship application, increasing user engagement by 45%. Managed a team of 4 designers.",
+      },
+      2: {
+        id: crypto.randomUUID(),
+        title: "UX Designer",
+        date: "Aug 2015 - Jan 2018",
+        company: "TechNova",
+        description:
+          "Spearheaded user research initiatives and developed design systems that reduced development time by 30%.",
+      },
+    },
+    edu: {
+      1: {
+        id: crypto.randomUUID(),
+        school: "Carnegie Mellon University",
+        degree: "M.S. Human-Computer Interaction",
+        date: "2017",
+        description:
+          "Focus on interactive systems, quantitative user research, and cognitive design architectures.",
+      },
+      2: {
+        id: crypto.randomUUID(),
+        school: "Rhode Island School of Design",
+        degree: "B.A. Graphic Design",
+        date: "2015",
+        description:
+          "Graduated with Honors. Coursework in typography, visual communication systems, and physical computing.",
+      },
+    },
+  },
+  ara: {
+    profile: {
+      name: "",
+      email: "user@example.com",
+      phone: "+20 100 123 4567",
+      address: "الإسكندرية، مصر",
+      proSummary:
+        "مهندس ومطور برمجيات شغوف يمتلك خبرة عملية في بناء تطبيقات الويب الحديثة وحلول الهندسة الميكانيكية، مع التركيز على تحسين أداء الأنظمة وتجربة المستخدم.",
+    },
+    exp: {
+      1: {
+        id: crypto.randomUUID(),
+        title: "مطور برمجيات واجهات أمامية",
+        date: "يناير 2024 - حاليا",
+        company: "شركة الدلتا للحلول البرمجية",
+        description:
+          "تطوير وتصميم واجهات المستخدم لمجموعات متعددة من التطبيقات المعقدة، وتحسين أداء سرعة التحميل بنسبة 40 بالمئة بالتعاون مع فريق التطوير.",
+      },
+      2: {
+        id: crypto.randomUUID(),
+        title: "مهندس تصميم ميكانيكي",
+        date: "يوليو 2022 - ديسمبر 2023",
+        company: "شركة النيل للنظم الهندسية",
+        description:
+          "المشاركة في تصميم النماذج الهندسية ثلاثية الأبعاد وإجراء التحليلات الحسابية للهياكل والمعدات لضمان معايير الجودة والسلامة.",
+      },
+    },
+    edu: {
+      1: {
+        id: crypto.randomUUID(),
+        school: "جامعة الإسكندرية",
+        degree: "بكالوريوس الهندسة الميكانيكية",
+        date: "2026",
+        description:
+          "التركيز على التصميم الميكانيكي، أنظمة الطاقة، وتطبيقات النمذجة الحسابية مع تقديم مشاريع عملية في المجال.",
+      },
+      2: {
+        id: crypto.randomUUID(),
+        school: "مدرسة صلاح سالم الثانوية",
+        degree: "شهادة الثانوية العامة - شعبة الرياضيات",
+        date: "2020",
+        description:
+          "التخرج بتفوق مع التركيز على الرياضيات المتقدمة، الفيزياء، والعلوم التكنولوجية.",
+      },
+    },
+  },
+};
+
 export default function ResumeBuilder() {
-  const [personalInfo, setPersonalInfo] = useState({
-    name: "",
-    email: "alex@example.com",
-    phone: "+1 (555) 123-4567",
-    address: "San Francisco, CA",
-    proSummary:
-      "Creative technologist and senior product designer with 8+ years of experience building high-impact digital experiences.",
-  });
-
-  const handlePersonalChange = (field, value) => {
-    setPersonalInfo((prev) => ({ ...prev, [field]: value }));
-  };
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [layout, setLayout] = useState("one-col");
   const [font, setFont] = useState("source-serif");
   const [spacing, setSpacing] = useState("spacious");
   const [language, setLanguage] = useState("english");
+  const [personalInfo, setPersonalInfo] = useState(previewData.eng.profile);
+  const experiences = useSectionState(Object.values(previewData.eng.exp));
+  const educations = useSectionState(Object.values(previewData.eng.edu));
+
+  const handlePersonalChange = (field, value) => {
+    setPersonalInfo((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleLanguageChange = (newLang) => {
+    setLanguage(newLang);
+    const langKey = newLang === "english" ? "eng" : "ara";
+
+    setPersonalInfo(previewData[langKey].profile);
+    experiences.setItems(Object.values(previewData[langKey].exp));
+    educations.setItems(Object.values(previewData[langKey].edu));
+  };
 
   const printRef = useRef(null);
 
@@ -67,44 +170,6 @@ export default function ResumeBuilder() {
     contentRef: printRef,
     documentTitle: "resume",
   });
-
-  const experiences = useSectionState([
-    {
-      id: crypto.randomUUID(),
-      title: "Senior Product Designer",
-      date: "Jan 2020 - Present",
-      company: "Acme Corp",
-      description:
-        "Led the redesign of the core flagship application, increasing user engagement by 45%. Managed a team of 4 designers.",
-    },
-    {
-      id: crypto.randomUUID(),
-      title: "UX Designer",
-      date: "Aug 2015 - Jan 2018",
-      company: "TechNova",
-      description:
-        "Spearheaded user research initiatives and developed design systems that reduced development time by 30%.",
-    },
-  ]);
-
-  const educations = useSectionState([
-    {
-      id: crypto.randomUUID(),
-      school: "Carnegie Mellon University",
-      degree: "M.S. Human-Computer Interaction",
-      date: "2017",
-      description:
-        "Focus on interactive systems, quantitative user research, and cognitive design architectures.",
-    },
-    {
-      id: crypto.randomUUID(),
-      school: "Rhode Island School of Design",
-      degree: "B.A. Graphic Design",
-      date: "2015",
-      description:
-        "Graduated with Honors. Coursework in typography, visual communication systems, and physical computing.",
-    },
-  ]);
 
   const emptyExperience = { title: "", date: "", company: "", description: "" };
   const emptyEducation = { school: "", degree: "", date: "", description: "" };
@@ -122,7 +187,7 @@ export default function ResumeBuilder() {
             spacing={spacing}
             setSpacing={setSpacing}
             language={language}
-            setLanguage={setLanguage}
+            setLanguage={handleLanguageChange}
           />
           <div className="flex flex-col lg:flex-row flex-1 h-auto lg:h-[calc(100vh-140px)]">
             <div className="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
@@ -210,7 +275,7 @@ export default function ResumeBuilder() {
         spacing={spacing}
         setSpacing={setSpacing}
         language={language}
-        setLanguage={setLanguage}
+        setLanguage={handleLanguageChange}
         handlePrint={handlePrint}
       />
       <ResumeContent
