@@ -8,9 +8,9 @@
 // DONE: Make inputs support RTL direction
 // DONE: Handle PDF content overflow
 // DONE: Replace the English preview text with Arabic when switching languages
-// FIXME: Fix some Arabic spacing
+// DONE: Fix some Arabic spacing
 // FIXME: Fix Arabic rtl pdf characters not rendered into correct words
-// TODO: Make specific fonts for Arabic when switching languages
+// DONE: Add new fonts that works for both Arabic and English
 // TODO: Add skills section for the CV
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
@@ -144,7 +144,7 @@ const previewData = {
 export default function ResumeBuilder() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [layout, setLayout] = useState("one-col");
-  const [font, setFont] = useState("source-serif");
+  const [font, setFont] = useState("cairo");
   const [spacing, setSpacing] = useState("spacious");
   const [language, setLanguage] = useState("english");
   const [personalInfo, setPersonalInfo] = useState(previewData.eng.profile);

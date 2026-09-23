@@ -30,6 +30,8 @@ export default function SettingsHeader({
             value={font}
             setFunction={setFont}
             options={[
+              { val: "cairo", name: "Cairo" },
+              { val: "amiri", name: "Amiri" },
               { val: "source-serif", name: "Source Serif" },
               { val: "inter", name: "Inter" },
             ]}

@@ -1,5 +1,24 @@
 import React from "react";
 
+const FONT_STYLES = {
+  cairo: {
+    headlineText: "font-cairo text-cairo-title",
+    bodyText: "font-cairo text-cairo-body",
+  },
+  amiri: {
+    headlineText: "font-amiri text-amiri-title",
+    bodyText: "font-amiri text-amiri-body",
+  },
+  "source-serif": {
+    headlineText: "font-cv-preview-title text-cv-preview-title",
+    bodyText: "font-cv-preview-body text-cv-preview-body",
+  },
+  inter: {
+    headlineText: "font-headline-md text-headline-md",
+    bodyText: "font-body-md text-body-md",
+  },
+};
+
 const ResumeContent = React.forwardRef(
   (
     {
@@ -7,7 +26,7 @@ const ResumeContent = React.forwardRef(
       experiences,
       educations,
       layout = "one-col",
-      font = "source-serif",
+      font = "cairo",
       spacing = "spacious",
       language = "english",
       isHidden = false,
@@ -16,17 +35,8 @@ const ResumeContent = React.forwardRef(
   ) => {
     const { name, email, phone, address, proSummary } = personalInfo;
 
-    let headlineText = "font-cv-preview-title text-cv-preview-title ";
-    let bodyText = "font-cv-preview-body text-cv-preview-body";
-
-    if (font === "source-serif") {
-      headlineText = "font-cv-preview-title text-cv-preview-title ";
-      bodyText = "font-cv-preview-body text-cv-preview-body";
-    }
-    if (font === "inter") {
-      headlineText = "font-headline-md text-headline-md";
-      bodyText = "font-body-md text-body-md";
-    }
+    const { headlineText, bodyText } =
+      FONT_STYLES[font] || FONT_STYLES["source-serif"];
 
     const isCompact = spacing === "compact";
 
@@ -80,7 +90,7 @@ const ResumeContent = React.forwardRef(
         </style>
         {/* Header Section */}
         <div className={`border-b-2 border-primary ${density.borderBottom}`}>
-          <h1 className="text-display-lg font-display-lg text-primary mb-2 rtl:mb-4">
+          <h1 className={`${headlineText} text-5xl text-primary mb-2 rtl:mb-6`}>
             {name || (isArabic ? "الاسم" : "Your Name")}
           </h1>
           <div

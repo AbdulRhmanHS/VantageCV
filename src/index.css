@@ -120,6 +120,8 @@
   /* Font Families */
   --font-inter: "Inter", sans-serif;
   --font-serif: "Source Serif 4", serif;
+  --font-cairo: "Cairo", serif;
+  --font-amiri: "Amiri", serif;
 
   --font-display-lg: var(--font-inter);
   --font-headline-lg: var(--font-inter);
@@ -165,6 +167,22 @@
   --text-cv-preview-title: 24px;
   --text-cv-preview-title--line-height: 30px;
   --text-cv-preview-title--font-weight: 700;
+
+  --text-cairo-title: 22px;
+  --text-cairo-title--line-height: 32px;
+  --text-cairo-title--font-weight: 700;
+
+  --text-cairo-body: 10.5pt;
+  --text-cairo-body--line-height: 20px;
+  --text-cairo-body--font-weight: 500;
+
+  --text-amiri-title: 26px;
+  --text-amiri-title--line-height: 38px;
+  --text-amiri-title--font-weight: 700;
+
+  --text-amiri-body: 12pt;
+  --text-amiri-body--line-height: 24px;
+  --text-amiri-body--font-weight: 400;
 
   /* Spacing */
   --spacing-max-width-desktop: 1600px;
