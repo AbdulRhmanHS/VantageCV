@@ -25,6 +25,7 @@ const ResumeContent = React.forwardRef(
       personalInfo,
       experiences,
       educations,
+      skills,
       layout = "one-col",
       font = "cairo",
       spacing = "spacious",
@@ -48,8 +49,11 @@ const ResumeContent = React.forwardRef(
       gapNested: isCompact ? "gap-3" : "gap-6",
       titleSize: isCompact ? "text-base" : "text-lg",
       bodyTextSize: isCompact ? "text-xs" : "text-sm",
+      skillTextSize: isCompact ? "text-sm" : "text-body-md",
+      skillGap: isCompact ? "gap-1.5" : "gap-2.5",
       leading: isCompact ? "leading-snug" : "leading-relaxed",
       borderBottom: isCompact ? "pb-3 mb-2" : "pb-6 mb-2",
+      headingBottom: isCompact ? "mb-1.5 pb-1" : "mb-3 pb-1",
     };
 
     const isArabic = language === "arabic";
@@ -94,7 +98,7 @@ const ResumeContent = React.forwardRef(
             {name || (isArabic ? "الاسم" : "Your Name")}
           </h1>
           <div
-            className={`flex flex-wrap items-center gap-x-4 gap-y-1 text-on-surface-variant ${density.bodyTextSize}`}
+            className={`flex flex-wrap items-center gap-x-4 gap-y-1 text-on-surface-variant font-bold ${density.bodyTextSize}`}
           >
             {email && <span>{email}</span>}
             {email && phone && <span>•</span>}
@@ -116,7 +120,7 @@ const ResumeContent = React.forwardRef(
             <div className={`flex flex-col ${density.gapItem} area-summary`}>
               <div>
                 <h2
-                  className={`${headlineText} text-primary mb-2 uppercase tracking-wider border-b border-outline-variant/30 pb-1`}
+                  className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
                 >
                   {isArabic ? "نبذة عني" : "Profile"}
                 </h2>
@@ -133,41 +137,42 @@ const ResumeContent = React.forwardRef(
             <div className={`flex flex-col ${density.gapItem} area-experience`}>
               <div>
                 <h2
-                  className={`${headlineText} text-primary mb-2 uppercase tracking-wider border-b border-outline-variant/30 pb-1`}
+                  className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
                 >
                   {isArabic ? "الخبرة العملية" : "Experience"}
                 </h2>
-                {experiences.map((exp) => (
-                  <div
-                    key={exp.id}
-                    className={`flex flex-col ${density.gapNested} break-inside-avoid`}
-                  >
-                    <div className="relative ps-4 before:absolute before:inset-s-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
-                      <div className="flex justify-between items-baseline mb-0.5">
-                        <h3
-                          className={`font-bold text-on-surface ${density.titleSize}`}
+                <div
+                  className={`flex flex-col ${density.gapNested} break-inside-avoid`}
+                >
+                  {experiences.map((exp) => (
+                    <div key={exp.id}>
+                      <div className="relative ps-4 before:absolute before:inset-s-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
+                        <div className="flex justify-between items-baseline mb-0.5">
+                          <h3
+                            className={`font-bold text-on-surface ${density.titleSize}`}
+                          >
+                            {exp.title}
+                          </h3>
+                          <span
+                            className={`text-on-surface-variant ${density.bodyTextSize} italic whitespace-nowrap`}
+                          >
+                            {exp.date}
+                          </span>
+                        </div>
+                        <div
+                          className={`text-primary font-medium ${density.bodyTextSize} mb-1`}
                         >
-                          {exp.title}
-                        </h3>
-                        <span
-                          className={`text-on-surface-variant ${density.bodyTextSize} italic whitespace-nowrap`}
+                          {exp.company}
+                        </div>
+                        <p
+                          className={`text-on-surface ${density.leading} ${density.bodyTextSize}`}
                         >
-                          {exp.date}
-                        </span>
+                          {exp.description}
+                        </p>
                       </div>
-                      <div
-                        className={`text-primary font-medium ${density.bodyTextSize} mb-1`}
-                      >
-                        {exp.company}
-                      </div>
-                      <p
-                        className={`text-on-surface ${density.leading} ${density.bodyTextSize}`}
-                      >
-                        {exp.description}
-                      </p>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -175,39 +180,67 @@ const ResumeContent = React.forwardRef(
           {educations.length > 0 && (
             <div>
               <h2
-                className={`${headlineText} text-primary mb-2 uppercase tracking-wider border-b border-outline-variant/30 pb-1`}
+                className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
               >
                 {isArabic ? "التعليم والدورات" : "Education"}
               </h2>
-              {educations.map((edu) => (
-                <div
-                  key={edu.id}
-                  className={`flex flex-col ${density.gapNested} area-education break-inside-avoid`}
-                >
-                  <div>
-                    <h3
-                      className={`font-bold text-on-surface ${density.titleSize}`}
-                    >
-                      {edu.degree}
-                    </h3>
-                    <div
-                      className={`text-on-surface-variant ${density.bodyTextSize} mt-0.5`}
-                    >
-                      {edu.school}
+              <div
+                className={`flex flex-col ${density.gapNested} area-education break-inside-avoid`}
+              >
+                {educations.map((edu) => (
+                  <div key={edu.id}>
+                    <div>
+                      <h3
+                        className={`font-bold text-on-surface ${density.titleSize}`}
+                      >
+                        {edu.degree}
+                      </h3>
+                      <div
+                        className={`text-on-surface-variant ${density.bodyTextSize} mt-0.5`}
+                      >
+                        {edu.school}
+                      </div>
+                      <div
+                        className={`text-on-surface-variant ${density.bodyTextSize} italic mt-0.5`}
+                      >
+                        {edu.date}
+                      </div>
+                      <p
+                        className={`text-on-surface-variant ${density.bodyTextSize} mt-1 ${density.leading}`}
+                      >
+                        {edu.description}
+                      </p>
                     </div>
-                    <div
-                      className={`text-on-surface-variant ${density.bodyTextSize} italic mt-0.5`}
-                    >
-                      {edu.date}
-                    </div>
-                    <p
-                      className={`text-on-surface-variant ${density.bodyTextSize} mt-1 ${density.leading}`}
-                    >
-                      {edu.description}
-                    </p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          )}
+          {/* Skills */}
+          {skills.length > 0 && (
+            <div>
+              <h2
+                className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+              >
+                {isArabic ? "المهارات" : "Skills"}
+              </h2>
+              <div
+                className={`flex flex-col ${density.skillGap} ${density.skillTextSize} break-inside-avoid`}
+              >
+                {skills.map((skill) => (
+                  <div key={skill.id}>
+                    <div>
+                      <span className="font-bold text-on-surface">
+                        {skill.category}
+                        {skill.category ? ":" : ""}
+                      </span>
+                      <span className="text-on-surface-variant ltr:ml-1.5 rtl:mr-1.5">
+                        {skill.skillItems}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>

@@ -5,6 +5,7 @@ export default function PDFPreview({
   personalInfo,
   experiences,
   educations,
+  skills,
   layout,
   font,
   spacing,
@@ -57,6 +58,7 @@ export default function PDFPreview({
             personalInfo={personalInfo}
             experiences={experiences}
             educations={educations}
+            skills={skills}
             layout={layout}
             font={font}
             spacing={spacing}

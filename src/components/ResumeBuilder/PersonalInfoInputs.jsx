@@ -1,7 +1,7 @@
 export default function PersonalInfoInputs({ personalInfo, onInputChange }) {
   return (
     <>
-      <div className="flex flex-col sm:flex-row justify-between gap-6">
+      <div className="flex flex-col sm:flex-row justify-between gap-6 mt-6">
         <div className="grow">
           <label className="block text-label-md font-label-md text-on-surface-variant mb-1">
             Full Name

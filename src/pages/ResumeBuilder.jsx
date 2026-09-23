@@ -8,10 +8,10 @@
 // DONE: Make inputs support RTL direction
 // DONE: Handle PDF content overflow
 // DONE: Replace the English preview text with Arabic when switching languages
-// DONE: Fix some Arabic spacing
+// FIXME: Fix spacing and font sizes in the pdf
 // FIXME: Fix Arabic rtl pdf characters not rendered into correct words
 // DONE: Add new fonts that works for both Arabic and English
-// TODO: Add skills section for the CV
+// DONE: Add skills section for the CV
 
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
@@ -19,32 +19,13 @@ import TemplateCard from "../components/ResumeBuilder/TemplateCard";
 import PersonalInfoInputs from "../components/ResumeBuilder/PersonalInfoInputs";
 import ExperienceInputs from "../components/ResumeBuilder/ExperienceInputs";
 import EducationInputs from "../components/ResumeBuilder/EducationInputs";
+import SkillInputs from "../components/ResumeBuilder/SkillInputs";
 import PDFPreview from "../components/ResumeBuilder/PDFPreview";
 import PDFModal from "../components/ResumeBuilder/PDFModal";
 import { useState } from "react";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import ResumeContent from "../components/ResumeBuilder/ResumeContent";
-
-function useSectionState(initialItems) {
-  const [items, setItems] = useState(initialItems);
-
-  const update = (id, field, value) => {
-    setItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
-    );
-  };
-
-  const add = (template) => {
-    setItems((prev) => [...prev, { id: crypto.randomUUID(), ...template }]);
-  };
-
-  const remove = (id) => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  return { items, setItems, update, add, remove };
-}
 
 const previewData = {
   eng: {
@@ -90,6 +71,18 @@ const previewData = {
         date: "2015",
         description:
           "Graduated with Honors. Coursework in typography, visual communication systems, and physical computing.",
+      },
+    },
+    skill: {
+      1: {
+        id: crypto.randomUUID(),
+        category: "Technical Skills",
+        skillItems: "Figma, React, Tailwind CSS, TypeScript, UI/UX Design",
+      },
+      2: {
+        id: crypto.randomUUID(),
+        category: "Methodologies",
+        skillItems: "Design Systems, User Research, Agile / Scrum, Prototyping",
       },
     },
   },
@@ -138,8 +131,42 @@ const previewData = {
           "التخرج بتفوق مع التركيز على الرياضيات المتقدمة، الفيزياء، والعلوم التكنولوجية.",
       },
     },
+    skill: {
+      1: {
+        id: crypto.randomUUID(),
+        category: "المهارات التقنية",
+        skillItems:
+          "تطوير واجهات الويب، تصميم تجربة وواجهة المستخدم، برمجة السكريبت، إدارة قواعد البيانات",
+      },
+      2: {
+        id: crypto.randomUUID(),
+        category: "منهجيات العمل",
+        skillItems:
+          "أنظمة التصميم، أبحاث المستخدمين، إدارة المشاريع المرنة، بناء النماذج الأولية",
+      },
+    },
   },
 };
+
+function useSectionState(initialItems) {
+  const [items, setItems] = useState(initialItems);
+
+  const update = (id, field, value) => {
+    setItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
+    );
+  };
+
+  const add = (template) => {
+    setItems((prev) => [...prev, { id: crypto.randomUUID(), ...template }]);
+  };
+
+  const remove = (id) => {
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  return { items, setItems, update, add, remove };
+}
 
 export default function ResumeBuilder() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -150,6 +177,7 @@ export default function ResumeBuilder() {
   const [personalInfo, setPersonalInfo] = useState(previewData.eng.profile);
   const experiences = useSectionState(Object.values(previewData.eng.exp));
   const educations = useSectionState(Object.values(previewData.eng.edu));
+  const skills = useSectionState(Object.values(previewData.eng.skill));
 
   const handlePersonalChange = (field, value) => {
     setPersonalInfo((prev) => ({ ...prev, [field]: value }));
@@ -162,6 +190,7 @@ export default function ResumeBuilder() {
     setPersonalInfo(previewData[langKey].profile);
     experiences.setItems(Object.values(previewData[langKey].exp));
     educations.setItems(Object.values(previewData[langKey].edu));
+    skills.setItems(Object.values(previewData[langKey].skill));
   };
 
   const printRef = useRef(null);
@@ -173,6 +202,7 @@ export default function ResumeBuilder() {
 
   const emptyExperience = { title: "", date: "", company: "", description: "" };
   const emptyEducation = { school: "", degree: "", date: "", description: "" };
+  const emptySkill = { category: "", skillItems: "" };
 
   return (
     <>
@@ -196,7 +226,6 @@ export default function ResumeBuilder() {
                   Build Your Resume
                 </h1>
                 <div className="space-y-4">
-                  {/* Simple Personal Info Card */}
                   <TemplateCard
                     icon="person"
                     title="General Information"
@@ -207,8 +236,6 @@ export default function ResumeBuilder() {
                       onInputChange={handlePersonalChange}
                     />
                   </TemplateCard>
-
-                  {/* Dynamic Experience Card */}
                   <TemplateCard
                     icon="work"
                     title="Experience"
@@ -223,8 +250,6 @@ export default function ResumeBuilder() {
                       />
                     )}
                   />
-
-                  {/* Dynamic Education Card */}
                   <TemplateCard
                     icon="school"
                     title="Education"
@@ -239,6 +264,20 @@ export default function ResumeBuilder() {
                       />
                     )}
                   />
+                  <TemplateCard
+                    icon="psychology"
+                    title="Skills"
+                    items={skills.items}
+                    onReorder={skills.setItems}
+                    onAdd={() => skills.add(emptySkill)}
+                    onRemove={skills.remove}
+                    renderInputs={(skill) => (
+                      <SkillInputs
+                        skill={skill}
+                        onInputChange={skills.update}
+                      />
+                    )}
+                  />
                 </div>
               </div>
             </div>
@@ -246,6 +285,7 @@ export default function ResumeBuilder() {
               personalInfo={personalInfo}
               experiences={experiences.items}
               educations={educations.items}
+              skills={skills.items}
               layout={layout}
               font={font}
               spacing={spacing}
@@ -268,6 +308,7 @@ export default function ResumeBuilder() {
         personalInfo={personalInfo}
         experiences={experiences.items}
         educations={educations.items}
+        skills={skills.items}
         layout={layout}
         setLayout={setLayout}
         font={font}
@@ -282,6 +323,7 @@ export default function ResumeBuilder() {
         personalInfo={personalInfo}
         experiences={experiences.items}
         educations={educations.items}
+        skills={skills.items}
         layout={layout}
         font={font}
         spacing={spacing}

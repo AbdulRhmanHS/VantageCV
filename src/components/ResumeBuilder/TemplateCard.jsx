@@ -19,7 +19,7 @@ export default function TemplateCard({
       open={isOpen}
       className="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all duration-300 group"
     >
-      <summary className="w-full flex items-center justify-between p-6 bg-surface-container-lowest hover:bg-surface-container-low transition-colors select-none list-none">
+      <summary className="w-full flex items-center justify-between p-6 bg-surface-container-lowest hover:bg-surface-container-low transition-colors select-none list-none  border-b border-outline-variant/30">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-secondary/5 flex items-center justify-center text-secondary">
             <span className="material-symbols-outlined">{icon}</span>

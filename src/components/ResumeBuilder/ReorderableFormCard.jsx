@@ -12,7 +12,7 @@ export default function ReorderableFormCard({ item, id, onRemove, children }) {
       animate={{ scale: 1 }}
       whileDrag={{ scale: 1.02 }}
     >
-      <div className="border-t border-outline-variant/30 no-select">
+      <div className="no-select">
         <div className="mt-6 p-5 bg-surface rounded-lg relative group">
           {/* Drag Handle */}
           <div

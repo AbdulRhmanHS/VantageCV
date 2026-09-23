@@ -12,6 +12,7 @@ export default function PDFModal({
   personalInfo,
   experiences,
   educations,
+  skills,
   layout,
   setLayout,
   font,
@@ -133,6 +134,7 @@ export default function PDFModal({
               personalInfo={personalInfo}
               experiences={experiences}
               educations={educations}
+              skills={skills}
               layout={layout}
               font={font}
               spacing={spacing}
