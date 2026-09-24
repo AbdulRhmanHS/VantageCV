@@ -11,7 +11,7 @@
 
 export default function ResumeCard({ title, lastEdit, name, job, sections }) {
   return (
-    <div class="flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md hover:border-outline-variant relative">
+    <div className="flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md hover:border-outline-variant relative">
       <div className="p-5 flex flex-col grow">
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3
