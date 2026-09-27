@@ -1,8 +1,8 @@
 // DONE: Make the Create New button show a pop up to fill the initial data of the CV
-// TODO: Attach the span element to the total number of resume cards
+// DONE: Attach the span element to the total number of resume cards
 // TODO: Add an import button, and make it functional
 
-export default function CreateResumesH({ setIsModalOpen }) {
+export default function CreateResumesH({ setIsModalOpen, resumeNumber }) {
   return (
     <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-4 border-b border-outline-variant/40 pb-5">
       <div>
@@ -10,9 +10,11 @@ export default function CreateResumesH({ setIsModalOpen }) {
           <h1 className="font-display-lg text-display-lg text-on-surface text-3xl font-bold tracking-tight">
             My Resumes
           </h1>
-          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant">
-            4 Total
-          </span>
+          {resumeNumber > 0 && (
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant">
+              {resumeNumber} Total
+            </span>
+          )}
         </div>
         <p className="font-body-md text-body-md text-on-surface-variant mt-1.5 text-sm">
           Manage and edit your precise professional engineering documents.

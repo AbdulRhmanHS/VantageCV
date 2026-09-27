@@ -1,12 +1,38 @@
-import { createPortal } from "react-dom";
+// TODO: Make form validation for the modal
 
-export default function CreateResumeModal({ isOpen, onClose }) {
+import { createPortal } from "react-dom";
+import { useState } from "react";
+
+export default function CreateResumeModal({
+  resumeId,
+  isOpen,
+  onClose,
+  onSave,
+}) {
+  const [formData, setFormData] = useState({
+    id: resumeId,
+    resumeName: "",
+    fullName: "",
+    lang: "english",
+  });
+
+  const onChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave(formData);
+  };
+
   if (!isOpen) return;
 
   return createPortal(
     <div
       onClick={(e) => {
-        if (e.target.className.slice(0, 5) === "fixed") onClose();
+        if (e.target.className.slice(0, 5) === "fixed") {
+          onClose();
+        }
       }}
       className="fixed top-0 left-0 h-screen w-full flex justify-center items-center bg-gray-900/40 backdrop-blur-xs z-99 px-2 xs:px-4"
     >
@@ -26,7 +52,9 @@ export default function CreateResumeModal({ isOpen, onClose }) {
           <button
             aria-label="Close dialog"
             className="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+            }}
           >
             <span className="material-symbols-outlined text-[20px]!">
               close
@@ -36,7 +64,7 @@ export default function CreateResumeModal({ isOpen, onClose }) {
         <form
           className="p-6 flex flex-col gap-4"
           id="create-resume-form"
-          // onsubmit="event.preventDefault();"
+          onSubmit={handleSubmit}
         >
           <div className="flex flex-col gap-1.5">
             <label
@@ -51,6 +79,8 @@ export default function CreateResumeModal({ isOpen, onClose }) {
               placeholder="e.g. Software Engineer 2026"
               required=""
               type="text"
+              value={formData.resumeName}
+              onInput={(e) => onChange("resumeName", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -66,6 +96,8 @@ export default function CreateResumeModal({ isOpen, onClose }) {
               placeholder="e.g. AbdulRahman Ibn Hassn"
               required=""
               type="text"
+              value={formData.fullName}
+              onInput={(e) => onChange("fullName", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -78,9 +110,11 @@ export default function CreateResumeModal({ isOpen, onClose }) {
             <select
               className="w-full px-3.5 py-2.5 text-sm text-on-surface bg-surface-container-lowest border border-outline-variant/80 rounded-lg outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
               id="language-select"
+              value={formData.lang}
+              onChange={(e) => onChange("lang", e.target.value)}
             >
-              <option value="English">English</option>
-              <option value="Arabic">Arabic (العربية)</option>
+              <option value="english">English</option>
+              <option value="arabic">Arabic</option>
             </select>
           </div>
           <div className="flex items-center justify-end pt-5 mt-2 border-t border-outline-variant/40">
@@ -88,6 +122,10 @@ export default function CreateResumeModal({ isOpen, onClose }) {
               className="w-auto px-5 py-2.5 text-xs font-label-md font-medium text-on-primary bg-primary hover:bg-on-surface rounded-lg shadow-sm transition-colors flex items-center justify-center gap-1.5"
               id="submit-create-resume-btn"
               type="submit"
+              onClick={(e) => {
+                handleSubmit(e);
+                onClose();
+              }}
             >
               <span className="material-symbols-outlined text-[16px]!">
                 add

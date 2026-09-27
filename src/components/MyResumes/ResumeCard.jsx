@@ -9,7 +9,7 @@
 // TODO: Make the 3 dot button work by showing another menu which has the delete option
 // TODO: Make the delete functional
 
-export default function ResumeCard({ title, lastEdit, name, job, sections }) {
+export default function ResumeCard({ title, lastEdit, name, lang }) {
   return (
     <div className="flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md hover:border-outline-variant relative">
       <div className="p-5 flex flex-col grow">
@@ -33,22 +33,18 @@ export default function ResumeCard({ title, lastEdit, name, job, sections }) {
           </span>
           <span className="text-outline-variant">•</span>
           <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-surface-container text-[11px] font-medium text-on-surface-variant">
-            English
+            {lang}
             <span className="material-symbols-outlined text-[12px]!">
               expand_more
             </span>
           </span>
         </div>
         <div className="bg-surface-container-low/60 rounded p-3 mb-3 border border-outline-variant/30">
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center justify-between">
             <span className="font-semibold text-sm text-on-surface truncate">
               {name}
             </span>
-            <span className="text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">
-              {sections} sections
-            </span>
           </div>
-          <p className="text-xs text-on-surface-variant truncate">{job}</p>
         </div>
         <div className="mt-auto pt-3 border-t border-outline-variant/40 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 flex-1">
