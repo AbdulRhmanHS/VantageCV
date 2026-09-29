@@ -1,10 +1,7 @@
 export default function EmptyState() {
   return (
     <div className="grow flex flex-col items-center justify-center max-w-lg mx-auto">
-      <div
-        className="relative mb-6 group cursor-pointer"
-        onclick="document.getElementById('open-create-modal-btn')?.click()"
-      >
+      <div className="relative mb-6 group cursor-pointer">
         <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-surface-container-low flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-105">
           <div className="w-16 h-20 rounded-lg bg-surface-container-lowest shadow-sm flex flex-col p-2.5 justify-between relative overflow-hidden">
             <div className="absolute top-0 right-0 w-4 h-4 bg-surface-container-high rounded-bl-xs"></div>

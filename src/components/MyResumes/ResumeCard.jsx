@@ -1,15 +1,13 @@
-// TODO: Attach the cards to the resume data in the builder
-// TODO: Make the pen icon rename the title of the CV
-// TODO: Make the lastEdit record date with any edit made
-// TODO: Make the build button functional open the builder with the current CV data
-// TODO: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
-// TODO: Make the language dropdown menu functional
-// TODO: Make the export button functional by exporting as a PDF
-// TODO: Make an option for exporting as JSON to be able to import it later
-// TODO: Make the 3 dot button work by showing another menu which has the delete option
-// TODO: Make the delete functional
+import ResumeCardMenu from "./ResumeCardMenu";
 
-export default function ResumeCard({ title, lastEdit, name, lang }) {
+export default function ResumeCard({
+  itemKey,
+  title,
+  lastEdit,
+  name,
+  lang,
+  removeCard,
+}) {
   return (
     <div className="flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md hover:border-outline-variant relative">
       <div className="p-5 flex flex-col grow">
@@ -67,11 +65,7 @@ export default function ResumeCard({ title, lastEdit, name, lang }) {
               Export
             </a>
           </div>
-          <button className="w-8 h-8 rounded hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">
-            <span className="material-symbols-outlined text-[18px]!">
-              more_vert
-            </span>
-          </button>
+          <ResumeCardMenu deleteFunc={() => removeCard(itemKey)} />
         </div>
       </div>
     </div>

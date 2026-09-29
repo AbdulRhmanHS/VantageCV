@@ -1,8 +1,16 @@
-/*
-TODO: Add last modified date to the cards
-TODO: Add number of sections to the cards 
-TODO: Add a position to the resume and add it to the card
-*/
+// TODO: Attach the cards to the resume data in the builder
+// TODO: Make the build button functional open the builder with the current CV data
+// TODO: Make the pen icon rename the title of the CV
+// TODO: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
+// TODO: Make the language dropdown menu functional
+// TODO: Make the export button functional by exporting as a PDF
+// TODO: Make an option for exporting as JSON to be able to import it later
+// DONE: Make the 3 dot button work by showing another menu which has the delete option
+// DONE: Make the delete functional
+// TODO: Add last modified date to the cards
+// TODO: Make the lastEdit record date with any edit made
+// TODO: Add number of sections to the cards
+// TODO: Add a position to the resume and add it to the card
 
 import CreateResumesH from "../components/MyResumes/CreateResumesH";
 import ResumeCard from "../components/MyResumes/ResumeCard";
@@ -20,9 +28,9 @@ export default function MyResumes() {
     setIsModalOpen(false);
   };
 
-  // const removeCard = (id) => {
-  //   setCardsData((prev) => prev.filter((item) => item.id !== id));
-  // };
+  const removeCard = (id) => {
+    setCardsData((prev) => prev.filter((item) => item.id !== id));
+  };
 
   const handleModalOpen = () => {
     const newId = crypto.randomUUID();
@@ -47,9 +55,11 @@ export default function MyResumes() {
               cardsData.map((data) => (
                 <ResumeCard
                   key={data.id}
+                  itemKey={data.id}
                   title={data.resumeName}
                   name={data.fullName}
                   lang={data.lang}
+                  removeCard={removeCard}
                 />
               ))}
           </div>
