@@ -24,7 +24,7 @@ import PDFPreview from "../components/ResumeBuilder/PDFPreview";
 import PDFModal from "../components/ResumeBuilder/PDFModal";
 import ResumeContent from "../components/ResumeBuilder/ResumeContent";
 import { previewData } from "../data/previewData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useActiveCV } from "../data/ActiveCVProvider";
@@ -63,6 +63,22 @@ export default function ResumeBuilder() {
   const experiences = useSectionState(Object.values(activeCV.cvData.exp));
   const educations = useSectionState(Object.values(activeCV.cvData.edu));
   const skills = useSectionState(Object.values(activeCV.cvData.skill));
+
+  const handleUpdateActiveCV = () => {
+    const CV = { ...activeCV };
+    CV.fullName = personalInfo.name;
+    CV.lang = language;
+    CV.cvData.profile = personalInfo;
+    CV.cvData.exp = experiences.items;
+    CV.cvData.edu = educations.items;
+    CV.cvData.skill = skills.items;
+
+    localStorage.setItem("active_cv", JSON.stringify(CV));
+  };
+
+  useEffect(() => {
+    handleUpdateActiveCV();
+  });
 
   const handlePersonalChange = (field, value) => {
     setPersonalInfo((prev) => ({ ...prev, [field]: value }));

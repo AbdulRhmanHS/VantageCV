@@ -19,15 +19,23 @@ import EmptyState from "../components/MyResumes/EmptyState";
 import { useState } from "react";
 import { useActiveCV } from "../data/ActiveCVProvider";
 
+const updateData = () => {
+  const saved = JSON.parse(localStorage.getItem("cards_data"));
+  const modifiedCV = JSON.parse(localStorage.getItem("active_cv"));
+  return saved
+    ? saved.map((data) => {
+        return data.id === modifiedCV.id ? { ...modifiedCV } : data;
+      })
+    : [];
+};
+
 export default function MyResumes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [cardsData, setCardsData] = useState(() => {
-    const saved = localStorage.getItem("cards-data");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cardsData, setCardsData] = useState(updateData);
   const [activeId, setActiveId] = useState(null);
   const { selectCV } = useActiveCV();
-  localStorage.setItem("cards-data", JSON.stringify(cardsData));
+
+  localStorage.setItem("cards_data", JSON.stringify(cardsData));
 
   const addCard = (dataObject) => {
     setCardsData((prev) => [...prev, dataObject]);
