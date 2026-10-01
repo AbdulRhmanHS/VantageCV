@@ -1,5 +1,5 @@
 // TODO: Attach the cards to the resume data in the builder
-// TODO: Make the build button functional open the builder with the current CV data
+// DONE: Make the build button functional open the builder with the current CV data
 // TODO: Make the pen icon rename the title of the CV
 // TODO: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
 // TODO: Make the language dropdown menu functional
@@ -17,11 +17,17 @@ import ResumeCard from "../components/MyResumes/ResumeCard";
 import CreateResumeModal from "../components/MyResumes/CreateResumeModal";
 import EmptyState from "../components/MyResumes/EmptyState";
 import { useState } from "react";
+import { useActiveCV } from "../data/ActiveCVProvider";
 
 export default function MyResumes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [cardsData, setCardsData] = useState([]);
+  const [cardsData, setCardsData] = useState(() => {
+    const saved = localStorage.getItem("cards-data");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [activeId, setActiveId] = useState(null);
+  const { selectCV } = useActiveCV();
+  localStorage.setItem("cards-data", JSON.stringify(cardsData));
 
   const addCard = (dataObject) => {
     setCardsData((prev) => [...prev, dataObject]);
@@ -30,6 +36,11 @@ export default function MyResumes() {
 
   const removeCard = (id) => {
     setCardsData((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleActiveCV = (id) => {
+    const selected = cardsData.find((card) => card.id === id);
+    selectCV(selected);
   };
 
   const handleModalOpen = () => {
@@ -60,6 +71,7 @@ export default function MyResumes() {
                   name={data.fullName}
                   lang={data.lang}
                   removeCard={removeCard}
+                  handleActiveCV={handleActiveCV}
                 />
               ))}
           </div>

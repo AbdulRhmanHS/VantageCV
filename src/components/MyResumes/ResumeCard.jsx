@@ -1,4 +1,5 @@
 import ResumeCardMenu from "./ResumeCardMenu";
+import { useNavigate } from "react-router-dom";
 
 export default function ResumeCard({
   itemKey,
@@ -7,7 +8,10 @@ export default function ResumeCard({
   name,
   lang,
   removeCard,
+  handleActiveCV,
 }) {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant/80 shadow-sm overflow-hidden h-full transition-all hover:shadow-md hover:border-outline-variant relative">
       <div className="p-5 flex flex-col grow">
@@ -46,16 +50,19 @@ export default function ResumeCard({
         </div>
         <div className="mt-auto pt-3 border-t border-outline-variant/40 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 flex-1">
-            <a
+            <button
               className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-primary text-on-primary hover:bg-on-surface font-label-md text-xs rounded-lg transition-colors shadow-sm flex-1 font-medium"
-              href="#"
+              onClick={() => {
+                handleActiveCV(itemKey);
+                navigate("/builder");
+              }}
             >
               <span className="material-symbols-outlined text-[14px]!">
                 edit_note
               </span>
               Build
-            </a>
-            <a
+            </button>
+            <button
               className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-xs rounded-lg border border-outline-variant/60 transition-colors flex-1 font-medium"
               href="#"
             >
@@ -63,7 +70,7 @@ export default function ResumeCard({
                 download
               </span>
               Export
-            </a>
+            </button>
           </div>
           <ResumeCardMenu deleteFunc={() => removeCard(itemKey)} />
         </div>

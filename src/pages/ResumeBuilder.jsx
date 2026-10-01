@@ -27,6 +27,7 @@ import { previewData } from "../data/previewData";
 import { useState } from "react";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
+import { useActiveCV } from "../data/ActiveCVProvider";
 
 function useSectionState(initialItems) {
   const [items, setItems] = useState(initialItems);
@@ -49,15 +50,19 @@ function useSectionState(initialItems) {
 }
 
 export default function ResumeBuilder() {
+  const { activeCV } = useActiveCV();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [layout, setLayout] = useState("one-col");
   const [font, setFont] = useState("cairo");
   const [spacing, setSpacing] = useState("spacious");
   const [language, setLanguage] = useState("english");
-  const [personalInfo, setPersonalInfo] = useState(previewData.eng.profile);
-  const experiences = useSectionState(Object.values(previewData.eng.exp));
-  const educations = useSectionState(Object.values(previewData.eng.edu));
-  const skills = useSectionState(Object.values(previewData.eng.skill));
+  const [personalInfo, setPersonalInfo] = useState({
+    ...activeCV.cvData.profile,
+    name: activeCV.fullName,
+  });
+  const experiences = useSectionState(Object.values(activeCV.cvData.exp));
+  const educations = useSectionState(Object.values(activeCV.cvData.edu));
+  const skills = useSectionState(Object.values(activeCV.cvData.skill));
 
   const handlePersonalChange = (field, value) => {
     setPersonalInfo((prev) => ({ ...prev, [field]: value }));

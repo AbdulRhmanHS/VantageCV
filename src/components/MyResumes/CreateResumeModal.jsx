@@ -2,6 +2,7 @@
 
 import { createPortal } from "react-dom";
 import { useState } from "react";
+import { previewData } from "../../data/previewData";
 
 export default function CreateResumeModal({
   resumeId,
@@ -14,10 +15,17 @@ export default function CreateResumeModal({
     resumeName: "",
     fullName: "",
     lang: "english",
+    cvData: previewData.eng,
   });
 
   const onChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => {
+      const next = { ...prev, [field]: value };
+      if (field === "lang") {
+        next.cvData = value === "english" ? previewData.eng : previewData.ara;
+      }
+      return next;
+    });
   };
 
   const handleSubmit = (e) => {
