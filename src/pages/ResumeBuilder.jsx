@@ -124,7 +124,7 @@ export default function ResumeBuilder() {
             <div className="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
               <div className="px-4 py-8 lg:p-8 lg:max-w-2xl mx-auto w-full">
                 <h1 className="text-headline-lg font-headline-lg text-on-surface mb-8">
-                  Build Your Resume
+                  {activeCV.resumeName}
                 </h1>
                 <div className="space-y-4">
                   <TemplateCard

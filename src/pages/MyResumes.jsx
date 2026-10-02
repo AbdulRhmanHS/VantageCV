@@ -1,7 +1,7 @@
-// TODO: Attach the cards to the resume data in the builder
+// DONE: Attach the cards to the resume data in the builder
 // DONE: Make the build button functional open the builder with the current CV data
-// TODO: Make the pen icon rename the title of the CV
-// TODO: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
+// DONE: Make the pen icon rename the title of the CV
+// DONE: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
 // TODO: Make the language dropdown menu functional
 // TODO: Make the export button functional by exporting as a PDF
 // TODO: Make an option for exporting as JSON to be able to import it later
@@ -33,7 +33,7 @@ export default function MyResumes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cardsData, setCardsData] = useState(updateData);
   const [activeId, setActiveId] = useState(null);
-  const { selectCV } = useActiveCV();
+  const { activeCV, selectCV } = useActiveCV();
 
   localStorage.setItem("cards_data", JSON.stringify(cardsData));
 
@@ -57,6 +57,19 @@ export default function MyResumes() {
     setIsModalOpen(true);
   };
 
+  const modifyCardTitle = (id, newTitle) => {
+    setCardsData((prev) =>
+      prev.map((data) => {
+        if (activeCV && activeCV.id === data.id && data.id === id)
+          localStorage.setItem(
+            "active_cv",
+            JSON.stringify({ ...data, resumeName: newTitle }),
+          );
+        return data.id === id ? { ...data, resumeName: newTitle } : data;
+      }),
+    );
+  };
+
   return (
     <>
       <main className="w-full min-h-screen pt-16 flex flex-col">
@@ -74,12 +87,11 @@ export default function MyResumes() {
               cardsData.map((data) => (
                 <ResumeCard
                   key={data.id}
-                  itemKey={data.id}
-                  title={data.resumeName}
-                  name={data.fullName}
-                  lang={data.lang}
+                  data={data}
                   removeCard={removeCard}
+                  modifyCardTitle={modifyCardTitle}
                   handleActiveCV={handleActiveCV}
+                  activeCV={activeCV}
                 />
               ))}
           </div>
