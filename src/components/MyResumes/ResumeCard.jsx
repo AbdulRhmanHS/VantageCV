@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
 import ResumeCardMenu from "./ResumeCardMenu";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ResumeCard({
@@ -10,7 +10,8 @@ export default function ResumeCard({
   activeCV,
 }) {
   const navigate = useNavigate();
-  const [newTitle, setNewTitle] = useState(data.resumeName);
+  const initialTitle = data.resumeName;
+  const [newTitle, setNewTitle] = useState(initialTitle);
   const [isEditable, setIsEditable] = useState(false);
   const inputRef = useRef(null);
 
@@ -21,14 +22,24 @@ export default function ResumeCard({
     }
   }, [isEditable]);
 
-  const editTitle = (e) => {
-    setNewTitle(e.target.value);
-    modifyCardTitle(data.id, e.target.value);
+  const applyTitleEdit = () => {
+    newTitle ? modifyCardTitle(data.id, newTitle) : setNewTitle(initialTitle);
+    setIsEditable(false);
+  };
+
+  const cancelTitleEdit = () => {
+    setNewTitle(initialTitle);
+    setIsEditable(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") applyTitleEdit();
+    if (e.key === "Escape") cancelTitleEdit();
   };
 
   return (
     <div
-      className={`flex flex-col bg-surface-container-lowest rounded-xl  shadow-sm overflow-hidden h-full transition-all hover:shadow-md relative ${
+      className={`flex flex-col bg-surface-container-lowest rounded-xl  shadow-sm overflow-hidden h-full relative ${
         activeCV && activeCV.id === data.id
           ? "border-2 border-secondary/80"
           : "border border-outline-variant/80 hover:border-outline-variant"
@@ -40,39 +51,65 @@ export default function ResumeCard({
             <input
               ref={inputRef}
               type="text"
+              className="outline-secondary/80 font-semibold text-base text-on-surface tracking-tight flex-1 min-w-0"
               value={newTitle}
-              onChange={(e) => editTitle(e)}
-              onBlur={() => setIsEditable(false)}
+              onChange={(e) => setNewTitle(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
           ) : (
             <h3 className="font-semibold text-base text-on-surface tracking-tight truncate flex-1">
               {data.resumeName}
             </h3>
           )}
-          {/* TODO: Add buttons to accept the edit or cancel it */}
-          <button
-            className="text-on-surface-variant hover:text-secondary transition-colors p-1 -mr-1"
-            onClick={() => setIsEditable(true)}
-          >
-            <span className="material-symbols-outlined text-[16px]!">edit</span>
-          </button>
+          {/* DONE: Add buttons to accept the edit or cancel it */}
+          {isEditable ? (
+            <div className="flex items-center gap-0.5 xs:gap-2">
+              <button
+                className="p-1 hover:bg-surface-container transition-colors"
+                onClick={applyTitleEdit}
+              >
+                <span className="material-symbols-outlined text-[16px]! text-secondary">
+                  check
+                </span>
+              </button>
+              <button
+                className="p-1 hover:bg-surface-container transition-colors"
+                onClick={cancelTitleEdit}
+              >
+                <span className="material-symbols-outlined text-[16px]! text-error">
+                  close
+                </span>
+              </button>
+            </div>
+          ) : (
+            <button
+              className="text-on-surface-variant hover:text-secondary transition-colors p-1 -mr-1"
+              onClick={() => setIsEditable(true)}
+            >
+              <span className="material-symbols-outlined text-[16px]!">
+                edit
+              </span>
+            </button>
+          )}
         </div>
-        <div className="flex items-center gap-2 flex-wrap text-xs text-on-surface-variant mb-4">
-          <span className="inline-flex items-center gap-1">
-            <span className="material-symbols-outlined text-[14px]!">
-              calendar_today
+        <div className="flex flex-col xs:flex-row gap-4 xs:gap-2 text-xs text-on-surface-variant mb-4">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1">
+              <span className="material-symbols-outlined text-[14px]!">
+                calendar_today
+              </span>
+              Updated {data.lastEdit}
             </span>
-            Updated {data.lastEdit}
-          </span>
-          <span className="text-outline-variant">•</span>
-          <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-surface-container text-[11px] font-medium text-on-surface-variant">
-            {data.lang}
-            <span className="material-symbols-outlined text-[12px]!">
-              expand_more
+            <span className="text-outline-variant">•</span>
+            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-surface-container text-[11px] font-medium text-on-surface-variant">
+              {data.lang}
+              <span className="material-symbols-outlined text-[12px]!">
+                expand_more
+              </span>
             </span>
-          </span>
+          </div>
           {activeCV && activeCV.id === data.id && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[11px] font-semibold ml-auto">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[11px] font-semibold mr-auto xs:ml-auto xs:mr-0">
               <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
               Active
             </span>

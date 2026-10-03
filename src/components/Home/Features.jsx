@@ -43,8 +43,11 @@ export default function Features() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-700 opacity-100 translate-y-0">
-          {FEATURES_DATA.map((feature) => (
-            <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm">
+          {FEATURES_DATA.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm"
+            >
               <div
                 className={`w-12 h-12 ${feature.color} rounded-xl flex items-center justify-center text-on-primary-container mb-6 group-hover:scale-110 transition-transform`}
               >

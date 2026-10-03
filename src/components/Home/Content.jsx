@@ -28,8 +28,11 @@ export default function Content() {
             Data-driven design, not guesswork.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 w-full">
-            {CONTENT_DATA.map((content) => (
-              <div className="flex flex-col items-center gap-4 p-6 rounded-2xl bg-surface-container-lowest shadow-sm group cursor-default">
+            {CONTENT_DATA.map((content, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center gap-4 p-6 rounded-2xl bg-surface-container-lowest shadow-sm group cursor-default"
+              >
                 <div className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
                   <span className="material-symbols-outlined">
                     {content.icon}
