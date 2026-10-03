@@ -2,7 +2,6 @@
 // DONE: Make the build button functional open the builder with the current CV data
 // DONE: Make the pen icon rename the title of the CV
 // DONE: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
-// TODO: Make the language dropdown menu functional
 // TODO: Make the export button functional by exporting as a PDF
 // TODO: Make an option for exporting as JSON to be able to import it later
 // DONE: Make the 3 dot button work by showing another menu which has the delete option
@@ -10,7 +9,7 @@
 // TODO: Add last modified date to the cards
 // TODO: Make the lastEdit record date with any edit made
 // TODO: Add number of sections to the cards
-// TODO: Add a position to the resume and add it to the card
+// TODO: Add a job position to the resume and add it to the card
 
 import CreateResumesH from "../components/MyResumes/CreateResumesH";
 import ResumeCard from "../components/MyResumes/ResumeCard";

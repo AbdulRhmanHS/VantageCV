@@ -23,7 +23,6 @@ import SkillInputs from "../components/ResumeBuilder/SkillInputs";
 import PDFPreview from "../components/ResumeBuilder/PDFPreview";
 import PDFModal from "../components/ResumeBuilder/PDFModal";
 import ResumeContent from "../components/ResumeBuilder/ResumeContent";
-import { previewData } from "../data/previewData";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -52,10 +51,10 @@ function useSectionState(initialItems) {
 export default function ResumeBuilder() {
   const { activeCV } = useActiveCV();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [layout, setLayout] = useState("one-col");
-  const [font, setFont] = useState("cairo");
-  const [spacing, setSpacing] = useState("spacious");
-  const [language, setLanguage] = useState("english");
+  const [layout, setLayout] = useState(activeCV.cvSettings.layout);
+  const [font, setFont] = useState(activeCV.cvSettings.font);
+  const [spacing, setSpacing] = useState(activeCV.cvSettings.spacing);
+  const [language, setLanguage] = useState(activeCV.lang);
   const [personalInfo, setPersonalInfo] = useState({
     ...activeCV.cvData.profile,
     name: activeCV.fullName,
@@ -72,6 +71,9 @@ export default function ResumeBuilder() {
     CV.cvData.exp = experiences.items;
     CV.cvData.edu = educations.items;
     CV.cvData.skill = skills.items;
+    CV.cvSettings.layout = layout;
+    CV.cvSettings.font = font;
+    CV.cvSettings.spacing = spacing;
 
     localStorage.setItem("active_cv", JSON.stringify(CV));
   };
@@ -82,16 +84,6 @@ export default function ResumeBuilder() {
 
   const handlePersonalChange = (field, value) => {
     setPersonalInfo((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleLanguageChange = (newLang) => {
-    setLanguage(newLang);
-    const langKey = newLang === "english" ? "eng" : "ara";
-
-    setPersonalInfo(previewData[langKey].profile);
-    experiences.setItems(Object.values(previewData[langKey].exp));
-    educations.setItems(Object.values(previewData[langKey].edu));
-    skills.setItems(Object.values(previewData[langKey].skill));
   };
 
   const printRef = useRef(null);
@@ -118,7 +110,7 @@ export default function ResumeBuilder() {
             spacing={spacing}
             setSpacing={setSpacing}
             language={language}
-            setLanguage={handleLanguageChange}
+            setLanguage={setLanguage}
           />
           <div className="flex flex-col lg:flex-row flex-1 h-auto lg:h-[calc(100vh-140px)]">
             <div className="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
@@ -217,7 +209,7 @@ export default function ResumeBuilder() {
         spacing={spacing}
         setSpacing={setSpacing}
         language={language}
-        setLanguage={handleLanguageChange}
+        setLanguage={setLanguage}
         handlePrint={handlePrint}
       />
       <ResumeContent

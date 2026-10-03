@@ -1,8 +1,7 @@
-// TODO: Make form validation for the modal
-
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import { previewData } from "../../data/previewData";
+import { defaultSettings } from "../../data/defaultSettings";
 
 export default function CreateResumeModal({
   resumeId,
@@ -16,6 +15,7 @@ export default function CreateResumeModal({
     fullName: "",
     lang: "english",
     cvData: previewData.eng,
+    cvSettings: defaultSettings,
   });
 
   const onChange = (field, value) => {
@@ -82,13 +82,13 @@ export default function CreateResumeModal({
               Resume Name <span className="text-secondary">*</span>
             </label>
             <input
-              className="w-full px-3.5 py-2.5 text-sm text-on-surface bg-surface-container-lowest border border-outline-variant/80 rounded-lg outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
+              className="w-full px-3.5 py-2.5 text-sm text-on-surface bg-surface-container-lowest border border-outline-variant/80 rounded-lg outline-none [&:valid:focus]:border-secondary [&:valid:focus]:ring-1 [&:valid:focus]:ring-secondary [&:user-invalid:focus]:border-on-error-container [&:user-invalid:focus]:ring-1 [&:user-invalid:focus]:ring-on-error-container transition-all"
               id="resume-title-input"
               placeholder="e.g. Software Engineer 2026"
-              required=""
               type="text"
               value={formData.resumeName}
               onInput={(e) => onChange("resumeName", e.target.value)}
+              required
             />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -99,13 +99,13 @@ export default function CreateResumeModal({
               Full Name <span className="text-secondary">*</span>
             </label>
             <input
-              className="w-full px-3.5 py-2.5 text-sm text-on-surface bg-surface-container-lowest border border-outline-variant/80 rounded-lg outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
+              className="w-full px-3.5 py-2.5 text-sm text-on-surface bg-surface-container-lowest border border-outline-variant/80 rounded-lg outline-none [&:valid:focus]:border-secondary [&:valid:focus]:ring-1 [&:valid:focus]:ring-secondary [&:user-invalid:focus]:border-on-error-container [&:user-invalid:focus]:ring-1 [&:user-invalid:focus]:ring-on-error-container transition-all"
               id="full-name-input"
               placeholder="e.g. AbdulRahman Ibn Hassn"
-              required=""
               type="text"
               value={formData.fullName}
               onInput={(e) => onChange("fullName", e.target.value)}
+              required
             />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -130,7 +130,7 @@ export default function CreateResumeModal({
               className="w-auto px-5 py-2.5 text-xs font-label-md font-medium text-on-primary bg-primary hover:bg-on-surface rounded-lg shadow-sm transition-colors flex items-center justify-center gap-1.5"
               id="submit-create-resume-btn"
               type="submit"
-              onClick={(e) => {
+              onSubmit={(e) => {
                 handleSubmit(e);
                 onClose();
               }}
