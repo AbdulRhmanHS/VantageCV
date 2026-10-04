@@ -113,9 +113,12 @@ export default function ResumeCard({
           )}
         </div>
         <div className="bg-surface-container-low/60 rounded p-3 mb-3 border border-outline-variant/30">
-          <div className="flex items-center justify-between">
-            <span className="font-semibold text-sm text-on-surface truncate">
+          <div className="flex flex-col-reverse items-start xs:flex-row xs:items-center xs:justify-between">
+            <span className="font-semibold text-sm text-on-surface truncate text-wrap">
               {data.fullName}
+            </span>
+            <span className="text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">
+              {data.sections} sections
             </span>
           </div>
         </div>

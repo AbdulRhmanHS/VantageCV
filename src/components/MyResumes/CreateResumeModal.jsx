@@ -16,6 +16,7 @@ export default function CreateResumeModal({
     lang: "english",
     cvData: previewData.eng,
     cvSettings: defaultSettings,
+    sections: 4,
   });
 
   const onChange = (field, value) => {

@@ -74,6 +74,12 @@ export default function ResumeBuilder() {
     CV.cvSettings.layout = layout;
     CV.cvSettings.font = font;
     CV.cvSettings.spacing = spacing;
+    CV.sections = [
+      Boolean(personalInfo.proSummary),
+      experiences.items.length > 0,
+      educations.items.length > 0,
+      skills.items.length > 0,
+    ].filter(Boolean).length;
 
     localStorage.setItem("active_cv", JSON.stringify(CV));
   };
