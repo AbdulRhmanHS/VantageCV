@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useActiveCV } from "../data/ActiveCVProvider";
+import { format } from "date-fns";
 
 function useSectionState(initialItems) {
   const [items, setItems] = useState(initialItems);
@@ -69,6 +70,7 @@ export default function ResumeBuilder() {
     CV.fullName = personalInfo.name;
     CV.job = personalInfo.job;
     CV.lang = language;
+    CV.lastEdit = format(new Date(), "MMM d, yyyy");
     CV.cvData.profile = personalInfo;
     CV.cvData.exp = experiences.items;
     CV.cvData.edu = educations.items;

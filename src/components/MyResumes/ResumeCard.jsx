@@ -98,7 +98,7 @@ export default function ResumeCard({
               <span className="material-symbols-outlined text-[14px]!">
                 calendar_today
               </span>
-              Updated {data.lastEdit}
+              {data.lastEdit}
             </span>
             <span className="text-outline-variant">•</span>
             <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-surface-container text-[11px] font-medium text-on-surface-variant">

@@ -1,6 +1,5 @@
 // DONE: Make the Create New button show a pop up to fill the initial data of the CV
 // DONE: Attach the span element to the total number of resume cards
-// TODO: Add an import button, and make it functional
 
 export default function CreateResumesH({ setIsModalOpen, resumeNumber }) {
   return (
@@ -11,7 +10,7 @@ export default function CreateResumesH({ setIsModalOpen, resumeNumber }) {
             My Resumes
           </h1>
           {resumeNumber > 0 && (
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant">
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-nowrap">
               {resumeNumber} Total
             </span>
           )}

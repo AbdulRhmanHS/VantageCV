@@ -1,4 +1,4 @@
-// TODO: Apply the new floating ui to the dropdown menu
+// FIXME: Apply the new floating ui to the dropdown menu
 
 export default function DropDown({ label, value, setFunction, options = [] }) {
   return (

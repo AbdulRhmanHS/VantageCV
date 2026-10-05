@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import { previewData } from "../../data/previewData";
 import { defaultSettings } from "../../data/defaultSettings";
+import { format } from "date-fns";
 
 export default function CreateResumeModal({
   resumeId,
@@ -15,6 +16,7 @@ export default function CreateResumeModal({
     fullName: "",
     job: "",
     lang: "english",
+    lastEdit: format(new Date(), "MMM d, yyyy"),
     cvData: previewData.eng,
     cvSettings: defaultSettings,
     sections: 4,
