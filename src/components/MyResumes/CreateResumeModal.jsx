@@ -13,6 +13,7 @@ export default function CreateResumeModal({
     id: resumeId,
     resumeName: "",
     fullName: "",
+    job: "",
     lang: "english",
     cvData: previewData.eng,
     cvSettings: defaultSettings,
@@ -107,6 +108,22 @@ export default function CreateResumeModal({
               value={formData.fullName}
               onInput={(e) => onChange("fullName", e.target.value)}
               required
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label
+              className="text-xs font-semibold text-on-surface tracking-wide"
+              htmlFor="job-input"
+            >
+              Job Title <span className="text-secondary">*</span>
+            </label>
+            <input
+              className="w-full px-3.5 py-2.5 text-sm text-on-surface bg-surface-container-lowest border border-outline-variant/80 rounded-lg outline-none [&:valid:focus]:border-secondary [&:valid:focus]:ring-1 [&:valid:focus]:ring-secondary [&:user-invalid:focus]:border-on-error-container [&:user-invalid:focus]:ring-1 [&:user-invalid:focus]:ring-on-error-container transition-all"
+              id="full-name-input"
+              placeholder="e.g. Senior Product Designer"
+              type="text"
+              value={formData.job}
+              onInput={(e) => onChange("job", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-1.5">

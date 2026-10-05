@@ -17,7 +17,7 @@ export default function ReorderableFormCard({ item, id, onRemove, children }) {
           {/* Drag Handle */}
           <div
             onPointerDown={(e) => controls.start(e)}
-            className="absolute -left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity cursor-grab touch-none"
+            className="absolute -left-6 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 transition-opacity cursor-grab touch-none"
           >
             <span className="material-symbols-outlined text-outline">
               drag_indicator

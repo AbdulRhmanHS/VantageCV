@@ -2,6 +2,7 @@ export const previewData = {
   eng: {
     profile: {
       name: "",
+      job: "",
       email: "user@example.com",
       phone: "+1 (555) 123-4567",
       address: "San Francisco, CA",
@@ -60,6 +61,7 @@ export const previewData = {
   ara: {
     profile: {
       name: "",
+      job: "",
       email: "user@example.com",
       phone: "+20 100 123 4567",
       address: "الإسكندرية، مصر",

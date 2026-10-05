@@ -58,6 +58,7 @@ export default function ResumeBuilder() {
   const [personalInfo, setPersonalInfo] = useState({
     ...activeCV.cvData.profile,
     name: activeCV.fullName,
+    job: activeCV.job,
   });
   const experiences = useSectionState(Object.values(activeCV.cvData.exp));
   const educations = useSectionState(Object.values(activeCV.cvData.edu));
@@ -66,6 +67,7 @@ export default function ResumeBuilder() {
   const handleUpdateActiveCV = () => {
     const CV = { ...activeCV };
     CV.fullName = personalInfo.name;
+    CV.job = personalInfo.job;
     CV.lang = language;
     CV.cvData.profile = personalInfo;
     CV.cvData.exp = experiences.items;

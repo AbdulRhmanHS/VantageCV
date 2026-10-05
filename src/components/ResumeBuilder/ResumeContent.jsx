@@ -34,7 +34,7 @@ const ResumeContent = React.forwardRef(
     },
     printRef,
   ) => {
-    const { name, email, phone, address, proSummary } = personalInfo;
+    const { name, job, email, phone, address, proSummary } = personalInfo;
 
     const { headlineText, bodyText } =
       FONT_STYLES[font] || FONT_STYLES["source-serif"];
@@ -44,7 +44,7 @@ const ResumeContent = React.forwardRef(
     const density = {
       paddingPage: isCompact ? "p-6" : "p-12",
       pageMargin: isCompact ? 5 : 15,
-      gapSection: isCompact ? "gap-5" : "gap-10",
+      gapSection: isCompact ? "gap-3" : "gap-8",
       gapItem: isCompact ? "gap-4" : "gap-8",
       gapNested: isCompact ? "gap-3" : "gap-6",
       titleSize: isCompact ? "text-base" : "text-lg",
@@ -52,8 +52,9 @@ const ResumeContent = React.forwardRef(
       skillTextSize: isCompact ? "text-sm" : "text-body-md",
       skillGap: isCompact ? "gap-1.5" : "gap-2.5",
       leading: isCompact ? "leading-snug" : "leading-relaxed",
-      borderBottom: isCompact ? "pb-3 mb-2" : "pb-6 mb-2",
+      borderBottom: isCompact ? "pb-3" : "pb-6",
       headingBottom: isCompact ? "mb-1.5 pb-1" : "mb-3 pb-1",
+      jobTitleSize: isCompact ? "text-body-md" : "text-body-lg",
     };
 
     const isArabic = language === "arabic";
@@ -94,9 +95,14 @@ const ResumeContent = React.forwardRef(
         </style>
         {/* Header Section */}
         <div className={`border-b-2 border-primary ${density.borderBottom}`}>
-          <h1 className={`${headlineText} text-5xl text-primary mb-2 rtl:mb-6`}>
+          <h1 className={`${headlineText} text-5xl text-primary mb-2`}>
             {name || (isArabic ? "الاسم" : "Your Name")}
           </h1>
+          <div
+            className={`${density.jobTitleSize} mb-2 text-on-surface-variant`}
+          >
+            {job}
+          </div>
           <div
             className={`flex flex-wrap items-center gap-x-4 gap-y-1 text-on-surface-variant font-bold ${density.bodyTextSize}`}
           >

@@ -8,8 +8,8 @@
 // DONE: Make the delete functional
 // TODO: Add last modified date to the cards
 // TODO: Make the lastEdit record date with any edit made
-// TODO: Add number of sections to the cards
-// TODO: Add a job position to the resume and add it to the card
+// DONE: Add number of sections to the cards
+// DONE: Add a job position to the resume and add it to the card
 
 import CreateResumesH from "../components/MyResumes/CreateResumesH";
 import ResumeCard from "../components/MyResumes/ResumeCard";

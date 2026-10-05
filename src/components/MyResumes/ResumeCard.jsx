@@ -113,7 +113,7 @@ export default function ResumeCard({
           )}
         </div>
         <div className="bg-surface-container-low/60 rounded p-3 mb-3 border border-outline-variant/30">
-          <div className="flex flex-col-reverse items-start xs:flex-row xs:items-center xs:justify-between">
+          <div className="flex flex-col-reverse items-start xs:flex-row xs:items-center xs:justify-between gap-2">
             <span className="font-semibold text-sm text-on-surface truncate text-wrap">
               {data.fullName}
             </span>
@@ -121,6 +121,7 @@ export default function ResumeCard({
               {data.sections} sections
             </span>
           </div>
+          <p className="text-xs text-on-surface-variant truncate">{data.job}</p>
         </div>
         <div className="mt-auto pt-3 border-t border-outline-variant/40 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 flex-1">
