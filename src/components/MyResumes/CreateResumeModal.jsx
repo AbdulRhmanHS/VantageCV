@@ -42,7 +42,7 @@ export default function CreateResumeModal({
   return createPortal(
     <div
       onClick={(e) => {
-        if (e.target.className.slice(0, 5) === "fixed") {
+        if (e.target.className.includes("fixed")) {
           onClose();
         }
       }}

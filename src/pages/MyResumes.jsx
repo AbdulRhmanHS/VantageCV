@@ -2,7 +2,7 @@
 // DONE: Make the build button functional open the builder with the current CV data
 // DONE: Make the pen icon rename the title of the CV
 // DONE: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
-// TODO: Make the export button functional by exporting as a PDF
+// DONE: Make the export button functional by exporting as a PDF
 // TODO: Make an option for exporting as JSON to be able to import it later
 // TODO: Add an import button, and make it functional
 // DONE: Make the 3 dot button work by showing another menu which has the delete option
@@ -16,8 +16,10 @@ import CreateResumesH from "../components/MyResumes/CreateResumesH";
 import ResumeCard from "../components/MyResumes/ResumeCard";
 import CreateResumeModal from "../components/MyResumes/CreateResumeModal";
 import EmptyState from "../components/MyResumes/EmptyState";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useActiveCV } from "../data/ActiveCVProvider";
+import { useReactToPrint } from "react-to-print";
+import ResumeContent from "../components/ResumeBuilder/ResumeContent";
 
 const updateData = () => {
   const saved = JSON.parse(localStorage.getItem("cards_data"));
@@ -33,9 +35,14 @@ export default function MyResumes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cardsData, setCardsData] = useState(updateData);
   const [activeId, setActiveId] = useState(null);
+  const [targetCV, setTargetCV] = useState(null);
   const { activeCV, selectCV } = useActiveCV();
+  const printRef = useRef(null);
 
-  localStorage.setItem("cards_data", JSON.stringify(cardsData));
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: targetCV?.resumeName || "resume",
+  });
 
   const addCard = (dataObject) => {
     setCardsData((prev) => [...prev, dataObject]);
@@ -70,6 +77,20 @@ export default function MyResumes() {
     );
   };
 
+  const PDFExport = (cardData) => {
+    setTargetCV(cardData);
+
+    setTimeout(() => {
+      handlePrint();
+    }, 50);
+  };
+
+  const JSONExport = () => {
+    // Export as JSON file
+  };
+
+  localStorage.setItem("cards_data", JSON.stringify(cardsData));
+
   return (
     <>
       <main className="w-full min-h-screen pt-16 flex flex-col">
@@ -90,6 +111,8 @@ export default function MyResumes() {
                   data={data}
                   removeCard={removeCard}
                   modifyCardTitle={modifyCardTitle}
+                  PDFExport={PDFExport}
+                  JSONExport={JSONExport}
                   handleActiveCV={handleActiveCV}
                   activeCV={activeCV}
                 />
@@ -104,6 +127,20 @@ export default function MyResumes() {
         onClose={() => setIsModalOpen(false)}
         onSave={addCard}
       />
+      {targetCV && (
+        <ResumeContent
+          personalInfo={targetCV.cvData.profile}
+          experiences={targetCV.cvData.exp}
+          educations={targetCV.cvData.edu}
+          skills={targetCV.cvData.skill}
+          layout={targetCV.cvSettings.layout}
+          font={targetCV.cvSettings.font}
+          spacing={targetCV.cvSettings.spacing}
+          language={targetCV.lang}
+          isHidden={true}
+          ref={printRef}
+        />
+      )}
     </>
   );
 }

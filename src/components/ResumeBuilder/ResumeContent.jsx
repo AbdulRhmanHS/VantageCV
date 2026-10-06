@@ -44,7 +44,7 @@ const ResumeContent = React.forwardRef(
     const density = {
       paddingPage: isCompact ? "p-6" : "p-12",
       pageMargin: isCompact ? 5 : 15,
-      gapSection: isCompact ? "gap-3" : "gap-8",
+      titleMargin: isCompact ? "mb-3" : "mb-8",
       gapItem: isCompact ? "gap-4" : "gap-8",
       gapNested: isCompact ? "gap-3" : "gap-6",
       titleSize: isCompact ? "text-base" : "text-lg",
@@ -64,7 +64,7 @@ const ResumeContent = React.forwardRef(
         ref={printRef}
         id="printable-resume"
         dir={isArabic ? "rtl" : "ltr"}
-        className={`flex-col ${bodyText} ${density.paddingPage} ${density.gapSection} ${
+        className={`flex-col ${bodyText} ${density.paddingPage} ${
           isArabic ? "rtl:text-right" : "ltr:text-left"
         } ${isHidden ? "hidden print:flex" : "flex"}`}
       >
@@ -94,7 +94,9 @@ const ResumeContent = React.forwardRef(
           }`}
         </style>
         {/* Header Section */}
-        <div className={`border-b-2 border-primary ${density.borderBottom}`}>
+        <div
+          className={`border-b-2 border-primary ${density.borderBottom} ${density.titleMargin}`}
+        >
           <h1 className={`${headlineText} text-5xl text-primary mb-2`}>
             {name || (isArabic ? "الاسم" : "Your Name")}
           </h1>

@@ -1,4 +1,5 @@
 import ResumeCardMenu from "./ResumeCardMenu";
+import FloatingMenu from "../Layout/FloatingMenu";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +7,8 @@ export default function ResumeCard({
   data,
   removeCard,
   modifyCardTitle,
+  PDFExport,
+  JSONExport,
   handleActiveCV,
   activeCV,
 }) {
@@ -14,6 +17,10 @@ export default function ResumeCard({
   const [newTitle, setNewTitle] = useState(initialTitle);
   const [isEditable, setIsEditable] = useState(false);
   const inputRef = useRef(null);
+  const exportMenuButtons = [
+    { name: "PDF", clickEvent: () => PDFExport(data) },
+    { name: "JSON", clickEvent: JSONExport },
+  ];
 
   useEffect(() => {
     if (isEditable && inputRef.current) {
@@ -39,7 +46,7 @@ export default function ResumeCard({
 
   return (
     <div
-      className={`flex flex-col bg-surface-container-lowest rounded-xl  shadow-sm overflow-hidden h-full relative ${
+      className={`flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden h-full relative ${
         activeCV && activeCV.id === data.id
           ? "border-2 border-secondary/80"
           : "border border-outline-variant/80 hover:border-outline-variant"
@@ -137,15 +144,19 @@ export default function ResumeCard({
               </span>
               Build
             </button>
-            <button
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-xs rounded-lg border border-outline-variant/60 transition-colors flex-1 font-medium"
-              href="#"
-            >
-              <span className="material-symbols-outlined text-[14px]!">
-                download
-              </span>
-              Export
-            </button>
+            <FloatingMenu menuButtons={exportMenuButtons}>
+              {(triggerProps) => (
+                <button
+                  {...triggerProps}
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-xs rounded-lg border border-outline-variant/60 transition-colors flex-1 font-medium"
+                >
+                  <span className="material-symbols-outlined text-[14px]!">
+                    download
+                  </span>
+                  Export
+                </button>
+              )}
+            </FloatingMenu>
           </div>
           <ResumeCardMenu deleteFunc={() => removeCard(data.id)} />
         </div>
