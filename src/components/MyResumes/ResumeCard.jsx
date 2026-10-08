@@ -19,7 +19,7 @@ export default function ResumeCard({
   const inputRef = useRef(null);
   const exportMenuButtons = [
     { name: "PDF", clickEvent: () => PDFExport(data) },
-    { name: "JSON", clickEvent: JSONExport },
+    { name: "JSON", clickEvent: () => JSONExport(data) },
   ];
 
   useEffect(() => {
@@ -48,8 +48,8 @@ export default function ResumeCard({
     <div
       className={`flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden h-full relative ${
         activeCV && activeCV.id === data.id
-          ? "border-2 border-secondary/80"
-          : "border border-outline-variant/80 hover:border-outline-variant"
+          ? "outline-2 outline-secondary/80"
+          : "border border-outline-variant/80"
       }`}
     >
       <div className="p-5 flex flex-col grow">

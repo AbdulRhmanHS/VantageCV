@@ -1,4 +1,4 @@
-// FIXME: Download all the required icons and put them in assets
+// FIXME: Fix the delayed loading of the icons
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";

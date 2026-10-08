@@ -203,6 +203,8 @@
 }
 
 @media print {
+  @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@400;700&family=Inter:wght@400;700&display=swap");
+
   *,
   ::before,
   ::after {

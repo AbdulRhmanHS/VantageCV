@@ -3,14 +3,15 @@
 // DONE: Make the pen icon rename the title of the CV
 // DONE: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
 // DONE: Make the export button functional by exporting as a PDF
-// TODO: Make an option for exporting as JSON to be able to import it later
-// TODO: Add an import button, and make it functional
+// DONE: Make an option for exporting as JSON to be able to import it later
+// DONE: Add an import button, and make it functional
 // DONE: Make the 3 dot button work by showing another menu which has the delete option
 // DONE: Make the delete functional
 // DONE: Add last modified date to the cards
 // DONE: Make the lastEdit record date with any edit made
 // DONE: Add number of sections to the cards
 // DONE: Add a job position to the resume and add it to the card
+// DONE: Empty the active_cv in the localStorage when it's deleted
 
 import CreateResumesH from "../components/MyResumes/CreateResumesH";
 import ResumeCard from "../components/MyResumes/ResumeCard";
@@ -38,6 +39,7 @@ export default function MyResumes() {
   const [targetCV, setTargetCV] = useState(null);
   const { activeCV, selectCV } = useActiveCV();
   const printRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const handlePrint = useReactToPrint({
     contentRef: printRef,
@@ -46,11 +48,15 @@ export default function MyResumes() {
 
   const addCard = (dataObject) => {
     setCardsData((prev) => [...prev, dataObject]);
-    setIsModalOpen(false);
+    isModalOpen ? setIsModalOpen(false) : null;
   };
 
   const removeCard = (id) => {
     setCardsData((prev) => prev.filter((item) => item.id !== id));
+    if (activeCV.id === id) {
+      localStorage.removeItem("active_cv");
+      selectCV(null);
+    }
   };
 
   const handleActiveCV = (id) => {
@@ -85,8 +91,37 @@ export default function MyResumes() {
     }, 50);
   };
 
-  const JSONExport = () => {
-    // Export as JSON file
+  const handleImport = async (event) => {
+    const files = Array.from(event.target.files);
+    if (!files.length) return;
+
+    for (const file of files) {
+      try {
+        // file.text() returns a promise resolving to the text string
+        const textFile = await file.text();
+        const dataObject = JSON.parse(textFile);
+        addCard(dataObject);
+      } catch (error) {
+        console.error(`Invalid JSON file format in ${file.name}:`, error);
+        alert(`Failed to parse ${file.name}.`);
+      }
+    }
+
+    // Reset input value so selecting the same files again triggers onChange
+    event.target.value = "";
+  };
+
+  const JSONExport = (data) => {
+    const dataString = JSON.stringify(data, null, 2);
+    const file = new Blob([dataString], { type: "application/json" });
+    const url = URL.createObjectURL(file);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${data.resumeName}.json`;
+    a.click();
+
+    URL.revokeObjectURL(url);
   };
 
   localStorage.setItem("cards_data", JSON.stringify(cardsData));
@@ -96,8 +131,9 @@ export default function MyResumes() {
       <main className="w-full min-h-screen pt-16 flex flex-col">
         <div className="max-w-max-width-desktop mx-auto w-full grow flex flex-col gap-6 p-6 py-10">
           <CreateResumesH
-            setIsModalOpen={handleModalOpen}
             resumeNumber={cardsData.length}
+            openModal={handleModalOpen}
+            importFn={() => fileInputRef.current?.click()}
           />
           {cardsData.length === 0 && <EmptyState />}
           <div
@@ -141,6 +177,15 @@ export default function MyResumes() {
           ref={printRef}
         />
       )}
+      {/* Import file picker */}
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleImport}
+        className="hidden"
+        accept=".json,application/json"
+        multiple
+      />
     </>
   );
 }
