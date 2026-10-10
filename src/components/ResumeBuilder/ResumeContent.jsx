@@ -97,11 +97,13 @@ const ResumeContent = React.forwardRef(
         <div
           className={`border-b-2 border-primary ${density.borderBottom} ${density.titleMargin}`}
         >
-          <h1 className={`${headlineText} text-5xl text-primary mb-2`}>
+          <h1
+            className={`${headlineText} text-5xl text-primary mb-2 rtl:mb-4 rtl:mt-1.5`}
+          >
             {name || (isArabic ? "الاسم" : "Your Name")}
           </h1>
           <div
-            className={`${density.jobTitleSize} mb-2 text-on-surface-variant`}
+            className={`${density.jobTitleSize} mb-2 rtl:mb-4 text-on-surface-variant`}
           >
             {job}
           </div>

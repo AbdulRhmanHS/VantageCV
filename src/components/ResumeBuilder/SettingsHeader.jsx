@@ -3,7 +3,7 @@
 // DONE: Make the spacing setting functional
 // DONE: Add language settings and make it work
 
-import DropDown from "./DropDown";
+import DropDown from "../Layout/DropDown";
 import TwoColumnSwitch from "./TwoColumnSwitch";
 
 export default function SettingsHeader({
@@ -27,31 +27,31 @@ export default function SettingsHeader({
         <div className="flex flex-col lg:flex-row lg:items-center gap-4 text-on-surface-variant">
           <DropDown
             label={"Font"}
-            value={font}
-            setFunction={setFont}
-            options={[
-              { val: "cairo", name: "Cairo" },
-              { val: "amiri", name: "Amiri" },
-              { val: "source-serif", name: "Source Serif" },
-              { val: "inter", name: "Inter" },
+            currentSelect={font}
+            menuButtons={[
+              { name: "Cairo", clickEvent: () => setFont("cairo") },
+              { name: "Amiri", clickEvent: () => setFont("amiri") },
+              {
+                name: "Source Serif",
+                clickEvent: () => setFont("source-serif"),
+              },
+              { name: "Inter", clickEvent: () => setFont("inter") },
             ]}
           />
           <DropDown
             label={"Spacing"}
-            value={spacing}
-            setFunction={setSpacing}
-            options={[
-              { val: "spacious", name: "Spacious" },
-              { val: "compact", name: "Compact" },
+            currentSelect={spacing}
+            menuButtons={[
+              { name: "Spacious", clickEvent: () => setSpacing("spacious") },
+              { name: "Compact", clickEvent: () => setSpacing("compact") },
             ]}
           />
           <DropDown
             label={"Language"}
-            value={language}
-            setFunction={setLanguage}
-            options={[
-              { val: "english", name: "English" },
-              { val: "arabic", name: "Arabic" },
+            currentSelect={language}
+            menuButtons={[
+              { name: "English", clickEvent: () => setLanguage("english") },
+              { name: "Arabic", clickEvent: () => setLanguage("arabic") },
             ]}
           />
         </div>
