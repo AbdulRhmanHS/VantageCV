@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function FinalCTA() {
+  const navigate = useNavigate();
   return (
     <section className="py-32 relative overflow-hidden bg-primary text-on-primary flex items-center justify-center text-center">
       <div
@@ -19,14 +20,14 @@ export default function FinalCTA() {
           Join thousands of professionals landing their dream roles with
           precision-crafted resumes.
         </p>
-        <Link
-          to="/builder"
+        <button
           className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-on-secondary rounded-xl text-headline-md font-headline-md transition-[transform, opacity] duration-300 hover:-translate-y-1 hover:opacity-90"
-          data-path="builder"
-          href="#"
+          onClick={() => {
+            navigate("/resumes", { state: { triggerAction: true } });
+          }}
         >
           Create Your Resume Now
-        </Link>
+        </button>
       </div>
     </section>
   );

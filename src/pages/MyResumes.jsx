@@ -17,25 +17,32 @@ import CreateResumesH from "../components/MyResumes/CreateResumesH";
 import ResumeCard from "../components/MyResumes/ResumeCard";
 import CreateResumeModal from "../components/MyResumes/CreateResumeModal";
 import EmptyState from "../components/MyResumes/EmptyState";
-import { useRef, useState } from "react";
+import ResumeContent from "../components/ResumeBuilder/ResumeContent";
+import { useRef, useState, useEffect } from "react";
 import { useActiveCV } from "../data/ActiveCVProvider";
 import { useReactToPrint } from "react-to-print";
-import ResumeContent from "../components/ResumeBuilder/ResumeContent";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const updateData = () => {
   const saved = JSON.parse(localStorage.getItem("cards_data"));
   const modifiedCV = JSON.parse(localStorage.getItem("active_cv"));
   return saved
     ? saved.map((data) => {
-        return data.id === modifiedCV.id ? { ...modifiedCV } : data;
+        return data.id === modifiedCV?.id ? { ...modifiedCV } : data;
       })
     : [];
 };
 
 export default function MyResumes() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(() => {
+    return Boolean(location.state?.triggerAction);
+  });
   const [cardsData, setCardsData] = useState(updateData);
-  const [activeId, setActiveId] = useState(null);
+  const [activeId, setActiveId] = useState(() => {
+    return location.state?.triggerAction ? crypto.randomUUID() : null;
+  });
   const [targetCV, setTargetCV] = useState(null);
   const { activeCV, selectCV } = useActiveCV();
   const printRef = useRef(null);
@@ -83,14 +90,6 @@ export default function MyResumes() {
     );
   };
 
-  const PDFExport = (cardData) => {
-    setTargetCV(cardData);
-
-    setTimeout(() => {
-      handlePrint();
-    }, 50);
-  };
-
   const handleImport = async (event) => {
     const files = Array.from(event.target.files);
     if (!files.length) return;
@@ -111,6 +110,14 @@ export default function MyResumes() {
     event.target.value = "";
   };
 
+  const PDFExport = (cardData) => {
+    setTargetCV(cardData);
+
+    setTimeout(() => {
+      handlePrint();
+    }, 50);
+  };
+
   const JSONExport = (data) => {
     const dataString = JSON.stringify(data, null, 2);
     const file = new Blob([dataString], { type: "application/json" });
@@ -123,6 +130,13 @@ export default function MyResumes() {
 
     URL.revokeObjectURL(url);
   };
+
+  // For the trigger action from the home page
+  useEffect(() => {
+    if (location.state?.triggerAction) {
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
 
   localStorage.setItem("cards_data", JSON.stringify(cardsData));
 

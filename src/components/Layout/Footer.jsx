@@ -1,10 +1,13 @@
-// TODO: Make links for Home, My Resumes, Builder, and Github repo
-// TODO: Make a Terms page
-// TODO: Make a contact me page (or make the link lead to any email)
+// DONE: Make links for Home, My Resumes, Builder, and Github repo
+// DONE: Make a Terms page
+// DONE: Make a contact me page (or make the link lead to any email)
+import { useActiveCV } from "../../data/ActiveCVProvider";
 
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const { activeCV } = useActiveCV();
+
   return (
     <footer className="w-full bg-surface-container border-t border-outline-variant py-4">
       <div className="max-w-max-width-desktop mx-auto px-6 py-4">
@@ -43,7 +46,7 @@ export default function Footer() {
                 My Resumes
               </Link>
               <Link
-                to="/builder"
+                to={`${activeCV ? "/builder" : "/"}`}
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors"
               >
                 Builder
@@ -55,23 +58,21 @@ export default function Footer() {
               Resources
             </span>
             <nav className="flex flex-col gap-2.5">
-              <a
+              <Link
+                to="/terms"
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors"
-                href="#"
               >
                 Terms
-              </a>
+              </Link>
               <a
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors"
-                href="mailto:contact@vantagecv.com"
+                href="mailto:bodahassan12@gmail.com"
               >
                 Contact Me
               </a>
               <a
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors inline-flex items-center gap-1.5"
-                href="https://github.com"
-                rel="noreferrer"
-                target="_blank"
+                href="https://github.com/AbdulRhmanHS/CV-app"
               >
                 GitHub
               </a>

@@ -1,7 +1,8 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
@@ -46,12 +47,14 @@ export default function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Link
-            to="/builder"
+          <button
             className={`bg-secondary text-on-secondary px-4 py-2 rounded-lg text-label-md opacity-100 hover:opacity-90 transition-opacity ${location.pathname === "/" ? "block" : "hidden"}`}
+            onClick={() => {
+              navigate("/resumes", { state: { triggerAction: true } });
+            }}
           >
             Create New
-          </Link>
+          </button>
         </div>
       </div>
     </header>
