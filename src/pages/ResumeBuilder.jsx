@@ -8,9 +8,8 @@
 // DONE: Make inputs support RTL direction
 // DONE: Handle PDF content overflow
 // DONE: Replace the English preview text with Arabic when switching languages
-// FIXME: Fix spacing and font sizes in the pdf
-// FIXME: Fix Arabic rtl pdf characters not rendered into correct words
-// FIXME: Cairo font not applying in print after changing the font in another resume
+// FIXED: Fix spacing and font sizes in the pdf
+// FIXED: Cairo font not applying in print after changing the font in another resume
 // DONE: Add new fonts that works for both Arabic and English
 // DONE: Add skills section for the CV
 

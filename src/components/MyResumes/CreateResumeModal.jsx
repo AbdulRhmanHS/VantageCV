@@ -1,3 +1,5 @@
+// FIXME: Fix layout issue for mobile device browsers that contain a bottom bar
+
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import { previewData } from "../../data/previewData";

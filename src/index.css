@@ -30,6 +30,11 @@
     unicode-bidi: plaintext;
     text-align: start;
   }
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    /* Prevent text flash while loading */
+    font-display: block;
+  }
 }
 
 @layer utilities {

@@ -47,14 +47,16 @@ const ResumeContent = React.forwardRef(
       titleMargin: isCompact ? "mb-3" : "mb-8",
       gapItem: isCompact ? "gap-4" : "gap-8",
       gapNested: isCompact ? "gap-3" : "gap-6",
-      titleSize: isCompact ? "text-base" : "text-lg",
-      bodyTextSize: isCompact ? "text-xs" : "text-sm",
-      skillTextSize: isCompact ? "text-sm" : "text-body-md",
+      titleSize: isCompact ? "text-sm" : "text-base",
+      bodyTextSize: isCompact ? "text-[11px]" : "text-sm",
+      skillTextSize: isCompact ? "text-xs" : "text-base",
       skillGap: isCompact ? "gap-1.5" : "gap-2.5",
       leading: isCompact ? "leading-snug" : "leading-relaxed",
       borderBottom: isCompact ? "pb-3" : "pb-6",
       headingBottom: isCompact ? "mb-1.5 pb-1" : "mb-3 pb-1",
-      jobTitleSize: isCompact ? "text-body-md" : "text-body-lg",
+      jobTitleSize: isCompact ? "text-sm" : "text-body-lg",
+      mainTitleSize: isCompact ? "text-3xl rtl:mt-1.5" : "text-5xl rtl:mt-3.5",
+      headingSize: isCompact ? "text-lg" : "text-2xl",
     };
 
     const isArabic = language === "arabic";
@@ -69,7 +71,8 @@ const ResumeContent = React.forwardRef(
         } ${isHidden ? "hidden print:flex" : "flex"}`}
       >
         <style>
-          {`@media print {
+          {`@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Tajawal:wght@400;500;700&display=swap');
+          @media print {
             @page {
               size: A4 portrait;
               margin: ${density.pageMargin}mm;
@@ -98,7 +101,7 @@ const ResumeContent = React.forwardRef(
           className={`border-b-2 border-primary ${density.borderBottom} ${density.titleMargin}`}
         >
           <h1
-            className={`${headlineText} text-5xl text-primary mb-2 rtl:mb-4 rtl:mt-1.5`}
+            className={`${headlineText} ${density.mainTitleSize} text-primary mb-2`}
           >
             {name || (isArabic ? "الاسم" : "Your Name")}
           </h1>
@@ -130,7 +133,7 @@ const ResumeContent = React.forwardRef(
             <div className={`flex flex-col ${density.gapItem} area-summary`}>
               <div>
                 <h2
-                  className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+                  className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
                 >
                   {isArabic ? "نبذة عني" : "Profile"}
                 </h2>
@@ -147,7 +150,7 @@ const ResumeContent = React.forwardRef(
             <div className={`flex flex-col ${density.gapItem} area-experience`}>
               <div>
                 <h2
-                  className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+                  className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
                 >
                   {isArabic ? "الخبرة العملية" : "Experience"}
                 </h2>
@@ -190,7 +193,7 @@ const ResumeContent = React.forwardRef(
           {educations.length > 0 && (
             <div>
               <h2
-                className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+                className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
               >
                 {isArabic ? "التعليم والدورات" : "Education"}
               </h2>
@@ -230,7 +233,7 @@ const ResumeContent = React.forwardRef(
           {skills.length > 0 && (
             <div>
               <h2
-                className={`${headlineText} ${density.headingBottom} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+                className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
               >
                 {isArabic ? "المهارات" : "Skills"}
               </h2>

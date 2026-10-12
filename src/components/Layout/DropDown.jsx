@@ -46,7 +46,7 @@ export default function DropDown({ label, currentSelect, menuButtons }) {
         {...getReferenceProps()}
         className="bg-surface outline-1 outline-surface-dim hover:bg-inverse-on-surface transition-colors flex items-center justify-between gap-2 min-w-28 p-2 rounded-md"
       >
-        <p className="block text-xs text-on-primary-fixed first-letter:uppercase">
+        <p className="block text-xs text-on-primary-fixed first-letter:uppercase select-none">
           {currentSelect}
         </p>
         <span className="material-symbols-outlined  pointer-events-none text-slate-400 text-[20px]!">
