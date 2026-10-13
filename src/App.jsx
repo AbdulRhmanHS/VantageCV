@@ -1,4 +1,5 @@
 // FIXME: Fix the delayed loading of the icons
+// DONE: Change the icon and title that appears on the browser tab
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";

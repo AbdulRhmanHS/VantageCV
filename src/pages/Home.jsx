@@ -1,4 +1,4 @@
-// TODO: Change the homepage content to match what it presents
+// DONE: Change the homepage content to match what it presents
 
 import Hero from "../components/Home/Hero";
 import Features from "../components/Home/Features";
@@ -7,7 +7,7 @@ import FinalCTA from "../components/Home/FinalCTA";
 
 export default function Home() {
   return (
-    <main className="w-full pt-16">
+    <main className="w-full">
       <Hero />
       <Features />
       <Content />

@@ -1,4 +1,5 @@
 // DONE: Apply the new floating ui to the dropdown menu
+// DONE: Make a better transition when the menu opens and closes
 
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -10,6 +11,7 @@ import {
   autoUpdate,
   useDismiss,
   useInteractions,
+  useTransitionStyles,
 } from "@floating-ui/react";
 
 export default function DropDown({ label, currentSelect, menuButtons }) {
@@ -25,6 +27,14 @@ export default function DropDown({ label, currentSelect, menuButtons }) {
 
   const dismiss = useDismiss(context);
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
+
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: 150, // Animation duration in ms
+    initial: {
+      opacity: 0,
+      transform: "scale(0.95) translateY(-4px)",
+    },
+  });
 
   const buttonWidth = refs.domReference.current?.getBoundingClientRect().width;
 
@@ -44,9 +54,9 @@ export default function DropDown({ label, currentSelect, menuButtons }) {
           setIsOpen(!isOpen);
         }}
         {...getReferenceProps()}
-        className="bg-surface outline-1 outline-surface-dim hover:bg-inverse-on-surface transition-colors flex items-center justify-between gap-2 min-w-28 p-2 rounded-md"
+        className="bg-surface outline-1 outline-surface-dim hover:bg-inverse-on-surface transition-colors flex items-center justify-between gap-2 min-w-28 p-2 rounded-md select-none"
       >
-        <p className="block text-xs text-on-primary-fixed first-letter:uppercase select-none">
+        <p className="block text-xs text-on-primary-fixed first-letter:uppercase">
           {currentSelect}
         </p>
         <span className="material-symbols-outlined  pointer-events-none text-slate-400 text-[20px]!">
@@ -54,7 +64,7 @@ export default function DropDown({ label, currentSelect, menuButtons }) {
         </span>
       </div>
       {/* Floating Menu */}
-      {isOpen &&
+      {isMounted &&
         createPortal(
           <div
             id="drop-down"
@@ -64,20 +74,25 @@ export default function DropDown({ label, currentSelect, menuButtons }) {
               width: buttonWidth ? `${buttonWidth}px` : undefined,
             }}
             {...getFloatingProps()}
-            className="bg-on-primary-container outline-1 outline-surface-dim rounded-md p-1.5 z-99 flex flex-col justify-center shadow-md"
+            className="z-99"
           >
-            {menuButtons.map((btn, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setIsOpen(false);
-                  btn.clickEvent();
-                }}
-                className="flex hover:bg-inverse-on-surface rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-xs w-full"
-              >
-                {btn.name}
-              </button>
-            ))}
+            <div
+              style={transitionStyles}
+              className="bg-on-primary-container outline-1 outline-surface-dim rounded-md p-1.5 flex flex-col justify-center shadow-md origin-top"
+            >
+              {menuButtons.map((btn, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setIsOpen(false);
+                    btn.clickEvent();
+                  }}
+                  className="flex hover:bg-inverse-on-surface rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-xs w-full"
+                >
+                  {btn.name}
+                </button>
+              ))}
+            </div>
           </div>,
           document.body,
         )}

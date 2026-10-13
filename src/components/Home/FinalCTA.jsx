@@ -21,7 +21,7 @@ export default function FinalCTA() {
           precision-crafted resumes.
         </p>
         <button
-          className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-on-secondary rounded-xl text-headline-md font-headline-md transition-[transform, opacity] duration-300 hover:-translate-y-1 hover:opacity-90"
+          className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-on-secondary rounded-xl text-md xs:text-xl sm:text-headline-md font-headline-md transition-[transform, opacity] duration-300 hover:-translate-y-1 hover:opacity-90"
           onClick={() => {
             navigate("/resumes", { state: { triggerAction: true } });
           }}

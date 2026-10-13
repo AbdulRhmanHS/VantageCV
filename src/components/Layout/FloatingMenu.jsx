@@ -8,6 +8,7 @@ import {
   autoUpdate,
   useDismiss,
   useInteractions,
+  useTransitionStyles,
 } from "@floating-ui/react";
 
 export default function FloatingMenu({ children, menuButtons }) {
@@ -24,6 +25,14 @@ export default function FloatingMenu({ children, menuButtons }) {
   const dismiss = useDismiss(context);
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: 150,
+    initial: {
+      opacity: 0,
+      transform: "scale(0.95) translateY(-4px)",
+    },
+  });
+
   const triggerProps = getReferenceProps({
     ref: refs.setReference,
     onClick: (e) => {
@@ -38,7 +47,7 @@ export default function FloatingMenu({ children, menuButtons }) {
     <>
       {typeof children === "function" ? children(triggerProps) : null}
 
-      {isOpen &&
+      {isMounted &&
         createPortal(
           <div
             ref={(node) => refs.setFloating(node)}
@@ -47,20 +56,25 @@ export default function FloatingMenu({ children, menuButtons }) {
               width: buttonWidth ? `${buttonWidth}px` : undefined,
             }}
             {...getFloatingProps()}
-            className={`bg-surface rounded-md p-1.5 z-99 flex flex-col justify-center shadow-md outline-1 outline-surface-dim`}
+            className="z-99"
           >
-            {menuButtons.map((btn, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setIsOpen(false);
-                  btn.clickEvent();
-                }}
-                className="flex hover:bg-surface-container rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-[12px] w-full"
-              >
-                {btn.name}
-              </button>
-            ))}
+            <div
+              style={transitionStyles}
+              className="bg-on-primary-container outline-1 outline-surface-dim rounded-md p-1.5 flex flex-col justify-center shadow-md origin-top"
+            >
+              {menuButtons.map((btn, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setIsOpen(false);
+                    btn.clickEvent();
+                  }}
+                  className="flex hover:bg-inverse-on-surface rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-xs w-full"
+                >
+                  {btn.name}
+                </button>
+              ))}
+            </div>
           </div>,
           document.body,
         )}

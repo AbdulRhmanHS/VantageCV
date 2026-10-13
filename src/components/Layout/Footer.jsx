@@ -24,8 +24,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-body-md font-body-md text-on-surface-variant max-w-md leading-relaxed">
-              A precision resume builder crafted for modern professionals to
-              build ATS-friendly CVs in minutes.
+              A precision resume builder crafted for modern professionals. Free
+              and open-source under the MIT license with native bilingual
+              (English & Arabic RTL) support and 100% client-side privacy.
             </p>
           </div>
           <div className="md:col-span-3 flex flex-col gap-3">

@@ -11,6 +11,7 @@ export default function PDFPreview({
   spacing,
   language,
   isHidden = true,
+  isHome = false,
 }) {
   // Fixed A4 pixel dimensions (at standard 96 DPI: 210mm = ~794px, 297mm = ~1123px)
   const resizingRef = useRef(null);
@@ -34,7 +35,7 @@ export default function PDFPreview({
   return (
     <div
       ref={resizingRef}
-      className={`lg:flex lg:w-1/2 bg-surface p-8 overflow-y-auto justify-center lg:sticky lg:top-16 lg:h-[calc(100vh-160px)] ${
+      className={` ${isHome ? "" : "lg:flex lg:w-1/2"}  bg-surface p-8 overflow-y-auto justify-center lg:sticky lg:top-16 lg:h-[calc(100vh-160px)] ${
         isHidden ? "hidden" : "flex"
       }`}
     >

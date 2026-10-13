@@ -1,4 +1,4 @@
-// FIXME: Fix layout issue for mobile device browsers that contain a bottom bar
+// DONE: Fix layout issue for mobile device browsers that contain a bottom bar
 
 import { createPortal } from "react-dom";
 import { useState } from "react";
@@ -48,7 +48,7 @@ export default function CreateResumeModal({
           onClose();
         }
       }}
-      className="fixed top-0 left-0 h-screen w-full flex justify-center items-center bg-gray-900/40 backdrop-blur-xs z-99 px-2 xs:px-4"
+      className="fixed top-0 left-0 h-dvh w-full flex justify-center items-center bg-gray-900/40 backdrop-blur-xs z-99 px-2 xs:px-4"
     >
       <div
         className="w-full max-w-lg bg-surface-container-lowest rounded-xl shadow-2xl border border-outline-variant/60 overflow-hidden transform transition-transform duration-200 z-100"
