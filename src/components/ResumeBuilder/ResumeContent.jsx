@@ -128,134 +128,144 @@ const ResumeContent = React.forwardRef(
               : "pdf-grid-layout"
           }`}
         >
-          {/* Profile Summary */}
-          {proSummary && (
-            <div className={`flex flex-col ${density.gapItem} area-summary`}>
-              <div>
-                <h2
-                  className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
-                >
-                  {isArabic ? "نبذة عني" : "Profile"}
-                </h2>
-                <p
-                  className={`text-on-surface ${density.leading} ${density.bodyTextSize}`}
-                >
-                  {proSummary}
-                </p>
+          <div
+            className={`${layout === "one-col" ? "flex" : "pdf-col-left"} flex-col ${density.gapItem}`}
+          >
+            {/* Profile Summary */}
+            {proSummary && (
+              <div className={`flex flex-col ${density.gapItem} area-summary`}>
+                <div>
+                  <h2
+                    className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+                  >
+                    {isArabic ? "نبذة عني" : "Profile"}
+                  </h2>
+                  <p
+                    className={`text-on-surface ${density.leading} ${density.bodyTextSize}`}
+                  >
+                    {proSummary}
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-          {/* Work Experience */}
-          {experiences.length > 0 && (
-            <div className={`flex flex-col ${density.gapItem} area-experience`}>
+            )}
+            {/* Work Experience */}
+            {experiences.length > 0 && (
+              <div
+                className={`flex flex-col ${density.gapItem} area-experience`}
+              >
+                <div>
+                  <h2
+                    className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+                  >
+                    {isArabic ? "الخبرة العملية" : "Experience"}
+                  </h2>
+                  <div
+                    className={`flex flex-col ${density.gapNested} break-inside-avoid`}
+                  >
+                    {experiences.map((exp) => (
+                      <div key={exp.id}>
+                        <div className="relative ps-4 before:absolute before:inset-s-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
+                          <div className="flex justify-between items-baseline mb-0.5">
+                            <h3
+                              className={`font-bold text-on-surface ${density.titleSize}`}
+                            >
+                              {exp.title}
+                            </h3>
+                            <span
+                              className={`text-on-surface-variant ${density.bodyTextSize} italic whitespace-nowrap`}
+                            >
+                              {exp.date}
+                            </span>
+                          </div>
+                          <div
+                            className={`text-primary font-medium ${density.bodyTextSize} mb-1`}
+                          >
+                            {exp.company}
+                          </div>
+                          <p
+                            className={`text-on-surface ${density.leading} ${density.bodyTextSize}`}
+                          >
+                            {exp.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div
+            className={`${layout === "one-col" ? "flex" : "pdf-col-right"} flex-col ${density.gapItem}`}
+          >
+            {/* Education */}
+            {educations.length > 0 && (
               <div>
                 <h2
                   className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
                 >
-                  {isArabic ? "الخبرة العملية" : "Experience"}
+                  {isArabic ? "التعليم والدورات" : "Education"}
                 </h2>
                 <div
-                  className={`flex flex-col ${density.gapNested} break-inside-avoid`}
+                  className={`flex flex-col ${density.gapNested} area-education break-inside-avoid`}
                 >
-                  {experiences.map((exp) => (
-                    <div key={exp.id}>
-                      <div className="relative ps-4 before:absolute before:inset-s-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full">
-                        <div className="flex justify-between items-baseline mb-0.5">
-                          <h3
-                            className={`font-bold text-on-surface ${density.titleSize}`}
-                          >
-                            {exp.title}
-                          </h3>
-                          <span
-                            className={`text-on-surface-variant ${density.bodyTextSize} italic whitespace-nowrap`}
-                          >
-                            {exp.date}
-                          </span>
+                  {educations.map((edu) => (
+                    <div key={edu.id}>
+                      <div>
+                        <h3
+                          className={`font-bold text-on-surface ${density.titleSize}`}
+                        >
+                          {edu.degree}
+                        </h3>
+                        <div
+                          className={`text-on-surface-variant ${density.bodyTextSize} mt-0.5`}
+                        >
+                          {edu.school}
                         </div>
                         <div
-                          className={`text-primary font-medium ${density.bodyTextSize} mb-1`}
+                          className={`text-on-surface-variant ${density.bodyTextSize} italic mt-0.5`}
                         >
-                          {exp.company}
+                          {edu.date}
                         </div>
                         <p
-                          className={`text-on-surface ${density.leading} ${density.bodyTextSize}`}
+                          className={`text-on-surface-variant ${density.bodyTextSize} mt-1 ${density.leading}`}
                         >
-                          {exp.description}
+                          {edu.description}
                         </p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
-          )}
-          {/* Education */}
-          {educations.length > 0 && (
-            <div>
-              <h2
-                className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
-              >
-                {isArabic ? "التعليم والدورات" : "Education"}
-              </h2>
-              <div
-                className={`flex flex-col ${density.gapNested} area-education break-inside-avoid`}
-              >
-                {educations.map((edu) => (
-                  <div key={edu.id}>
-                    <div>
-                      <h3
-                        className={`font-bold text-on-surface ${density.titleSize}`}
-                      >
-                        {edu.degree}
-                      </h3>
-                      <div
-                        className={`text-on-surface-variant ${density.bodyTextSize} mt-0.5`}
-                      >
-                        {edu.school}
+            )}
+            {/* Skills */}
+            {skills.length > 0 && (
+              <div>
+                <h2
+                  className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
+                >
+                  {isArabic ? "المهارات" : "Skills"}
+                </h2>
+                <div
+                  className={`flex flex-col ${density.skillGap} ${density.skillTextSize} break-inside-avoid`}
+                >
+                  {skills.map((skill) => (
+                    <div key={skill.id}>
+                      <div>
+                        <span className="font-bold text-on-surface">
+                          {skill.category}
+                          {skill.category ? ":" : ""}
+                        </span>
+                        <span className="text-on-surface-variant ltr:ml-1.5 rtl:mr-1.5">
+                          {skill.skillItems}
+                        </span>
                       </div>
-                      <div
-                        className={`text-on-surface-variant ${density.bodyTextSize} italic mt-0.5`}
-                      >
-                        {edu.date}
-                      </div>
-                      <p
-                        className={`text-on-surface-variant ${density.bodyTextSize} mt-1 ${density.leading}`}
-                      >
-                        {edu.description}
-                      </p>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-          {/* Skills */}
-          {skills.length > 0 && (
-            <div>
-              <h2
-                className={`${headlineText} ${density.headingBottom} ${density.headingSize} text-primary uppercase tracking-wider border-b border-outline-variant/30`}
-              >
-                {isArabic ? "المهارات" : "Skills"}
-              </h2>
-              <div
-                className={`flex flex-col ${density.skillGap} ${density.skillTextSize} break-inside-avoid`}
-              >
-                {skills.map((skill) => (
-                  <div key={skill.id}>
-                    <div>
-                      <span className="font-bold text-on-surface">
-                        {skill.category}
-                        {skill.category ? ":" : ""}
-                      </span>
-                      <span className="text-on-surface-variant ltr:ml-1.5 rtl:mr-1.5">
-                        {skill.skillItems}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     );

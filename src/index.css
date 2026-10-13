@@ -49,26 +49,21 @@
 
 @utility pdf-grid-layout {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
   gap: 32px;
   align-items: start;
 }
 
-@utility area-summary {
-  grid-column: 1;
+@utility pdf-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-@utility area-experience {
-  grid-column: 2;
-  grid-row: 1 / span 3;
-}
-
-@utility area-education {
-  grid-column: 1;
-}
-
-@utility area-skills {
-  grid-column: 1;
+@utility pdf-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 ::-webkit-scrollbar {

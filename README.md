@@ -15,9 +15,10 @@ document size paper representing how the final CV will look. The CV should be AT
 
 1. A section to add general information like:
    1. Name
-   2. Email
-   3. Phone number
-   4. Address
+   2. Job title
+   3. Email
+   4. Phone number
+   5. Address
 2. A section to add your educational experience:
    1. School / College name.
    2. Title study.
@@ -36,4 +37,4 @@ document size paper representing how the final CV will look. The CV should be AT
 1. Change the CV Layout (e.g. one column or two).
 2. Change the displayed font.
 3. Change spacing (e.g. compact or spacious).
-4. Renaming each section.
+4. Support two languages (English - Arabic).
