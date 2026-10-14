@@ -1,6 +1,6 @@
 # VantageCV
 
-> **[🚀 Access the Hosted Website Here](https://your-deployment-url.com)**
+> **[🚀 Access the Hosted Website Here](https://vantage-cv.bodahassan12.workers.dev/)**
 
 VantageCV is a modern, feature-rich, and ATS-friendly resume builder web application built with React and Tailwind CSS. It allows users to effortlessly create, customize, manage, and export professional resumes tailored to their career needs.
 
