@@ -1,3 +1,5 @@
+import { FileText, Sparkles } from "lucide-react";
+
 export default function EmptyState() {
   return (
     <div className="grow flex flex-col items-center justify-center max-w-lg mx-auto">
@@ -17,16 +19,12 @@ export default function EmptyState() {
             </div>
             <div className="flex items-center justify-between pt-1">
               <span className="w-3 h-1 rounded bg-surface-container-high"></span>
-              <span className="material-symbols-outlined text-secondary text-[14px]!">
-                auto_awesome
-              </span>
+              <Sparkles size={14} className="text-secondary" />
             </div>
           </div>
         </div>
         <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md">
-          <span className="material-symbols-outlined text-[16px]!">
-            description
-          </span>
+          <FileText size={16} />
         </div>
       </div>
       <h2 className="font-headline-md text-headline-md text-on-surface tracking-tight mb-2">

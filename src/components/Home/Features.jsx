@@ -1,3 +1,11 @@
+import {
+  Columns3Cog,
+  Download,
+  FileCheck,
+  Languages,
+  Shield,
+  Zap,
+} from "lucide-react";
 import FadeInSection from "./FadeInSection";
 
 export default function Features() {
@@ -22,7 +30,7 @@ export default function Features() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 opacity-100 translate-y-0">
             <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm hover:shadow-md transition-shadow group border border-outline-variant/30">
               <div className="w-12 h-12 bg-secondary-container rounded-xl flex items-center justify-center text-on-secondary-container mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined">rule</span>
+                <FileCheck />
               </div>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-3 text-xl">
                 ATS-Friendly
@@ -34,7 +42,7 @@ export default function Features() {
             </div>
             <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm hover:shadow-md transition-shadow group border border-outline-variant/30">
               <div className="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-on-primary-container mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined">translate</span>
+                <Languages />
               </div>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-3 text-xl">
                 Bilingual Support (EN &amp; AR)
@@ -46,9 +54,7 @@ export default function Features() {
             </div>
             <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm hover:shadow-md transition-shadow group border border-outline-variant/30">
               <div className="w-12 h-12 bg-tertiary-container rounded-xl flex items-center justify-center text-on-tertiary-container mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined">
-                  dashboard_customize
-                </span>
+                <Columns3Cog />
               </div>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-3 text-xl">
                 Layout &amp; Style Customization
@@ -61,7 +67,7 @@ export default function Features() {
             </div>
             <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm hover:shadow-md transition-shadow group border border-outline-variant/30">
               <div className="w-12 h-12 bg-on-tertiary-fixed-variant rounded-xl flex items-center justify-center text-surface-container-lowest mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined">shield</span>
+                <Shield />
               </div>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-3 text-xl">
                 100% Client-Side Privacy
@@ -73,7 +79,7 @@ export default function Features() {
             </div>
             <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm hover:shadow-md transition-shadow group border border-outline-variant/30">
               <div className="w-12 h-12 bg-secondary-container rounded-xl flex items-center justify-center text-on-secondary-container mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined">file_download</span>
+                <Download />
               </div>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-3 text-xl">
                 Complete Data Portability
@@ -85,7 +91,7 @@ export default function Features() {
             </div>
             <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col items-start shadow-sm hover:shadow-md transition-shadow group border border-outline-variant/30">
               <div className="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-on-primary-container mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined">bolt</span>
+                <Zap />
               </div>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-3 text-xl">
                 Quick &amp; Frictionless

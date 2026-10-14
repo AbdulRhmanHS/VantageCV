@@ -1,6 +1,8 @@
 // DONE: Make the Create New button show a pop up to fill the initial data of the CV
 // DONE: Attach the span element to the total number of resume cards
 
+import { Plus, Upload } from "lucide-react";
+
 export default function CreateResumesH({ resumeNumber, openModal, importFn }) {
   return (
     <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-4 border-b border-outline-variant/40 pb-5">
@@ -24,14 +26,14 @@ export default function CreateResumesH({ resumeNumber, openModal, importFn }) {
           onClick={importFn}
           className="bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-md text-sm p-2 lg:px-4 rounded-lg border border-outline-variant/60 flex items-center justify-center gap-2 transition-colors shadow-sm"
         >
-          <span className="material-symbols-outlined text-[18px]!">upload</span>
+          <Upload size={18} />
           <p className="inline xs:hidden md:inline">Import JSON</p>
         </button>
         <button
           onClick={openModal}
           className="bg-secondary hover:opacity-90 text-on-primary font-label-md text-sm p-2 lg:px-4 rounded-lg flex items-center justify-center gap-2 transition-opacity shadow-sm"
         >
-          <span className="material-symbols-outlined text-[18px]!">add</span>
+          <Plus size={18} />
           <p className="inline xs:hidden md:inline">Create New</p>
         </button>
       </div>

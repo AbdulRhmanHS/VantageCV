@@ -2,6 +2,14 @@ import ResumeCardMenu from "./ResumeCardMenu";
 import FloatingMenu from "../Layout/FloatingMenu";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  CalendarCog,
+  Check,
+  Download,
+  FilePenLine,
+  Pencil,
+  X,
+} from "lucide-react";
 
 export default function ResumeCard({
   data,
@@ -53,7 +61,7 @@ export default function ResumeCard({
       }`}
     >
       <div className="p-5 flex flex-col grow">
-        <div className="flex items-start justify-between gap-2 mb-2">
+        <div className="flex items-start justify-between gap-2 mb-4">
           {isEditable ? (
             <input
               ref={inputRef}
@@ -75,17 +83,13 @@ export default function ResumeCard({
                 className="p-1 hover:bg-surface-container transition-colors"
                 onClick={applyTitleEdit}
               >
-                <span className="material-symbols-outlined text-[16px]! text-secondary">
-                  check
-                </span>
+                <Check size={16} className="text-secondary" />
               </button>
               <button
                 className="p-1 hover:bg-surface-container transition-colors"
                 onClick={cancelTitleEdit}
               >
-                <span className="material-symbols-outlined text-[16px]! text-error">
-                  close
-                </span>
+                <X size={16} className="text-error" />
               </button>
             </div>
           ) : (
@@ -93,18 +97,14 @@ export default function ResumeCard({
               className="text-on-surface-variant hover:text-secondary transition-colors p-1 -mr-1"
               onClick={() => setIsEditable(true)}
             >
-              <span className="material-symbols-outlined text-[16px]!">
-                edit
-              </span>
+              <Pencil size={16} />
             </button>
           )}
         </div>
         <div className="flex flex-col xs:flex-row gap-4 xs:gap-2 text-xs text-on-surface-variant mb-4">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1">
-              <span className="material-symbols-outlined text-[14px]!">
-                calendar_today
-              </span>
+              <CalendarCog size={14} />
               {data.lastEdit}
             </span>
             <span className="text-outline-variant">•</span>
@@ -139,9 +139,7 @@ export default function ResumeCard({
                 navigate("/builder");
               }}
             >
-              <span className="material-symbols-outlined text-[14px]!">
-                edit_note
-              </span>
+              <FilePenLine size={14} />
               Build
             </button>
             <FloatingMenu menuButtons={exportMenuButtons}>
@@ -150,9 +148,7 @@ export default function ResumeCard({
                   {...triggerProps}
                   className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-xs rounded-lg border border-outline-variant/60 transition-colors flex-1 font-medium"
                 >
-                  <span className="material-symbols-outlined text-[14px]!">
-                    download
-                  </span>
+                  <Download size={14} />
                   Export
                 </button>
               )}

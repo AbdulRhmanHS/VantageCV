@@ -1,3 +1,5 @@
+import { Columns3, StretchHorizontal } from "lucide-react";
+
 export default function TwoColumnSwitch({ layout, setLayout }) {
   return (
     <div>
@@ -14,9 +16,7 @@ export default function TwoColumnSwitch({ layout, setLayout }) {
               : "text-slate-600 hover:text-on-primary-fixed font-medium"
           }`}
         >
-          <span className="material-symbols-outlined text-[17px]!">
-            view_agenda
-          </span>
+          <StretchHorizontal size={17} />
           <span>Single Col</span>
         </button>
         <button
@@ -28,9 +28,7 @@ export default function TwoColumnSwitch({ layout, setLayout }) {
               : "text-slate-600 hover:text-on-primary-fixed font-medium"
           }`}
         >
-          <span className="material-symbols-outlined text-[17px]!">
-            view_column
-          </span>
+          <Columns3 size={17} />
           <span>2 Columns</span>
         </button>
       </div>

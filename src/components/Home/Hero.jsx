@@ -1,3 +1,4 @@
+import { ArrowRight, Code, LockKeyholeOpen, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Hero() {
@@ -9,19 +10,15 @@ export default function Hero() {
       <div className="relative z-10 max-w-300 mx-auto px-6 w-full flex flex-col gap-8 justify-center items-center text-center space-y-8">
         <div className="inline-flex flex-wrap items-center justify-center gap-2.5 mb-2 transition-all duration-700 opacity-100 translate-y-0">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md font-semibold bg-secondary-fixed text-on-secondary-fixed border border-secondary-fixed-dim/40 shadow-sm">
-            <span className="material-symbols-outlined text-[16px]!">code</span>
+            <Code size={16} />
             100% Free &amp; Open Source
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md font-semibold bg-surface-container-high text-on-surface border border-outline-variant/40 shadow-sm">
-            <span className="material-symbols-outlined text-[16px]!">
-              lock_open
-            </span>
+            <LockKeyholeOpen size={16} />
             No Sign-up Required
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md font-semibold bg-primary-container text-on-primary-container border border-primary-fixed-dim/30 shadow-sm">
-            <span className="material-symbols-outlined text-[16px]!">
-              security
-            </span>
+            <ShieldCheck size={16} />
             Client-Side Only
           </span>
         </div>
@@ -43,14 +40,14 @@ export default function Hero() {
             className="inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary rounded-xl text-headline-md font-headline-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 gap-2"
           >
             <span className="">Get Started</span>
-            <span className="material-symbols-outlined">arrow_forward</span>
+            <ArrowRight />
           </Link>
           <a
             className="inline-flex items-center justify-center px-8 py-4 bg-surface-container-lowest text-on-surface border border-outline-variant/60 rounded-xl text-headline-md font-headline-md hover:border-secondary hover:text-secondary shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 gap-2"
             href="https://github.com/AbdulRhmanHS/CV-app"
           >
-            <span className="material-symbols-outlined">code</span>
-            <span className="">View on GitHub ↗</span>
+            <Code />
+            <span>View on GitHub ↗</span>
           </a>
         </div>
       </div>

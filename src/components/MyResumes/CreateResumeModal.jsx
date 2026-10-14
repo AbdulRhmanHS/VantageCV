@@ -5,6 +5,7 @@ import { useState } from "react";
 import { previewData } from "../../data/previewData";
 import { defaultSettings } from "../../data/defaultSettings";
 import { format } from "date-fns";
+import { Plus, X } from "lucide-react";
 
 export default function CreateResumeModal({
   resumeId,
@@ -70,9 +71,7 @@ export default function CreateResumeModal({
               onClose();
             }}
           >
-            <span className="material-symbols-outlined text-[20px]!">
-              close
-            </span>
+            <X size={20} />
           </button>
         </div>
         <form
@@ -157,9 +156,7 @@ export default function CreateResumeModal({
                 onClose();
               }}
             >
-              <span className="material-symbols-outlined text-[16px]!">
-                add
-              </span>
+              <Plus size={16} />
               Create Resume
             </button>
           </div>

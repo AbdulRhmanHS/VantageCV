@@ -1,5 +1,6 @@
 // DONE: Make the download button functional
 
+import { ArrowLeft, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function BuilderHeader({ handlePrint }) {
@@ -10,9 +11,7 @@ export default function BuilderHeader({ handlePrint }) {
           to="/resumes"
           className="text-label-md flex items-center hover:text-on-surface"
         >
-          <span className="material-symbols-outlined mr-2 sm:text-sm!">
-            arrow_back
-          </span>
+          <ArrowLeft size={14} className="mr-2" />
           <span className="inline">Back to Resumes</span>
         </Link>
       </div>
@@ -21,7 +20,7 @@ export default function BuilderHeader({ handlePrint }) {
           onClick={handlePrint}
           className="flex items-center gap-1.5 text-label-md p-1.5 sm:px-4 sm:py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
         >
-          <span className="material-symbols-outlined">download</span>
+          <Download size={18} />
           <span className="hidden sm:inline">Download</span>
         </button>
       </div>

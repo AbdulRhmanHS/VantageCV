@@ -1,4 +1,5 @@
 import { Reorder, useDragControls } from "framer-motion";
+import { GripVertical, Trash } from "lucide-react";
 
 export default function ReorderableFormCard({ item, id, onRemove, children }) {
   const controls = useDragControls();
@@ -19,9 +20,7 @@ export default function ReorderableFormCard({ item, id, onRemove, children }) {
             onPointerDown={(e) => controls.start(e)}
             className="absolute -left-6 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 transition-opacity cursor-grab touch-none"
           >
-            <span className="material-symbols-outlined text-outline">
-              drag_indicator
-            </span>
+            <GripVertical className="text-outline" />
           </div>
 
           {/* Delete Button */}
@@ -30,7 +29,7 @@ export default function ReorderableFormCard({ item, id, onRemove, children }) {
             onClick={onRemove}
             className="absolute top-4 right-4 text-on-surface-variant hover:text-error transition-colors"
           >
-            <span className="material-symbols-outlined text-sm!">delete</span>
+            <Trash size={14} />
           </button>
 
           {/* Form Fields */}

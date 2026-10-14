@@ -1,3 +1,5 @@
+// DONE: Apply the smooth menu transition
+
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -8,7 +10,9 @@ import {
   autoUpdate,
   useDismiss,
   useInteractions,
+  useTransitionStyles,
 } from "@floating-ui/react";
+import { EllipsisVertical, Trash } from "lucide-react";
 
 export default function ResumeCardMenu({ deleteFunc }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +27,14 @@ export default function ResumeCardMenu({ deleteFunc }) {
 
   const dismiss = useDismiss(context);
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
+
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: 150,
+    initial: {
+      opacity: 0,
+      transform: "scale(0.95) translateY(-4px)",
+    },
+  });
 
   const onDelete = () => {
     deleteFunc();
@@ -39,27 +51,28 @@ export default function ResumeCardMenu({ deleteFunc }) {
         onClick={() => setIsOpen(!isOpen)}
         className="w-8 h-8 rounded hover:bg-surface-container flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"
       >
-        <span className="material-symbols-outlined text-[18px]!">
-          more_vert
-        </span>
+        <EllipsisVertical size={18} />
       </button>
-      {isOpen &&
+      {isMounted &&
         createPortal(
           <div
             ref={(node) => refs.setFloating(node)}
             style={{ ...floatingStyles }}
             {...getFloatingProps()}
-            className="bg-surface rounded-md min-w-24 p-1.5 z-99 flex justify-center shadow-md"
+            className="z-99"
           >
-            <button
-              onClick={onDelete}
-              className="flex items-center hover:bg-surface-container rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-error text-[12px]"
+            <div
+              style={transitionStyles}
+              className="bg-on-primary-container outline-1 outline-surface-dim rounded-md p-1.5 flex flex-col justify-center shadow-md origin-top"
             >
-              <span className="material-symbols-outlined text-[12px]! mr-1.5">
-                delete
-              </span>
-              Delete
-            </button>
+              <button
+                onClick={onDelete}
+                className="flex hover:bg-inverse-on-surface rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-xs w-full text-error"
+              >
+                <Trash size={12} className="mr-1.5" />
+                Delete
+              </button>
+            </div>
           </div>,
           document.body,
         )}

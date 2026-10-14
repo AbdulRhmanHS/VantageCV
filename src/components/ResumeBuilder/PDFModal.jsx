@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import PDFPreview from "./PDFPreview";
 import SettingsHeader from "./SettingsHeader";
+import { Download, FileText, SlidersHorizontal, X } from "lucide-react";
 
 export default function PDFModal({
   isOpen,
@@ -50,9 +51,7 @@ export default function PDFModal({
               onClose();
             }}
           >
-            <span className="material-symbols-outlined text-[20px]!">
-              close
-            </span>
+            <X size={20} />
           </button>
         </header>
         {/* Modal Navigation / Section Quick Jump Tabs */}
@@ -67,13 +66,12 @@ export default function PDFModal({
                   : "text-slate-500 hover:text-on-primary-fixed! font-medium"
               }`}
             >
-              <span
-                className={`material-symbols-outlined text-[18px]! transition-colors ${
+              <FileText
+                size={18}
+                className={`transition-colors ${
                   menu === "pdf" ? "text-secondary" : ""
                 }`}
-              >
-                description
-              </span>
+              />
               <span>PDF Sheet</span>
             </button>
             <button
@@ -84,13 +82,12 @@ export default function PDFModal({
                   : "text-slate-500 hover:text-on-primary-fixed font-medium"
               }`}
             >
-              <span
-                className={`material-symbols-outlined text-[18px]! transition-colors ${
+              <SlidersHorizontal
+                size={18}
+                className={`transition-colors ${
                   menu === "settings" ? "text-secondary" : ""
                 }`}
-              >
-                tune
-              </span>
+              />
               <span>Settings</span>
             </button>
           </div>
@@ -124,9 +121,7 @@ export default function PDFModal({
                 onClick={handlePrint}
                 className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:underline"
               >
-                <span className="material-symbols-outlined text-[16px]">
-                  download
-                </span>
+                <Download size={16} />
                 <span>Download PDF</span>
               </button>
             </div>

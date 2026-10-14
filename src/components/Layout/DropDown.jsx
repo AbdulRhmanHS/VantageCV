@@ -13,6 +13,7 @@ import {
   useInteractions,
   useTransitionStyles,
 } from "@floating-ui/react";
+import { ChevronDown } from "lucide-react";
 
 export default function DropDown({ label, currentSelect, menuButtons }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ export default function DropDown({ label, currentSelect, menuButtons }) {
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
-    duration: 150, // Animation duration in ms
+    duration: 150,
     initial: {
       opacity: 0,
       transform: "scale(0.95) translateY(-4px)",
@@ -59,9 +60,7 @@ export default function DropDown({ label, currentSelect, menuButtons }) {
         <p className="block text-xs text-on-primary-fixed first-letter:uppercase">
           {currentSelect}
         </p>
-        <span className="material-symbols-outlined  pointer-events-none text-slate-400 text-[20px]!">
-          expand_more
-        </span>
+        <ChevronDown size={20} className="pointer-events-auto text-slate-400" />
       </div>
       {/* Floating Menu */}
       {isMounted &&

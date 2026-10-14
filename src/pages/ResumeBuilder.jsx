@@ -28,6 +28,7 @@ import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useActiveCV } from "../data/ActiveCVProvider";
 import { format } from "date-fns";
+import { BrainCog, Briefcase, GraduationCap, User } from "lucide-react";
 
 function useSectionState(initialItems) {
   const [items, setItems] = useState(initialItems);
@@ -130,7 +131,7 @@ export default function ResumeBuilder() {
                 </h1>
                 <div className="space-y-4">
                   <TemplateCard
-                    icon="person"
+                    icon={User}
                     title="General Information"
                     isOpen={true}
                   >
@@ -140,7 +141,7 @@ export default function ResumeBuilder() {
                     />
                   </TemplateCard>
                   <TemplateCard
-                    icon="work"
+                    icon={Briefcase}
                     title="Experience"
                     items={experiences.items}
                     onReorder={experiences.setItems}
@@ -154,7 +155,7 @@ export default function ResumeBuilder() {
                     )}
                   />
                   <TemplateCard
-                    icon="school"
+                    icon={GraduationCap}
                     title="Education"
                     items={educations.items}
                     onReorder={educations.setItems}
@@ -168,7 +169,7 @@ export default function ResumeBuilder() {
                     )}
                   />
                   <TemplateCard
-                    icon="psychology"
+                    icon={BrainCog}
                     title="Skills"
                     items={skills.items}
                     onReorder={skills.setItems}
