@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { previewData } from "../../data/previewData";
 import { defaultSettings } from "../../data/defaultSettings";
 import { format } from "date-fns";
@@ -11,6 +11,15 @@ export default function CreateResumeModal({
   onClose,
   onSave,
 }) {
+  useEffect(() => {
+    const rootElement = document.getElementById("root");
+    if (isOpen) {
+      rootElement.classList.add("overflow-hidden", "fixed", "inset-0");
+    } else {
+      rootElement.classList.remove("overflow-hidden", "fixed", "inset-0");
+    }
+  }, [isOpen]);
+
   const [formData, setFormData] = useState({
     id: resumeId,
     resumeName: "",

@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PDFPreview from "./PDFPreview";
 import SettingsHeader from "./SettingsHeader";
 import { Download, FileText, SlidersHorizontal, X } from "lucide-react";
@@ -22,6 +22,15 @@ export default function PDFModal({
   handlePrint,
 }) {
   const [menu, setMenu] = useState("pdf");
+
+  useEffect(() => {
+    const rootElement = document.getElementById("root");
+    if (isOpen) {
+      rootElement.classList.add("overflow-hidden", "fixed", "inset-0");
+    } else {
+      rootElement.classList.remove("overflow-hidden", "fixed", "inset-0");
+    }
+  }, [isOpen]);
 
   if (!isOpen) return;
 
