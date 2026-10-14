@@ -1,6 +1,3 @@
-// DONE: Make each tab show its own section
-// DONE: Make the settings functional
-
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import PDFPreview from "./PDFPreview";

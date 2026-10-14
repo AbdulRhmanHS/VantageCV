@@ -46,7 +46,6 @@ export default function Header() {
             </NavLink>
           </nav>
         </div>
-        {/* FIXED: Fix layout issue on mobile screens */}
         <div className="flex items-center gap-4">
           <button
             className={`bg-secondary text-on-secondary px-4 py-2 rounded-lg text-label-md opacity-100 hover:opacity-90 transition-opacity ${location.pathname === "/" ? "block" : "hidden"}`}

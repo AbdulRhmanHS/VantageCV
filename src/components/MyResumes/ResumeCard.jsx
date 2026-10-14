@@ -76,7 +76,6 @@ export default function ResumeCard({
               {data.resumeName}
             </h3>
           )}
-          {/* DONE: Add buttons to accept the edit or cancel it */}
           {isEditable ? (
             <div className="flex items-center gap-0.5 xs:gap-2">
               <button

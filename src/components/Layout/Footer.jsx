@@ -1,6 +1,3 @@
-// DONE: Make links for Home, My Resumes, Builder, and Github repo
-// DONE: Make a Terms page
-// DONE: Make a contact me page (or make the link lead to any email)
 import { useActiveCV } from "../../data/ActiveCVProvider";
 
 import { Link } from "react-router-dom";

@@ -1,8 +1,3 @@
-// DONE: Make the column layout setting functional
-// DONE: Make the font setting functional
-// DONE: Make the spacing setting functional
-// DONE: Add language settings and make it work
-
 import DropDown from "../Layout/DropDown";
 import TwoColumnSwitch from "./TwoColumnSwitch";
 

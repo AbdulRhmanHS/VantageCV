@@ -1,18 +1,3 @@
-// DONE: Make the collapse buttons functional
-// DONE: Make the add button work for each section
-// DONE: Make the delete button work for each section
-// DONE: Connect the typed input to the pdf
-// DONE: Make the drag handle reorder the sections
-// DONE: Make the display of the pdf at small screens functional
-// DONE: Add the hidden settings to the displayed pdf
-// DONE: Make inputs support RTL direction
-// DONE: Handle PDF content overflow
-// DONE: Replace the English preview text with Arabic when switching languages
-// FIXED: Fix spacing and font sizes in the pdf
-// FIXED: Cairo font not applying in print after changing the font in another resume
-// DONE: Add new fonts that works for both Arabic and English
-// DONE: Add skills section for the CV
-
 import BuilderHeader from "../components/ResumeBuilder/BuilderHeader";
 import SettingsHeader from "../components/ResumeBuilder/SettingsHeader";
 import TemplateCard from "../components/ResumeBuilder/TemplateCard";

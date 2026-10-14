@@ -1,5 +1,3 @@
-// DONE: Make the download button functional
-
 import { ArrowLeft, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 

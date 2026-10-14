@@ -1,6 +1,3 @@
-// DONE: Apply the new floating ui to the dropdown menu
-// DONE: Make a better transition when the menu opens and closes
-
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import {

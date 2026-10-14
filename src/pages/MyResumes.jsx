@@ -1,18 +1,3 @@
-// DONE: Attach the cards to the resume data in the builder
-// DONE: Make the build button functional open the builder with the current CV data
-// DONE: Make the pen icon rename the title of the CV
-// DONE: Make an active state on last opened CV by changing the border color to bg-secondary and adding active an span indicator
-// DONE: Make the export button functional by exporting as a PDF
-// DONE: Make an option for exporting as JSON to be able to import it later
-// DONE: Add an import button, and make it functional
-// DONE: Make the 3 dot button work by showing another menu which has the delete option
-// DONE: Make the delete functional
-// DONE: Add last modified date to the cards
-// DONE: Make the lastEdit record date with any edit made
-// DONE: Add number of sections to the cards
-// DONE: Add a job position to the resume and add it to the card
-// DONE: Empty the active_cv in the localStorage when it's deleted
-
 import CreateResumesH from "../components/MyResumes/CreateResumesH";
 import ResumeCard from "../components/MyResumes/ResumeCard";
 import CreateResumeModal from "../components/MyResumes/CreateResumeModal";

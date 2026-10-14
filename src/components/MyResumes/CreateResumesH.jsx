@@ -1,6 +1,3 @@
-// DONE: Make the Create New button show a pop up to fill the initial data of the CV
-// DONE: Attach the span element to the total number of resume cards
-
 import { Plus, Upload } from "lucide-react";
 
 export default function CreateResumesH({ resumeNumber, openModal, importFn }) {

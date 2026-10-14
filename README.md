@@ -1,40 +1,73 @@
-# CV App
+# VantageCV
 
-## Core Functionality
+> **[🚀 Access the Hosted Website Here](https://your-deployment-url.com)**
 
-This application should be able to take input from different sections from the user and structure them in a
-document size paper representing how the final CV will look. The CV should be ATS friendly. The user should be able to choose different layouts.
+VantageCV is a modern, feature-rich, and ATS-friendly resume builder web application built with React and Tailwind CSS. It allows users to effortlessly create, customize, manage, and export professional resumes tailored to their career needs.
 
-## Pages to include
+---
 
-1. Home page representing the service and a proper navigation.
-2. Create Resume page that can add, remove, edit, and export multiple different resumes.
-3. Build Resume page that have all the CV sections and important settings.
+## 🌟 Key Features
 
-## CV Sections
+- **ATS-Friendly Layouts:** Designed to pass Applicant Tracking Systems with clean structuring.
+- **Multiple Resumes Management:** Create, edit, rename, delete, import, and export multiple resumes.
+- **Dynamic Customization:**
+  - **Layouts:** Switch between single-column and multi-column designs.
+  - **Typography:** Choose from a variety of fonts optimized for both English and Arabic.
+  - **Spacing:** Adjust spacing settings (compact vs. spacious).
+  - **Bilingual Support:** Full support for English and Arabic (including RTL direction).
+- **Real-Time PDF Preview:** Instantly see your changes reflected in a live document-sized preview and export your resume directly as a PDF.
+- **Data Portability:** Export and import your resume data using JSON files.
 
-1. A section to add general information like:
-   1. Name
-   2. Job title
-   3. Email
-   4. Phone number
-   5. Address
-2. A section to add your educational experience:
-   1. School / College name.
-   2. Title study.
-   3. Date of study.
-3. A section to add practical experience:
-   1. Company name.
-   2. Position title.
-   3. Main responsibilities of your jobs.
-   4. Date from and until when you worked for that company.
+---
 
-> [!NOTE]
-> The user can add or leave any section empty.
+## 📄 CV Sections Available
 
-## Additional Settings
+1. **General Information:** Name, job title, email, phone number, and address.
+2. **Educational Experience:** School/College name, title of study, and dates.
+3. **Practical Experience:** Company name, position title, main responsibilities, and work duration.
+4. **Skills:** Highlight your core competencies.
 
-1. Change the CV Layout (e.g. one column or two).
-2. Change the displayed font.
-3. Change spacing (e.g. compact or spacious).
-4. Support two languages (English - Arabic).
+_(Note: All sections are completely modular; you can add, reorder, or leave any section empty as needed.)_
+
+---
+
+## 🚀 How to Use
+
+### 1. Home Page
+
+- Explore the services offered, view features, and navigate directly to your dashboard or resume builder.
+
+### 2. Managing Your Resumes (`/my-resumes`)
+
+- **Create:** Click the **"Create New"** button to start a fresh resume or **"Import"** to upload an existing JSON resume file.
+- **Actions:** Use the card menu on any resume to rename it, duplicate it, delete it, export it as a JSON file, or download it as a PDF.
+- **Edit:** Click on a resume card to open it in the builder.
+
+### 3. Building Your Resume (`/builder`)
+
+- **Fill in Details:** Add your personal info, work experience, education, and skills. Use the drag handles to reorder sections.
+- **Customize Settings:** Use the header settings to change the layout columns, typography, spacing, and language (English/Arabic).
+- **Export:** Click the **Download** button in the top right to generate and save your final PDF resume.
+
+---
+
+## 🛠️ Local Development
+
+If you want to run the project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:AbdulRhmanHS/VantageCV.git
+   cd VantageCV
+   ```
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```

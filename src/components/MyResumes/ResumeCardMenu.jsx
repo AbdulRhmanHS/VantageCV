@@ -1,5 +1,3 @@
-// DONE: Apply the smooth menu transition
-
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import {
