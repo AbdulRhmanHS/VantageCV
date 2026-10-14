@@ -1,3 +1,4 @@
+import { MoveLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Terms() {
@@ -9,13 +10,11 @@ export default function Terms() {
             to="/"
             className="inline-flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors text-label-md font-label-md"
           >
-            <span className="material-symbols-outlined text-[18px]">
-              arrow_back
-            </span>
-            <span className="">Back to Home</span>
+            <MoveLeft size={18} />
+            <span>Back to Home</span>
           </Link>
         </div>
-        <article className="">
+        <article>
           <header className="mb-8 pb-6 border-b border-outline-variant/30">
             <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">
               Terms of Service &amp; Privacy Disclaimer
