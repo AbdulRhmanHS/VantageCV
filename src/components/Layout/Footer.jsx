@@ -71,7 +71,7 @@ export default function Footer() {
               </a>
               <a
                 className="text-body-md text-on-surface-variant hover:text-secondary transition-colors inline-flex items-center gap-1.5"
-                href="https://github.com/AbdulRhmanHS/CV-app"
+                href="https://github.com/AbdulRhmanHS/VantageCV"
               >
                 GitHub
               </a>

@@ -1,4 +1,4 @@
-import { MoveLeft } from "lucide-react";
+import { ExternalLink, MoveLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Terms() {
@@ -89,12 +89,9 @@ export default function Terms() {
                 code on{" "}
                 <a
                   className="text-secondary hover:underline font-medium inline-flex items-center gap-1"
-                  href="https://github.com/AbdulRhmanHS/CV-app"
+                  href="https://github.com/AbdulRhmanHS/VantageCV"
                 >
-                  GitHub{" "}
-                  <span className="material-symbols-outlined text-[14px]">
-                    open_in_new
-                  </span>
+                  GitHub <ExternalLink size={14} />
                 </a>
                 .
               </p>

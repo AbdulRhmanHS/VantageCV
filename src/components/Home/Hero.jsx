@@ -44,7 +44,7 @@ export default function Hero() {
           </Link>
           <a
             className="inline-flex items-center justify-center px-8 py-4 bg-surface-container-lowest text-on-surface border border-outline-variant/60 rounded-xl text-headline-md font-headline-md hover:border-secondary hover:text-secondary shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 gap-2"
-            href="https://github.com/AbdulRhmanHS/CV-app"
+            href="https://github.com/AbdulRhmanHS/VantageCV"
           >
             <Code />
             <span>View on GitHub ↗</span>
