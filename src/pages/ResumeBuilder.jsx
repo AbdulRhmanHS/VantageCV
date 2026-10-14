@@ -13,7 +13,7 @@ import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useActiveCV } from "../data/ActiveCVProvider";
 import { format } from "date-fns";
-import { BrainCog, Briefcase, GraduationCap, User } from "lucide-react";
+import { BrainCog, Briefcase, Eye, GraduationCap, User } from "lucide-react";
 
 function useSectionState(initialItems) {
   const [items, setItems] = useState(initialItems);
@@ -188,7 +188,7 @@ export default function ResumeBuilder() {
             isModalOpen ? "hidden" : "fixed"
           }`}
         >
-          <span className="material-symbols-outlined text-2xl">visibility</span>
+          <Eye size={24} />
         </button>
       </main>
       <PDFModal
