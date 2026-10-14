@@ -1,4 +1,5 @@
 import { useActiveCV } from "../../data/ActiveCVProvider";
+import MainLogo from "/src/assets/main_logo.svg";
 
 import { Link } from "react-router-dom";
 
@@ -14,7 +15,7 @@ export default function Footer() {
               <img
                 alt="VantageCV Logo"
                 className="h-6 w-auto object-contain"
-                src="/src/assets/main_logo.svg"
+                src={MainLogo}
               />
               <span className="text-headline-md font-headline-md tracking-tight text-primary">
                 VantageCV
