@@ -11,13 +11,19 @@ import {
   useTransitionStyles,
 } from "@floating-ui/react";
 
-export default function FloatingMenu({ children, menuButtons }) {
+export default function FloatingMenu({
+  children,
+  menuButtons,
+  placement = "bottom",
+  isEqualWidth = true,
+  selectId = "",
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
-    placement: "bottom",
+    placement: placement,
     whileElementsMounted: autoUpdate,
     middleware: [offset(6), flip(), shift()],
   });
@@ -50,10 +56,12 @@ export default function FloatingMenu({ children, menuButtons }) {
       {isMounted &&
         createPortal(
           <div
+            id={selectId}
             ref={(node) => refs.setFloating(node)}
             style={{
               ...floatingStyles,
-              width: buttonWidth ? `${buttonWidth}px` : undefined,
+              width:
+                isEqualWidth && buttonWidth ? `${buttonWidth}px` : undefined,
             }}
             {...getFloatingProps()}
             className="z-99"
@@ -62,18 +70,22 @@ export default function FloatingMenu({ children, menuButtons }) {
               style={transitionStyles}
               className="bg-on-primary-container outline-1 outline-surface-dim rounded-md p-1.5 flex flex-col justify-center shadow-md origin-top"
             >
-              {menuButtons.map((btn, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setIsOpen(false);
-                    btn.clickEvent();
-                  }}
-                  className="flex hover:bg-inverse-on-surface rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-xs w-full"
-                >
-                  {btn.name}
-                </button>
-              ))}
+              {menuButtons.map((btn, index) => {
+                const Icon = btn.icon;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setIsOpen(false);
+                      btn.clickEvent();
+                    }}
+                    className={`flex hover:bg-inverse-on-surface rounded-lg py-1.5 px-3.5 select-none transition-colors ease-in-out text-xs w-full ${btn.textColor}`}
+                  >
+                    {Icon ? <Icon size={12} className="mr-1.5" /> : null}
+                    {btn.name}
+                  </button>
+                );
+              })}
             </div>
           </div>,
           document.body,

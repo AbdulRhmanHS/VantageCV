@@ -1,4 +1,3 @@
-import ResumeCardMenu from "./ResumeCardMenu";
 import FloatingMenu from "../Layout/FloatingMenu";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +5,10 @@ import {
   CalendarCog,
   Check,
   Download,
+  EllipsisVertical,
   FilePenLine,
   Pencil,
+  Trash,
   X,
 } from "lucide-react";
 
@@ -28,6 +29,15 @@ export default function ResumeCard({
   const exportMenuButtons = [
     { name: "PDF", clickEvent: () => PDFExport(data) },
     { name: "JSON", clickEvent: () => JSONExport(data) },
+  ];
+
+  const additionalButtons = [
+    {
+      name: "Remove",
+      clickEvent: () => removeCard(data.id),
+      icon: Trash,
+      textColor: "text-error",
+    },
   ];
 
   useEffect(() => {
@@ -153,7 +163,20 @@ export default function ResumeCard({
               )}
             </FloatingMenu>
           </div>
-          <ResumeCardMenu deleteFunc={() => removeCard(data.id)} />
+          <FloatingMenu
+            menuButtons={additionalButtons}
+            placement="bottom-start"
+            isEqualWidth={false}
+          >
+            {(triggerProps) => (
+              <button
+                {...triggerProps}
+                className="w-8 h-8 rounded hover:bg-surface-container flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"
+              >
+                <EllipsisVertical size={18} />
+              </button>
+            )}
+          </FloatingMenu>
         </div>
       </div>
     </div>

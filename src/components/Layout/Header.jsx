@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import MainLogo from "/src/assets/main_logo.svg";
+import { MainLogo } from "../../assets/MainLogo";
 
 export default function Header() {
   const location = useLocation();
@@ -10,11 +10,7 @@ export default function Header() {
       <div className="h-16 max-w-max-width-desktop mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-10">
           <Link to="/" className="flex items-center gap-3">
-            <img
-              alt="ResumeFlow Logo"
-              className="h-6 w-auto object-contain"
-              src={MainLogo}
-            />
+            <MainLogo />
             <span className="hidden min-[350px]:block text-headline-md font-headline-md tracking-tight text-primary">
               VantageCV
             </span>
